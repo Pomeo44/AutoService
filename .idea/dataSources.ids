@@ -657,20 +657,14 @@
       <column name="NAME" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="AUTO_MARKA_ID"/>
     </table>
-    <table name="AUTO_MARKA_MODEL" schema="" catalog="kontur44_AutoService" type="TABLE">
-      <column name="AUTO_MARKA_MODEL_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="AUTO_MARKA_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="AUTO_MODEL_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="AUTO_TYPE_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <primary-key name="PRIMARY" columns="AUTO_MARKA_MODEL_ID"/>
-      <index name="AUTO_MARKA_MODEL_AUTO_TYPE_ID" unique="false" columns="AUTO_TYPE_ID"/>
-      <index name="AUTO_MARKA_MODEL_MARKA_ID" unique="false" columns="AUTO_MARKA_ID"/>
-      <index name="AUTO_MARKA_MODEL_MODEL_ID" unique="false" columns="AUTO_MODEL_ID"/>
-    </table>
     <table name="AUTO_MODEL" schema="" catalog="kontur44_AutoService" type="TABLE">
       <column name="AUTO_MODEL_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="NAME" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <column name="AUTO_MARKA_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="AUTO_TYPE_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="AUTO_MODEL_ID"/>
+      <index name="AUTO_MODEL_AUTO_TYPE_ID" unique="false" columns="AUTO_TYPE_ID"/>
+      <index name="AUTO_MODEL_MARKA_ID" unique="false" columns="AUTO_MARKA_ID"/>
     </table>
     <table name="AUTO_TYPE" schema="" catalog="kontur44_AutoService" type="TABLE">
       <column name="AUTO_TYPE_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -699,6 +693,11 @@
       <column name="LOCKEDBY" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="ID"/>
     </table>
+    <table name="LIFT" schema="" catalog="kontur44_AutoService" type="TABLE">
+      <column name="LIFT_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="NUMBER" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="LIFT_ID"/>
+    </table>
     <table name="MASTER" schema="" catalog="kontur44_AutoService" type="TABLE">
       <column name="MASTER_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="NAME" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
@@ -712,11 +711,22 @@
       <index name="MASTER_SPECIALIZATION_MASTER_ID" unique="false" columns="MASTER_ID"/>
       <index name="MASTER_SPECIALIZATION_SPECIALIZATION_ID" unique="false" columns="SPECIALIZATION_ID"/>
     </table>
+    <table name="ORDERS" schema="" catalog="kontur44_AutoService" type="TABLE">
+      <column name="ORDERS_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="OWNER_AUTO_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="CREATE_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="DONE" sqlType="BIT" precision="1" scale="0" nullable="true" jdbcType="-7" def="YicwJw=="/>
+      <primary-key name="PRIMARY" columns="ORDERS_ID"/>
+      <index name="ORDERS_OWNER_AUTO_ID" unique="false" columns="OWNER_AUTO_ID"/>
+    </table>
     <table name="OWNER_AUTO" schema="" catalog="kontur44_AutoService" type="TABLE">
       <column name="OWNER_AUTO_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="NAME" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
-      <column name="AUTO_MARKA_MODEL_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="AUTO_MODEL_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="YEAR" sqlType="VARCHAR" precision="4" scale="0" nullable="false" jdbcType="12"/>
+      <column name="GOS_NUMBER" sqlType="VARCHAR" precision="9" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="OWNER_AUTO_ID"/>
+      <index name="OWNER_AUTO_AUTO_MODEL_ID" unique="false" columns="AUTO_MODEL_ID"/>
     </table>
     <table name="PRICE" schema="" catalog="kontur44_AutoService" type="TABLE">
       <column name="PRICE_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -732,6 +742,22 @@
       <column name="SPECIALIZATION_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="NAME" sqlType="VARCHAR" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="SPECIALIZATION_ID"/>
+    </table>
+    <table name="WORK" schema="" catalog="kontur44_AutoService" type="TABLE">
+      <column name="WORK_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="WORK_DATE" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="ORDERS_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="WORK_TYPE_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="LIFT_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="MASTER_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="DONE" sqlType="BIT" precision="1" scale="0" nullable="true" jdbcType="-7" def="YicwJw=="/>
+      <column name="ACTUAL_TIME" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="ACTUAL_MONEY" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="WORK_ID"/>
+      <index name="WORK_LIFT_ID" unique="false" columns="LIFT_ID"/>
+      <index name="WORK_MASTER_ID" unique="false" columns="MASTER_ID"/>
+      <index name="WORK_ORDERS_ID" unique="false" columns="ORDERS_ID"/>
+      <index name="WORK_WORK_TYPE_ID" unique="false" columns="WORK_TYPE_ID"/>
     </table>
     <table name="WORK_TYPE" schema="" catalog="kontur44_AutoService" type="TABLE">
       <column name="WORK_TYPE_ID" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
