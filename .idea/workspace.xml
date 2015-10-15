@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ff967b30-e749-4037-a0ad-d7dcef10eef4" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\.idea\dataSources.local.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\.idea\encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\.idea\libraries\JPA_2_0_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\.idea\scopes\scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\.idea\uiDesigner.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\lib\javax.persistence.jar" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\out\artifacts\AutoService_war_exploded\WEB-INF\classes\META-INF\persistence.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\out\artifacts\AutoService_war_exploded\WEB-INF\web.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\out\artifacts\AutoService_war_exploded\index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="C:\my_java\WebApp\AutoService\out\production\AutoService\META-INF\persistence.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AutoService.iml" afterPath="$PROJECT_DIR$/AutoService.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Hibernate_4_2_2_4_2_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Hibernate_4_2_2_4_2_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.jsp" afterPath="$PROJECT_DIR$/web/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="ff967b30-e749-4037-a0ad-d7dcef10eef4" name="Default" comment="" />
     <ignored path="AutoService.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -285,12 +263,12 @@
       <created>1444898614830</created>
       <option name="number" value="Default" />
       <updated>1444898614830</updated>
-      <workItem from="1444898616050" duration="388000" />
+      <workItem from="1444898616050" duration="640000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="388000" />
+    <option name="totallyTimeSpent" value="640000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-5" y="-5" width="1930" height="1046" extended-state="6" />
