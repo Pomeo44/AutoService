@@ -2,10 +2,21 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="MySQL - kontur44_AutoService@91.219.195.42" uuid="1cb234dd-ce04-437b-a324-ce7e37470dc1">
+<<<<<<< HEAD
       <secret-storage>memory</secret-storage>
       <user-name>kontur44_admin</user-name>
       <schema-pattern>kontur44_AutoService.*</schema-pattern>
       <default-schemas>kontur44_AutoService.*</default-schemas>
+=======
+      <secret-storage>master_key</secret-storage>
+      <user-name>kontur44_admin</user-name>
+    </data-source>
+    <data-source name="MySQL - liquiblog @localhost" uuid="66b0bbf2-cde9-4b12-9866-ef103b1fd906">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>sakila.*</schema-pattern>
+      <default-schemas>sakila.*</default-schemas>
+>>>>>>> origin/master
     </data-source>
   </component>
 </project>

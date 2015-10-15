@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <!--db.changelog.xml-->
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    
+	<changeSet id="20151013-001" author ="aantipin">
+      <createTable tableName="MASTER">
+        <column name="MASTER_ID" type="int" autoIncrement="true" remarks="ID мастера">
+			<constraints primaryKey="true" nullable="false" />
+        </column>
+        <column name="NAME" type="varchar(100)">
+          <constraints nullable="false"/>
+        </column>
+      </createTable>
+    </changeSet>
+	
+	<changeSet id="20151013-002" author ="aantipin">
+      <createTable tableName="SPECIALIZATION">
+        <column name="SPECIALIZATION_ID" type="int" autoIncrement="true">
+			<constraints primaryKey="true" nullable="false" />
+        </column>
+        <column name="NAME" type="varchar(100)">
+          <constraints nullable="false" />
+        </column>
+      </createTable>
+    </changeSet>
+	
+	<changeSet id="20151013-003" author ="aantipin">
+      <createTable tableName="MASTER_SPECIALIZATION">
+        <column name="MASTER_SPECIALIZATION_ID" type="int" autoIncrement="true">
+			<constraints primaryKey="true" nullable="false" />
+        </column>
+		<column name="MASTER_ID" type="int">
+			<constraints nullable="false" />
+        </column>
+        <column name="SPECIALIZATION_ID" type="int">
+			<constraints nullable="false" />
+        </column>
+      </createTable>
+    </changeSet>
+	
+	<changeSet id="20151013-004" author ="aantipin">
+		<addForeignKeyConstraint baseTableName="MASTER_SPECIALIZATION" baseColumnNames="MASTER_ID" constraintName="MASTER_SPECIALIZATION_MASTER_ID" referencedColumnNames="MASTER_ID" referencedTableName="MASTER"/>
+	</changeSet>
+	
+	<changeSet id="20151013-005" author ="aantipin">
+		<addForeignKeyConstraint baseTableName="MASTER_SPECIALIZATION" baseColumnNames="SPECIALIZATION_ID" constraintName="MASTER_SPECIALIZATION_SPECIALIZATION_ID" referencedColumnNames="SPECIALIZATION_ID" referencedTableName="SPECIALIZATION"/>
+	</changeSet>
+	
+	<changeSet id="20151013-006" author ="aantipin">
+      <createTable tableName="AUTO_MARKA">
+        <column name="AUTO_MARKA_ID" type="int" autoIncrement="true">
+			<constraints primaryKey="true" nullable="false" />
+        </column>
+        <column name="NAME" type="varchar(100)">
+          <constraints nullable="false" />
+        </column>
+      </createTable>
+    </changeSet>
+
+    <changeSet id="20151013-007" author ="aantipin">
+        <createTable tableName="AUTO_TYPE">
+            <column name="AUTO_TYPE_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="NAME" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151013-008" author ="aantipin">
+      <createTable tableName="AUTO_MODEL">
+        <column name="AUTO_MODEL_ID" type="int" autoIncrement="true">
+			<constraints primaryKey="true" nullable="false" />
+        </column>
+        <column name="NAME" type="varchar(100)">
+          <constraints nullable="false" />
+        </column>
+      <column name="AUTO_MARKA_ID" type="int">
+          <constraints nullable="false" />
+      </column>
+      <column name="AUTO_TYPE_ID" type="int">
+          <constraints nullable="false" />
+      </column>
+      </createTable>
+    </changeSet>
+
+    <changeSet id="20151013-009" author ="aantipin">
+		<addForeignKeyConstraint baseTableName="AUTO_MODEL" baseColumnNames="AUTO_MARKA_ID" constraintName="AUTO_MODEL_MARKA_ID" referencedColumnNames="AUTO_MARKA_ID" referencedTableName="AUTO_MARKA"/>
+	</changeSet>
+	
+	<changeSet id="20151013-010" author ="aantipin">
+		<addForeignKeyConstraint baseTableName="AUTO_MODEL" baseColumnNames="AUTO_TYPE_ID" constraintName="AUTO_MODEL_AUTO_TYPE_ID" referencedColumnNames="AUTO_TYPE_ID" referencedTableName="AUTO_TYPE"/>
+	</changeSet>
+
+    <changeSet id="20151013-011" author ="aantipin">
+        <createTable tableName="OWNER_AUTO">
+            <column name="OWNER_AUTO_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="NAME" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+            <column name="AUTO_MODEL_ID" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="YEAR" type="varchar(4)">
+                <constraints nullable="false" />
+            </column>
+            <column name="GOS_NUMBER" type="varchar(9)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151013-012" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="OWNER_AUTO" baseColumnNames="AUTO_MODEL_ID" constraintName="OWNER_AUTO_AUTO_MODEL_ID" referencedColumnNames="AUTO_MODEL_ID" referencedTableName="AUTO_MODEL"/>
+    </changeSet>
+
+    <changeSet id="20151013-013" author ="aantipin">
+        <createTable tableName="WORK_TYPE">
+            <column name="WORK_TYPE_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="NAME" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151014-001" author ="aantipin">
+        <createTable tableName="PRICE">
+            <column name="PRICE_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="AUTO_TYPE_ID" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="WORK_TYPE_ID" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="TIME" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="MONEY" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151014-002" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="PRICE" baseColumnNames="AUTO_TYPE_ID" constraintName="PRICE_AUTO_TYPE_ID" referencedColumnNames="AUTO_TYPE_ID" referencedTableName="AUTO_TYPE"/>
+    </changeSet>
+
+    <changeSet id="20151014-003" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="PRICE" baseColumnNames="WORK_TYPE_ID" constraintName="PRICE_WORK_TYPE_ID" referencedColumnNames="WORK_TYPE_ID" referencedTableName="WORK_TYPE"/>
+    </changeSet>
+
+    <changeSet id="20151014-004" author ="aantipin">
+        <createTable tableName="LIFT">
+            <column name="LIFT_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="NUMBER" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151014-005" author ="aantipin">
+        <createTable tableName="ORDERS">
+            <column name="ORDERS_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="OWNER_AUTO_ID" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="CREATE_DATE" type="DATETIME">
+            </column>
+            <column name="DONE" type="BOOLEAN" defaultValueBoolean="false">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151014-006" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="ORDERS" baseColumnNames="OWNER_AUTO_ID" constraintName="ORDERS_OWNER_AUTO_ID" referencedColumnNames="OWNER_AUTO_ID" referencedTableName="OWNER_AUTO"/>
+    </changeSet>
+
+    <changeSet id="20151014-007" author ="aantipin">
+        <createTable tableName="WORK">
+            <column name="WORK_ID" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="WORK_DATE" type="DATETIME">
+                <constraints nullable="false" />
+            </column>
+            <column name="ORDERS_ID" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="WORK_TYPE_ID" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="LIFT_ID" type="int">
+                <constraints nullable="true" />
+            </column>
+            <column name="MASTER_ID" type="int">
+                <constraints nullable="true" />
+            </column>
+            <column name="DONE" type="BOOLEAN" defaultValueBoolean="false">
+            </column>
+            <column name="ACTUAL_TIME" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="ACTUAL_MONEY" type="int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20151014-008" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="WORK" baseColumnNames="ORDERS_ID" constraintName="WORK_ORDERS_ID" referencedColumnNames="ORDERS_ID" referencedTableName="ORDERS"/>
+    </changeSet>
+    <changeSet id="20151014-009" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="WORK" baseColumnNames="WORK_TYPE_ID" constraintName="WORK_WORK_TYPE_ID" referencedColumnNames="WORK_TYPE_ID" referencedTableName="WORK_TYPE"/>
+    </changeSet>
+    <changeSet id="20151014-0010" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="WORK" baseColumnNames="LIFT_ID" constraintName="WORK_LIFT_ID" referencedColumnNames="LIFT_ID" referencedTableName="LIFT"/>
+    </changeSet>
+    <changeSet id="20151014-011" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="WORK" baseColumnNames="MASTER_ID" constraintName="WORK_MASTER_ID" referencedColumnNames="MASTER_ID" referencedTableName="MASTER"/>
+    </changeSet>
+
+
+
+</databaseChangeLog>

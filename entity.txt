@@ -1,0 +1,33 @@
+1) Master
+id
+name
+
+2) Specialization
+id
+name
+
+3) Master_specialization
+id
+id_Master
+id_specialization
+
+4) Auto
+id
+number
+
+5) Marka_Auto
+id
+name
+
+6) Model_Auto
+id
+7) Owner_Auto
+
+6) typework
+7) Учет видов машин
+8) Учет зависимости количеста времени от вида машины на работу 
+9) Учет подъемников
+10) Учет работ (машина, вид работы, продолжительность)
+11) Учет исполнения работы(когда именно, какая работа, мастер, подъемник)
+
+12) Пользователи сайта
