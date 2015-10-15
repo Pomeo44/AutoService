@@ -1,29 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-<<<<<<< HEAD
-  <component name="DataSourceManagerImpl" format="xml" hash="2087589872">
-=======
-  <component name="DataSourceManagerImpl" format="xml" hash="4219936808">
->>>>>>> origin/master
-    <data-source source="LOCAL" name="MySQL - kontur44_AutoService@91.219.195.42" uuid="1cb234dd-ce04-437b-a324-ce7e37470dc1">
+  <component name="DataSourceManagerImpl" format="xml" hash="3313400382">
+    <data-source source="LOCAL" name="MySQL - kontur44_AutoService@91.219.195.42" uuid="0e372aae-cb55-41d3-bff4-00b546d92f5a">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://91.219.195.42:3306/kontur44_AutoService</jdbc-url>
-      <driver-properties>
-        <property name="zeroDateTimeBehavior" value="convertToNull" />
-        <property name="tinyInt1isBit" value="false" />
-        <property name="characterEncoding" value="utf8" />
-        <property name="characterSetResults" value="utf8" />
-        <property name="yearIsDateType" value="false" />
-      </driver-properties>
-      <libraries />
-    </data-source>
-    <data-source source="LOCAL" name="MySQL - liquiblog @localhost" uuid="66b0bbf2-cde9-4b12-9866-ef103b1fd906">
-      <driver-ref>mysql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/liquiblog</jdbc-url>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
