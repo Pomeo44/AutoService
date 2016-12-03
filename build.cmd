@@ -1,0 +1,1 @@
+liquibase  --url=jdbc:mysql://91.219.195.42:3306/kontur44_AutoService --driver=com.mysql.jdbc.Driver --username=kontur44_admin --password=Pomeo_Kostroma44 --changeLogFile=db.AutoService.1.0.xml update
