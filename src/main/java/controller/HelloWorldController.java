@@ -23,6 +23,12 @@ public class HelloWorldController {
 		return "welcome";
 	}
 
+	@GetMapping(value = {"/autotype"})
+	public String autoType(ModelMap model) {
+		model.addAttribute("greeting", "Hi, Welcome to mysite");
+		return "UserManagement";
+	}
+
 	@GetMapping(value = "/admin")
 	public String adminPage(ModelMap model) {
 		model.addAttribute("user", getPrincipal());

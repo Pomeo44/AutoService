@@ -18,7 +18,7 @@ public class MainController {
     @Autowired
     private MasterServiceImpl masterService;
 
-    @Secured("ROLE_ADMIN")
+    //@Secured("ROLE_ADMIN")
     @GetMapping(value= "/")
     @ResponseBody
     public MyDataObject getAllMyData() {

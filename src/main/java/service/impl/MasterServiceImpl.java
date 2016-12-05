@@ -36,7 +36,7 @@ public class MasterServiceImpl {
 
     @Transactional
     public List<Master> getAllMaster() {
-        return masterDao.getAllMaster();
+        return masterDao.getAll();
     }
 
 

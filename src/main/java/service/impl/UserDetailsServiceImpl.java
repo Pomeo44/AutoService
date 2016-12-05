@@ -21,12 +21,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserService userService;
 	
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String ssoId)
 			throws UsernameNotFoundException {
 		User user = userService.findBySso(ssoId);
 		System.out.println("User : "+user);
-		if(user==null){
+		if(user == null){
 			System.out.println("User not found");
 			throw new UsernameNotFoundException("Username not found");
 		}

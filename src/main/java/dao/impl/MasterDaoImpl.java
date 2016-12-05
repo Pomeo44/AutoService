@@ -13,10 +13,4 @@ import java.util.List;
  */
 @Repository
 public class MasterDaoImpl extends AbstractHibernateDao<Master> implements MasterDao {
-
-    @Override
-    public List<Master> getAllMaster() {
-        Criteria criteria = getSession().createCriteria(getPersistentClass());
-        return criteria.list();
-    }
 }

@@ -1,5 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,10 +13,14 @@ import java.util.Set;
 @Entity
 @Table(name = "AUTO_TYPE", schema = "", catalog = "kontur44_AutoService")
 public class AutoType extends BaseEntity {
+    @JsonProperty("id")
     private int autoTypeId;
+    @JsonProperty
     private String name;
 
+    @JsonIgnore
     private Set<AutoModel> autoModels = new HashSet<AutoModel>();
+    @JsonIgnore
     private Set<Price> prices = new HashSet<Price>();
 
     @Id
@@ -63,7 +70,6 @@ public class AutoType extends BaseEntity {
         AutoType autoType = (AutoType) o;
 
         if (autoTypeId != autoType.autoTypeId) return false;
-        if (name != null ? !name.equals(autoType.name) : autoType.name != null) return false;
 
         return true;
     }
@@ -71,7 +77,7 @@ public class AutoType extends BaseEntity {
     @Override
     public int hashCode() {
         int result = autoTypeId;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result;
         return result;
     }
 }

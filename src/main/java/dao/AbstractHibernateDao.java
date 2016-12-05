@@ -1,5 +1,6 @@
 package dao;
 
+import model.Master;
 import org.hibernate.*;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import model.BaseEntity;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
+import java.util.List;
 
 /**
  * Created by Pomeo on 19.10.2016.
@@ -45,13 +47,19 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
         return t;
     }
 
+    @Override
+    public List<T> getAll() {
+        Criteria criteria = getSession().createCriteria(getPersistentClass());
+        return criteria.list();
+    }
+
     public void saveOrUpdate(T entity) {
         getSession().saveOrUpdate(entity);
     }
 
     @Override
-    public Long add(T entity) {
-        return (Long) getSession().save(entity);
+    public Integer add(T entity) {
+        return (Integer) getSession().save(entity);
     }
 
     public final void delete(T entity) {
@@ -59,7 +67,7 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
     }
 
     @Override
-    public final void deleteById(Long id) {
+    public final void deleteById(Integer id) {
         Session session = getSession();
         Object o = session.get(getPersistentClass(), id);
         if (o != null) {
@@ -107,5 +115,9 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
 
     public void setPersistentClass(Class<T> persistentClass) {
         this.persistentClass = persistentClass;
+    }
+
+    public Criteria getCriteria(){
+        return getSession().createCriteria(getPersistentClass());
     }
 }
