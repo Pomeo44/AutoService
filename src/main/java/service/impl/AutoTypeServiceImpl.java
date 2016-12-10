@@ -15,51 +15,59 @@ import java.util.List;
  * Created by Pomeo on 04.12.2016.
  */
 @Service
-@Transactional
 public class AutoTypeServiceImpl implements AutoTypeService {
 
     @Autowired
     private AutoTypeDao autoTypeDao;
 
     @Override
+    @Transactional
     public AutoType findById(Integer id) {
         return autoTypeDao.findById(id);
     }
 
     @Override
+    @Transactional
     public List<AutoType> getAll() {
         return autoTypeDao.getAll();
     }
 
     @Override
-    public void saveOrUpdate(AutoType entity) {
+    @Transactional
+    public void save(AutoType entity) {
         autoTypeDao.saveOrUpdate(entity);
     }
 
     @Override
+    @Transactional
     public void update(AutoType entity) throws NonExistObject {
-        if (autoTypeDao.findById(entity.getAutoTypeId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getAutoTypeId()));
-        autoTypeDao.saveOrUpdate(entity);
+        if (findById(entity.getAutoTypeId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getAutoTypeId()));
+        autoTypeDao.merge(entity);
     }
 
     @Override
+    @Transactional
     public Integer add(AutoType entity) throws NonUniqueObject {
         if (autoTypeDao.findByName(entity.getName()) != null) {
             //System.out.println("A User with name " + user.getUsername() + " already exist");
             throw  new NonUniqueObject("Такой тип машины уже есть");
         }
+        entity.setIsDelete(false);
         return autoTypeDao.add(entity);
     }
 
     @Override
     public void delete(AutoType entity) throws NonExistObject {
-        if (autoTypeDao.findById(entity.getAutoTypeId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getAutoTypeId()));
-        autoTypeDao.delete(entity);
+        if (findById(entity.getAutoTypeId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getAutoTypeId()));
+        entity.setIsDelete(true);
+        save(entity);
     }
 
     @Override
     public void deleteById(Integer id) throws NonExistObject {
-        if (autoTypeDao.findById(id) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", id));
-        autoTypeDao.deleteById(id);
+        AutoType entity = findById(id);
+        if (entity == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", id));
+        entity.setIsDelete(true);
+        save(entity);
     }
 }

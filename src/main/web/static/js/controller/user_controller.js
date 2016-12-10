@@ -62,7 +62,7 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
               
           self.edit = function(id){
               console.log('id to be edited', id);
-              for(var i = 0; i < self.users.length; i++){
+              for(var i = 0; i < self.autoTypes.length; i++){
                   if(self.autoTypes[i].id == id) {
                      self.autoType = angular.copy(self.autoTypes[i]);
                      break;

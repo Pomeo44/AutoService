@@ -26,8 +26,7 @@ public class AutoTypeController {
     private AutoTypeService autoTypeService;
 
     @GetMapping(value= "/")
-    @ResponseBody
-    public ResponseEntity<List<AutoType>> getAll() {
+     public ResponseEntity<List<AutoType>> getAll() {
         List<AutoType> autoTypes = autoTypeService.getAll();
         if(autoTypes.isEmpty()){
             return new ResponseEntity<List<AutoType>>(HttpStatus.NO_CONTENT);
@@ -36,7 +35,6 @@ public class AutoTypeController {
     }
 
     @GetMapping(value= "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
     public ResponseEntity<AutoType> getById(@PathVariable("id") Integer id) {
         AutoType autoType = autoTypeService.findById(id);
         if (autoType == null) {
@@ -46,7 +44,6 @@ public class AutoTypeController {
     }
 
     @PostMapping
-    @ResponseBody
     public ResponseEntity<Void> add(@RequestBody AutoType autoType, UriComponentsBuilder ucBuilder) {
         try {
             autoTypeService.add(autoType);
@@ -56,13 +53,12 @@ public class AutoTypeController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(autoType.getAutoTypeId()).toUri());
+        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoType.getAutoTypeId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    @ResponseBody
-    public ResponseEntity<AutoType> update(@PathVariable("id") long id, @RequestBody AutoType autoType) {
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<AutoType> update(@PathVariable("id") Integer id, @RequestBody AutoType autoType) {
         //System.out.println("Updating User " + id);
 
         try {
@@ -75,7 +71,6 @@ public class AutoTypeController {
     }
 
     @DeleteMapping(value= "/{id}")
-    @ResponseBody
     public ResponseEntity<AutoType> delete(@PathVariable("id") Integer id) {
         //System.out.println("Fetching & Deleting User with id " + id);
 

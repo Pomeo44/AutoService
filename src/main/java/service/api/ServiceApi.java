@@ -13,7 +13,7 @@ public interface ServiceApi<T extends BaseEntity> {
 
     T findById(Integer id);
     List<T> getAll();
-    void saveOrUpdate(T entity);
+    void save(T entity);
     void update(T entity) throws NonExistObject;
     Integer add(T entity) throws NonUniqueObject;
     void delete(T entity) throws NonExistObject;

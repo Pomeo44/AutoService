@@ -3,7 +3,7 @@ package model.security;
 import javax.persistence.*;
 
 @Entity
-@Table(name="USER_PROFILE")
+@Table(name="APP_USER_PROFILE")
 public class UserProfile {
 
 	@Id

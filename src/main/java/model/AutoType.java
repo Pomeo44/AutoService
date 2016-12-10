@@ -17,6 +17,8 @@ public class AutoType extends BaseEntity {
     private int autoTypeId;
     @JsonProperty
     private String name;
+    @JsonProperty
+    private Boolean isDelete;
 
     @JsonIgnore
     private Set<AutoModel> autoModels = new HashSet<AutoModel>();
@@ -42,6 +44,16 @@ public class AutoType extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
     @OneToMany(mappedBy = "autoType")

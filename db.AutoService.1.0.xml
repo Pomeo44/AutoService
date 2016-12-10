@@ -5,7 +5,7 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
     
-	<changeSet id="20151013-001" author ="aantipin">
+	<!--changeSet id="20151013-001" author ="aantipin">
       <createTable tableName="MASTER">
         <column name="MASTER_ID" type="int" autoIncrement="true" remarks="ID мастера">
 			<constraints primaryKey="true" nullable="false" />
@@ -231,7 +231,7 @@
     </changeSet>
     <changeSet id="20151014-011" author ="aantipin">
         <addForeignKeyConstraint baseTableName="WORK" baseColumnNames="MASTER_ID" constraintName="FK_MASTER_ID" referencedColumnNames="MASTER_ID" referencedTableName="MASTER"/>
-    </changeSet>
+    </changeSet-->
 
     <!--changeSet id="20161027-001" author ="aantipin">
         <dropPrimaryKey catalogName="kontur44_AutoService" tableName="MASTER_SPECIALIZATION"/>
@@ -260,36 +260,6 @@
         </addColumn>
     </changeSet-->
 
-    <changeSet id="20161122-01" author ="aantipin">
-        <createTable tableName="users">
-            <column name="username" type="varchar(50)">
-                <constraints primaryKey="true" nullable="false" />
-            </column>
-            <column name="password" type="varchar(50)">
-                <constraints nullable="false"/>
-            </column>
-			<column name="enabled" type="BOOLEAN" defaultValueBoolean="true"/>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="20161122-02" author ="aantipin">
-        <createTable tableName="user_roles">
-            <column name="user_role_id" type="int" autoIncrement="true">
-                <constraints primaryKey="true" nullable="false" />
-            </column>
-            <column name="role" type="varchar(50)">
-                <constraints nullable="false" />
-            </column>
-			<column name="username" type="varchar(50)">
-                <constraints nullable="false" />
-            </column>
-        </createTable>
-    </changeSet>
-
-    <changeSet id="20161122-03" author ="aantipin">
-        <addForeignKeyConstraint baseTableName="user_roles" baseColumnNames="username" constraintName="fk_username" referencedColumnNames="username" referencedTableName="users"/>
-    </changeSet>
-
     <changeSet id="20161122-04" author ="aantipin">
         <createTable tableName="persistent_logins">
             <column name="series" type="varchar(64)">
@@ -307,19 +277,11 @@
         </createTable>
     </changeSet>
 	
-	<changeSet id="20161122-05" author ="aantipin">
-        <sql>
-            INSERT INTO users(username,password,enabled) VALUES ('mkyong','123456', true);
-			INSERT INTO user_roles (username, role) VALUES ('mkyong', 'ROLE_USER');
-			INSERT INTO user_roles (username, role) VALUES ('mkyong', 'ROLE_ADMIN');
-        </sql>
-    </changeSet>
-	
-	<changeSet id="20161122-06" author ="aantipin">
+	<!--changeSet id="20161122-06" author ="aantipin">
         <sql>
 
 		create table APP_USER (
-		   id BIGINT NOT NULL AUTO_INCREMENT,
+		   id INT NOT NULL AUTO_INCREMENT,
 		   sso_id VARCHAR(30) NOT NULL,
 		   password VARCHAR(100) NOT NULL,
 		   first_name VARCHAR(30) NOT NULL,
@@ -331,14 +293,14 @@
 		);
 		  
 		create table USER_PROFILE(
-		   id BIGINT NOT NULL AUTO_INCREMENT,
+		   id INT NOT NULL AUTO_INCREMENT,
 		   type VARCHAR(30) NOT NULL,
 		   PRIMARY KEY (id),
 		   UNIQUE (type)
 		);
 		  
 		CREATE TABLE APP_USER_USER_PROFILE (
-			user_id BIGINT NOT NULL,
+			user_id INT NOT NULL,
 			user_profile_id BIGINT NOT NULL,
 			PRIMARY KEY (user_id, user_profile_id),
 			CONSTRAINT FK_APP_USER FOREIGN KEY (user_id) REFERENCES APP_USER (id),
@@ -361,7 +323,22 @@
 		  SELECT user.id, profile.id FROM app_user user, user_profile profile
 		  where user.sso_id='sam' and profile.type='ADMIN';
         </sql>
+    </changeSet-->
+
+    <changeSet id="20161210-01" author ="aantipin">
+        <renameTable catalogName="kontur44_AutoService"
+                     newTableName="APP_USER_PROFILE"
+                     oldTableName="USER_PROFILE"/>
     </changeSet>
+
+    <changeSet id="20161210-02" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="AUTO_TYPE">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+
 	
 	
 	
