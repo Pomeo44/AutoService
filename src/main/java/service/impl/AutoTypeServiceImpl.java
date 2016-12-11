@@ -49,7 +49,6 @@ public class AutoTypeServiceImpl implements AutoTypeService {
     @Transactional
     public Integer add(AutoType entity) throws NonUniqueObject {
         if (autoTypeDao.findByName(entity.getName()) != null) {
-            //System.out.println("A User with name " + user.getUsername() + " already exist");
             throw  new NonUniqueObject("Такой тип машины уже есть");
         }
         entity.setIsDelete(false);
