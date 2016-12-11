@@ -338,6 +338,20 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="20161211-01" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="AUTO_MARKA">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20161211-02" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="AUTO_MODEL">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
 
 	
 	

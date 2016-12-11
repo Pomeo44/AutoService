@@ -26,7 +26,7 @@ public class MainController {
 	@GetMapping(value = {"/autotype"})
 	public String autoType(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
-		return "UserManagement";
+		return "autoType";
 	}
 
 	@GetMapping(value = "/admin")

@@ -3,42 +3,39 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+http://www.liquibase.org/xml/ns/dbchangelog ">
 
-    <changeSet id="20151015-001" author ="aantipin">
-        <sql>   INSERT INTO MASTER (NAME) VALUES ('Петров Вадим');
-                INSERT INTO MASTER (NAME) VALUES ('Смирнов Александр');
-                INSERT INTO MASTER (NAME) VALUES ('Иванов Максим');
+        <changeSet id="20151015-001" author="aantipin">
+                <sql>INSERT INTO MASTER (NAME) VALUES ('Петров Вадим');
+                        INSERT INTO MASTER (NAME) VALUES ('Смирнов Александр');
+                        INSERT INTO MASTER (NAME) VALUES ('Иванов Максим');
 
-                INSERT INTO SPECIALIZATION (NAME) VALUES ('Электрик');
-                INSERT INTO SPECIALIZATION (NAME) VALUES ('Слесарь');
+                        INSERT INTO SPECIALIZATION (NAME) VALUES ('Электрик');
+                        INSERT INTO SPECIALIZATION (NAME) VALUES ('Слесарь');
 
-                INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (1,1);
-                INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (2,2);
-                INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (3,1);
-                INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (3,2);
+                        INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (1,1);
+                        INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (2,2);
+                        INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (3,1);
+                        INSERT INTO MASTER_SPECIALIZATION (MASTER_ID, SPECIALIZATION_ID) VALUES (3,2);
 
-                INSERT INTO AUTO_TYPE (NAME) VALUES ('Маленькая');
-                INSERT INTO AUTO_TYPE (NAME) VALUES ('Средняя');
-                INSERT INTO AUTO_TYPE (NAME) VALUES ('Большая');
+                        INSERT INTO AUTO_TYPE (NAME) VALUES ('Маленькая');
+                        INSERT INTO AUTO_TYPE (NAME) VALUES ('Средняя');
+                        INSERT INTO AUTO_TYPE (NAME) VALUES ('Большая');
 
-                INSERT INTO AUTO_MARKA (NAME) VALUES ('VAZ');
-                INSERT INTO AUTO_MARKA (NAME) VALUES ('BMW');
-                INSERT INTO AUTO_MARKA (NAME) VALUES ('SKODA');
+                        INSERT INTO AUTO_MARKA (NAME) VALUES ('VAZ');
+                        INSERT INTO AUTO_MARKA (NAME) VALUES ('BMW');
+                        INSERT INTO AUTO_MARKA (NAME) VALUES ('SKODA');
 
-                INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('FABIA', 3, 1);
-                INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('OKTAVIA', 3, 2);
-                INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('OKTAVIA RS', 3, 2);
-                INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('KALINA', 1, 1);
-                INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('X6', 2, 3);
-
-
-        </sql>
-    </changeSet>
+                        INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('FABIA', 3, 1);
+                        INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('OKTAVIA', 3, 2);
+                        INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('OKTAVIA RS', 3, 2);
+                        INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('KALINA', 1, 1);
+                        INSERT INTO AUTO_MODEL (NAME, AUTO_MARKA_ID, AUTO_TYPE_ID) VALUES ('X6', 2, 3);
 
 
+                </sql>
+        </changeSet>
 
-
-	
 
 </databaseChangeLog>

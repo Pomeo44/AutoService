@@ -1,7 +1,6 @@
 package dao.api;
 
 import model.BaseEntity;
-import model.Master;
 
 import java.util.List;
 

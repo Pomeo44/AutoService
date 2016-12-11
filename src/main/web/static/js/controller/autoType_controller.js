@@ -1,12 +1,12 @@
 'use strict';
 
-App.controller('UserController', ['$scope', 'UserService', function($scope, UserService) {
+App.controller('AutoTypeController', ['$scope', 'AutoTypeService', function($scope, AutoTypeService) {
           var self = this;
-          self.autoType={id:null,name:''};
+          self.autoType={id:null,name:'',isDelete:false};
           self.autoTypes=[];
               
-          self.fetchAllUsers = function(){
-              UserService.fetchAllUsers()
+          self.fetchAllAutoTypes = function(){
+              AutoTypeService.fetchAllAutoTypes()
                   .then(
       					       function(d) {
       						        self.autoTypes = d;
@@ -17,45 +17,45 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
       			       );
           };
            
-          self.createUser = function(autoType){
-              UserService.createUser(autoType)
+          self.createAutoType = function(autoType){
+              AutoTypeService.createAutoType(autoType)
 		              .then(
-                      self.fetchAllUsers, 
+                      self.fetchAllAutoTypes,
 				              function(errResponse){
-					               console.error('Error while creating User.');
+					               console.error('Error while creating AutoType.');
 				              }	
                   );
           };
 
-         self.updateUser = function(autoType, id){
-              UserService.updateUser(autoType, id)
+         self.updateAutoType = function(autoType, id){
+             AutoTypeService.updateAutoType(autoType, id)
 		              .then(
-				              self.fetchAllUsers, 
+				              self.fetchAllAutoTypes,
 				              function(errResponse){
-					               console.error('Error while updating User.');
+					               console.error('Error while updating AutoType.');
 				              }	
                   );
           };
 
-         self.deleteUser = function(id){
-              UserService.deleteUser(id)
+         self.deleteAutoType = function(id){
+             AutoTypeService.deleteAutoType(id)
 		              .then(
-				              self.fetchAllUsers, 
+				              self.fetchAllAutoTypes,
 				              function(errResponse){
-					               console.error('Error while deleting User.');
+					               console.error('Error while deleting AutoType.');
 				              }	
                   );
           };
 
-          self.fetchAllUsers();
+          self.fetchAllAutoTypes();
 
           self.submit = function() {
               if(self.autoType.id==null){
-                  console.log('Saving New User', self.autoType);
-                  self.createUser(self.autoType);
+                  console.log('Saving New AutoType', self.autoType);
+                  self.createAutoType(self.autoType);
               }else{
-                  self.updateUser(self.autoType, self.autoType.id);
-                  console.log('User updated with id ', self.autoType.id);
+                  self.updateAutoType(self.autoType, self.autoType.id);
+                  console.log('AutoType updated with id ', self.autoType.id);
               }
               self.reset();
           };
@@ -72,15 +72,15 @@ App.controller('UserController', ['$scope', 'UserService', function($scope, User
               
           self.remove = function(id){
               console.log('id to be deleted', id);
-              if(self.autoType.id === id) {//clean form if the user to be deleted is shown there.
+              if(self.autoType.id === id) {//clean form if the AutoType to be deleted is shown there.
                  self.reset();
               }
-              self.deleteUser(id);
+              self.deleteAutoType(id);
           };
 
           
           self.reset = function(){
-              self.autoType={id:null,name:''};
+              self.autoType={id:null,name:'',isDelete:false};
               $scope.myForm.$setPristine(); //reset Form
           };
 

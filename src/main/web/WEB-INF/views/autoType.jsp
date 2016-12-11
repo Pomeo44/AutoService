@@ -4,13 +4,13 @@
   <head>  
     <title>AngularJS $http Example</title>  
     <style>
-      .username.ng-valid {
+      .autoTypename.ng-valid {
           background-color: lightgreen;
       }
-      .username.ng-dirty.ng-invalid-required {
+      .autoTypename.ng-dirty.ng-invalid-required {
           background-color: red;
       }
-      .username.ng-dirty.ng-invalid-minlength {
+      .autoTypename.ng-dirty.ng-invalid-minlength {
           background-color: yellow;
       }
 
@@ -26,10 +26,10 @@
 
     </style>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet"></link>
+     <link href="<c:url value='/static/css/app.css' />" rel="stylesheet">
   </head>
   <body ng-app="myApp" class="ng-cloak">
-      <div class="generic-container" ng-controller="UserController as ctrl">
+      <div class="generic-container" ng-controller="AutoTypeController as ctrl">
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">AutoType registration form </span></div>
               <div class="formcontainer">
@@ -39,7 +39,7 @@
                           <div class="form-group col-md-12">
                               <label class="col-md-2 control-lable" for="file">Name</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.autoType.name" name="uname" class="username form-control input-sm" placeholder="Enter your name" required ng-minlength="3"/>
+                                  <input type="text" ng-model="ctrl.autoType.name" name="uname" class="autoTypename form-control input-sm" placeholder="Enter name" required ng-minlength="3"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.uname.$error.required">This is a required field</span>
                                       <span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
@@ -48,7 +48,16 @@
                               </div>
                           </div>
                       </div>
-                        
+
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="file">Is delete</label>
+                              <div class="col-md-7">
+                                  <input type="checkbox" ng-model="ctrl.autoType.isDelete" class="form-control input-sm"/>
+                              </div>
+                          </div>
+                      </div>
+
                       <div class="row">
                           <div class="form-actions floatRight">
                               <input type="submit"  value="{{!ctrl.autoType.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
@@ -60,13 +69,14 @@
           </div>
           <div class="panel panel-default">
                 <!-- Default panel contents -->
-              <div class="panel-heading"><span class="lead">List of Users </span></div>
+              <div class="panel-heading"><span class="lead">List of AutoType </span></div>
               <div class="tablecontainer">
                   <table class="table table-hover">
                       <thead>
                           <tr>
                               <th>ID.</th>
                               <th>Name</th>
+                              <th>IsDelete</th>
                               <th width="20%"></th>
                           </tr>
                       </thead>
@@ -74,6 +84,7 @@
                           <tr ng-repeat="u in ctrl.autoTypes">
                               <td><span ng-bind="u.id"></span></td>
                               <td><span ng-bind="u.name"></span></td>
+                              <td><span ng-bind="u.isDelete"></span></td>
                               <td>
                               <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
                               </td>
@@ -86,7 +97,7 @@
       
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
       <script src="<c:url value='/static/js/app.js' />"></script>
-      <script src="<c:url value='/static/js/service/user_service.js' />"></script>
-      <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
+      <script src="<c:url value='/static/js/service/autoType_service.js' />"></script>
+      <script src="<c:url value='/static/js/controller/autoType_controller.js' />"></script>
   </body>
 </html>

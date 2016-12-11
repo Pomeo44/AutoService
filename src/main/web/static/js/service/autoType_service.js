@@ -1,56 +1,56 @@
 'use strict';
 
-App.factory('UserService', ['$http', '$q', function($http, $q){
+App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
 
 	return {
 		
-			fetchAllUsers: function() {
+			fetchAllAutoTypes: function() {
 					return $http.get('http://localhost:8080/service/autotype/')
 							.then(
 									function(response){
 										return response.data;
 									}, 
 									function(errResponse){
-										console.error('Error while fetching users');
+										console.error('Error while fetching autoTypes');
 										return $q.reject(errResponse);
 									}
 							);
 			},
 		    
-		    createUser: function(autoType){
+		    createAutoType: function(autoType){
 					return $http.post('http://localhost:8080/service/autotype/', autoType)
 							.then(
 									function(response){
 										return response.data;
 									}, 
 									function(errResponse){
-										console.error('Error while creating user');
+										console.error('Error while creating autoTypes');
 										return $q.reject(errResponse);
 									}
 							);
 		    },
 		    
-		    updateUser: function(autoType, id){
+		    updateAutoType: function(autoType, id){
 					return $http.put('http://localhost:8080/service/autotype/'+id, autoType)
 							.then(
 									function(response){
 										return response.data;
 									}, 
 									function(errResponse){
-										console.error('Error while updating user');
+										console.error('Error while updating autoType');
 										return $q.reject(errResponse);
 									}
 							);
 			},
 		    
-			deleteUser: function(id){
+			deleteAutoType: function(id){
 					return $http.delete('http://localhost:8080/service/autotype/'+id)
 							.then(
 									function(response){
 										return response.data;
 									}, 
 									function(errResponse){
-										console.error('Error while deleting user');
+										console.error('Error while deleting autoType');
 										return $q.reject(errResponse);
 									}
 							);
