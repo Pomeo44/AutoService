@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 /**
@@ -7,9 +9,13 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "LIFT", schema = "", catalog = "kontur44_AutoService")
-public class Lift {
+public class Lift extends BaseEntity {
+    @JsonProperty("id")
     private int liftId;
+    @JsonProperty
     private int number;
+    @JsonProperty
+    private Boolean isDelete;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,6 +36,16 @@ public class Lift {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    @Basic
+    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
     @Override

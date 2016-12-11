@@ -1,5 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 /**
@@ -7,12 +10,19 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PRICE", schema = "", catalog = "kontur44_AutoService")
-public class Price {
+public class Price extends BaseEntity {
+    @JsonProperty("id")
     private int priceId;
+    @JsonProperty
     private int time;
+    @JsonProperty
     private int money;
+    @JsonProperty
+    private Boolean isDelete;
 
+    @JsonIgnore
     private AutoType autoType;
+    @JsonIgnore
     private WorkType workType;
 
     @Id
@@ -44,6 +54,16 @@ public class Price {
 
     public void setMoney(int money) {
         this.money = money;
+    }
+
+    @Basic
+    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
 

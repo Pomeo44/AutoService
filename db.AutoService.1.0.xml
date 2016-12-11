@@ -352,6 +352,48 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="20161211-03" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="LIFT">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20161211-04" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="MASTER">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20161211-05" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="OWNER_AUTO">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20161211-06" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="PRICE">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20161211-07" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="SPECIALIZATION">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20161211-08" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="WORK_TYPE">
+            <column name="IS_DELETE" type="BOOLEAN" defaultValueBoolean="false" />
+        </addColumn>
+    </changeSet>
+
 
 	
 	

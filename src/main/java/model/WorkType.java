@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,9 +11,13 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "WORK_TYPE", schema = "", catalog = "kontur44_AutoService")
-public class WorkType {
+public class WorkType extends BaseEntity {
+    @JsonProperty("id")
     private int workTypeId;
+    @JsonProperty
     private String name;
+    @JsonProperty
+    private Boolean isDelete;
 
     private Set<Price> prices = new HashSet<Price>();
 
@@ -34,6 +40,16 @@ public class WorkType {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
     @OneToMany(mappedBy = "workType")

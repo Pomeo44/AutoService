@@ -1,5 +1,7 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -9,16 +11,26 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "WORK", schema = "", catalog = "kontur44_AutoService")
-public class Work {
+public class Work extends BaseEntity {
+    @JsonProperty("id")
     private int workId;
+    @JsonProperty
     private Date startWorkDate;
+    @JsonProperty
     private Date endWorkDate;
+    @JsonProperty
     private int ownerAutoId;
+    @JsonProperty
     private int workTypeId;
+    @JsonProperty
     private Integer liftId;
+    @JsonProperty
     private Integer masterId;
+    @JsonProperty
     private Boolean done;
+    @JsonProperty
     private int actualTime;
+    @JsonProperty
     private int actualMoney;
 
     @Id

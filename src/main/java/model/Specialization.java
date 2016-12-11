@@ -1,5 +1,8 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,8 +13,14 @@ import java.util.Set;
 @Entity
 @Table(name = "SPECIALIZATION", schema = "", catalog = "kontur44_AutoService")
 public class Specialization extends BaseEntity {
+    @JsonProperty("id")
     private int specializationId;
+    @JsonProperty
     private String name;
+    @JsonProperty
+    private Boolean isDelete;
+
+    @JsonIgnore
     private Set<Master> masters = new HashSet<Master>();
 
     @Id
@@ -33,6 +42,16 @@ public class Specialization extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    public Boolean getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 
     @ManyToMany(mappedBy = "specializations")
