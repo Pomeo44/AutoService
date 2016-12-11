@@ -1,59 +1,77 @@
 package controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.web.bind.annotation.*;
-import service.impl.MasterServiceImpl;
-import model.Master;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-/**
- * Created by aantipin on 15/11/2016.
- */
-@RestController
-@RequestMapping(value = "/service")
+@Controller
 public class MainController {
 
-    @Autowired
-    private MasterServiceImpl masterService;
+	
+	@GetMapping(value = { "/", "/home" })
+	public String homePage(ModelMap model) {
+		model.addAttribute("greeting", "Hi, Welcome to mysite");
+		return "welcome";
+	}
 
-    //@Secured("ROLE_ADMIN")
-    @GetMapping(value= "/")
-    @ResponseBody
-    public MyDataObject getAllMyData() {
-        List<Master> masters = masterService.getAllMaster();
-        return new MyDataObject(masters.size() + "", "Столько книг");
-    }
+	@GetMapping(value = {"/autotype"})
+	public String autoType(ModelMap model) {
+		model.addAttribute("greeting", "Hi, Welcome to mysite");
+		return "UserManagement";
+	}
 
-    @GetMapping(value= "/{id}")
-    @ResponseBody
-    public MyDataObject getMyData(@PathVariable("id") String id) {
-        try {
-            Integer.parseInt(id);
-        } catch (NumberFormatException e) {
-            return new MyDataObject(id, "Не верный id");
-        }
-        Master master = masterService.findMasterById(Integer.parseInt(id));
-        if (master == null) return new MyDataObject(id, "Книга не существует!");
-        return new MyDataObject(id, master.toString());
-    }
+	@GetMapping(value = "/admin")
+	public String adminPage(ModelMap model) {
+		model.addAttribute("user", getPrincipal());
+		return "admin";
+	}
 
-    @PutMapping
-    @ResponseBody
-    public MyDataObject putMyData(@RequestBody MyDataObject md) {
-        return md;
-    }
+	@GetMapping(value = "/db")
+	public String dbaPage(ModelMap model) {
+		model.addAttribute("user", getPrincipal());
+		return "dba";
+	}
 
-    @PostMapping
-    @ResponseBody
-    public MyDataObject postMyData() {
-        return new MyDataObject("321321", "это ответ метода POST!");
-    }
+	@GetMapping(value = "/Access_Denied")
+	public String accessDeniedPage(ModelMap model) {
+		model.addAttribute("user", getPrincipal());
+		return "accessDenied";
+	}
 
-    @DeleteMapping(value= "/{id}")
-    @ResponseBody
-    public MyDataObject deleteMyData(@PathVariable("id") String id) {
-        return new MyDataObject("delete", "Это ответ метода DELETE!");
-    }
+	@GetMapping(value = "/login")
+	public String loginPage() {
+		return "login";
+	}
+
+	@GetMapping(value="/logout")
+	public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null){    
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login?logout";
+	}
+
+	private String getPrincipal(){
+		String userName = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails)principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
+	}
+
+
 }
