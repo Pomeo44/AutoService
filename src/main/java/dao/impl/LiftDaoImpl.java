@@ -15,9 +15,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class LiftDaoImpl extends AbstractHibernateDao<Lift> implements LiftDao {
 
-    public Lift findByName(String name) {
+    public Lift findByNumber(Integer number) {
         Criteria criteria = getCriteria();
-        criteria.add(Restrictions.eq("name", name));
+        criteria.add(Restrictions.eq("number", number));
         return (Lift)criteria.uniqueResult();
     }
 }
