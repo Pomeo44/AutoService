@@ -44,7 +44,7 @@ public class LiftServiceImpl implements LiftService {
 
     @Override
     public Integer add(Lift entity) throws NonUniqueObject {
-        if (liftDao.findByNumber(entity.getNumber()) != null) {
+        if (liftDao.findByName(entity.getName()) != null) {
             throw  new NonUniqueObject("Такой подъемник уже есть");
         }
         entity.setIsDelete(false);

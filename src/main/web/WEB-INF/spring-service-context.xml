@@ -18,17 +18,16 @@
 
 
        <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-              <property name="dataSource" ref="dataSource"/>
-              <property name="packagesToScan" value="model"/>
-              <property name="hibernateProperties">
-                     <props>
-                            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                            <prop key="hibernate.show_sql">true</prop>
-                         <prop key="hibernate.connection.url">jdbc:mysql://91.219.195.42:3306/kontur44_AutoService
-                         </prop>
-                         <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
-                     </props>
-              </property>
+            <property name="dataSource" ref="dataSource"/>
+            <property name="packagesToScan" value="model"/>
+            <property name="hibernateProperties">
+                <props>
+                    <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                    <prop key="hibernate.show_sql">true</prop>
+                    <prop key="hibernate.connection.url">jdbc:mysql://91.219.194.33:3306/kontur44_AutoService</prop>
+                    <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+                </props>
+            </property>
        </bean>
 
        <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
@@ -38,7 +37,7 @@
 
        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
               <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-              <property name="url" value="jdbc:mysql://91.219.195.42:3306/kontur44_AutoService"/>
+              <property name="url" value="jdbc:mysql://91.219.194.33:3306/kontur44_AutoService"/>
               <property name="username" value="kontur44_admin"/>
               <property name="password" value="Pomeo_Kostroma44"/>
        </bean>

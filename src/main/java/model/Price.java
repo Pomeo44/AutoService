@@ -88,10 +88,10 @@ public class Price extends BaseEntity {
         this.workType = workTypeId;
     }
 
-    @Override
-    public String getName() {
-        return autoType.getName() + workType.getName();
-    }
+//    @Override
+//    public String getName() {
+//        return autoType.getName() + workType.getName();
+//    }
 
     @Override
     public boolean equals(Object o) {

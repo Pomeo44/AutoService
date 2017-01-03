@@ -12,10 +12,4 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class AutoTypeDaoImpl extends AbstractHibernateDao<AutoType> implements AutoTypeDao {
-
-    public AutoType findByName(String name) {
-        Criteria criteria = getCriteria();
-        criteria.add(Restrictions.eq("name", name));
-        return (AutoType)criteria.uniqueResult();
-    }
 }

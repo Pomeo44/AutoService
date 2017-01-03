@@ -2,7 +2,6 @@ package service;
 
 import dao.api.Dao;
 import model.BaseEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import service.api.ServiceApi;
 import service.exception.NonExistObject;
@@ -16,37 +15,34 @@ import java.util.List;
 @Transactional
 public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> implements ServiceApi<T> {
 
-    @Autowired
-    protected K dao;
-
     @Override
     public T findById(Integer id) {
-        return dao.findById(id);
+        return (T) getDao().findById(id);
     }
 
     @Override
     public List<T> getAll() {
-        return dao.getAll();
+        return getDao().getAll();
     }
 
     @Override
     public void save(T entity) {
-        dao.saveOrUpdate(entity);
+        getDao().saveOrUpdate(entity);
     }
 
     @Override
     public void update(T entity) throws NonExistObject {
         checkUniqueEntity(entity);
-        dao.merge(entity);
+        getDao().merge(entity);
     }
 
     @Override
     public Integer add(T entity) throws NonUniqueObject {
-        if (dao.findByName(entity.getName()) != null) {
+        if (getDao().findByName(entity.getName()) != null) {
             throw  new NonUniqueObject("Такая " + T.ENTITY_TYPE + " уже есть");
         }
         entity.setIsDelete(false);
-        return dao.add(entity);
+        return getDao().add(entity);
     }
 
     @Override
@@ -73,4 +69,5 @@ public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> im
         return entity;
     }
 
+    abstract protected Dao getDao();
 }

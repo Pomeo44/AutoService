@@ -14,7 +14,9 @@ public abstract class BaseEntity implements Serializable {
 
     public abstract Integer getId();
 
-    public abstract String getName();
+    public String getName() {
+        return getId().toString();
+    }
 
     public abstract void setIsDelete(Boolean aBoolean);
 

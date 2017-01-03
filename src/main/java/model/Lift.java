@@ -8,39 +8,43 @@ import javax.persistence.*;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
+@Access(AccessType.FIELD)
 @Table(name = "LIFT", schema = "", catalog = "kontur44_AutoService")
 public class Lift extends BaseEntity {
-    @JsonProperty
-    private Integer id;
-    @JsonProperty
-    private Integer number;
-    @JsonProperty
-    private Boolean isDelete;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "LIFT_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @JsonProperty
+    private Integer id;
+
+    @Basic
+    @Column(name = "NUMBER", nullable = false, insertable = true, updatable = true)
+    @JsonProperty
+    private Integer number;
+
+    @Basic
+    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @JsonProperty
+    private Boolean isDelete;
+
     @Override
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer liftId) {
         this.id = liftId;
     }
 
-    @Basic
-    @Column(name = "NUMBER", nullable = false, insertable = true, updatable = true)
+
     public Integer getNumber() {
         return number;
     }
-
     public void setNumber(Integer number) {
         this.number = number;
     }
 
-    @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+
     public Boolean getIsDelete() {
         return isDelete;
     }
