@@ -2,15 +2,11 @@ package service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import dao.api.AutoMarkaDao;
-import dao.api.AutoModelDao;
 import dao.api.MasterDao;
-import dao.api.SpecializationDao;
-import model.AutoMarka;
-import model.AutoModel;
 import model.Master;
-import model.Specialization;
+import service.api.MasterService;
+import service.exception.NonExistObject;
+import service.exception.NonUniqueObject;
 
 import java.util.List;
 
@@ -18,44 +14,52 @@ import java.util.List;
  * Created by Pomeo on 20.10.2016.
  */
 @Service
-public class MasterServiceImpl {
+public class MasterServiceImpl implements MasterService{
     @Autowired
     private MasterDao masterDao;
-    @Autowired
-    private AutoModelDao autoModelDao;
-    @Autowired
-    private AutoMarkaDao autoMarkaDao;
-    @Autowired
-    private SpecializationDao specializationDao;
 
-    @Transactional
-    public Master findMasterById(Integer id) {
-        Master master = masterDao.findById(id);
-        return master;
+    @Override
+    public Master findById(Integer id) {
+        return masterDao.findById(id);
     }
 
-    @Transactional
-    public List<Master> getAllMaster() {
+    @Override
+    public List<Master> getAll() {
         return masterDao.getAll();
     }
 
-
-
-    @Transactional
-    public AutoModel findAutoModelById(Integer id) {
-        AutoModel autoModel = autoModelDao.findById(id);
-        return autoModel;
+    @Override
+    public void save(Master entity) {
+        masterDao.saveOrUpdate(entity);
     }
 
-    @Transactional
-    public AutoMarka findAutoMarkaById(Integer id) {
-        AutoMarka autoMarka = autoMarkaDao.findById(id);
-        return autoMarka;
+    @Override
+    public void update(Master entity) throws NonExistObject {
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Мастер с id = %s не существует!", entity.getId()));
+        masterDao.merge(entity);
     }
 
-    @Transactional
-    public Specialization findSpecializationById(Integer id) {
-        Specialization specialization = specializationDao.findById(id);
-        return specialization;
+    @Override
+    public Integer add(Master entity) throws NonUniqueObject {
+        if (masterDao.findByName(entity.getName()) != null) {
+            throw  new NonUniqueObject("Такой Мастер уже есть");
+        }
+        entity.setIsDelete(false);
+        return masterDao.add(entity);
+    }
+
+    @Override
+    public void delete(Master entity) throws NonExistObject {
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Мастер с id = %s не существует!", entity.getId()));
+        entity.setIsDelete(true);
+        save(entity);
+    }
+
+    @Override
+    public void deleteById(Integer id) throws NonExistObject {
+        Master entity = findById(id);
+        if (entity == null) throw new NonExistObject(String.format("Мастер с id = %s не существует!", id));
+        entity.setIsDelete(true);
+        save(entity);
     }
 }

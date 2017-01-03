@@ -38,14 +38,14 @@ public class OwnerAutoServiceImpl implements OwnerAutoService {
 
     @Override
     public void update(OwnerAuto entity) throws NonExistObject {
-        if (findById(entity.getOwnerAutoId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getOwnerAutoId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Владелец машины с id = %s не существует!", entity.getId()));
         ownerAutoDao.merge(entity);
     }
 
     @Override
     public Integer add(OwnerAuto entity) throws NonUniqueObject {
         if (ownerAutoDao.findByName(entity.getName()) != null) {
-            throw  new NonUniqueObject("Такой тип машины уже есть");
+            throw  new NonUniqueObject("Такой Владелец машины уже есть");
         }
         entity.setIsDelete(false);
         return ownerAutoDao.add(entity);
@@ -53,7 +53,7 @@ public class OwnerAutoServiceImpl implements OwnerAutoService {
 
     @Override
     public void delete(OwnerAuto entity) throws NonExistObject {
-        if (findById(entity.getOwnerAutoId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getOwnerAutoId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Владелеца машины с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }
@@ -61,7 +61,7 @@ public class OwnerAutoServiceImpl implements OwnerAutoService {
     @Override
     public void deleteById(Integer id) throws NonExistObject {
         OwnerAuto entity = findById(id);
-        if (entity == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", id));
+        if (entity == null) throw new NonExistObject(String.format("Владелеца машины с id = %s не существует!", id));
         entity.setIsDelete(true);
         save(entity);
     }

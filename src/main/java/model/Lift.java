@@ -10,31 +10,32 @@ import javax.persistence.*;
 @Entity
 @Table(name = "LIFT", schema = "", catalog = "kontur44_AutoService")
 public class Lift extends BaseEntity {
-    @JsonProperty("id")
-    private int liftId;
     @JsonProperty
-    private int number;
+    private Integer id;
+    @JsonProperty
+    private Integer number;
     @JsonProperty
     private Boolean isDelete;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "LIFT_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getLiftId() {
-        return liftId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setLiftId(int liftId) {
-        this.liftId = liftId;
+    public void setId(Integer liftId) {
+        this.id = liftId;
     }
 
     @Basic
     @Column(name = "NUMBER", nullable = false, insertable = true, updatable = true)
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -49,13 +50,18 @@ public class Lift extends BaseEntity {
     }
 
     @Override
+    public String getName() {
+        return number.toString();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Lift lift = (Lift) o;
 
-        if (liftId != lift.liftId) return false;
+        if (id != lift.id) return false;
         if (number != lift.number) return false;
 
         return true;
@@ -63,7 +69,7 @@ public class Lift extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = liftId;
+        int result = id;
         result = 31 * result + number;
         return result;
     }

@@ -12,8 +12,8 @@ import java.util.Set;
 @Entity
 @Table(name = "WORK_TYPE", schema = "", catalog = "kontur44_AutoService")
 public class WorkType extends BaseEntity {
-    @JsonProperty("id")
-    private int workTypeId;
+    @JsonProperty
+    private Integer id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -24,12 +24,13 @@ public class WorkType extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "WORK_TYPE_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getWorkTypeId() {
-        return workTypeId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setWorkTypeId(int workTypeId) {
-        this.workTypeId = workTypeId;
+    public void setId(Integer workTypeId) {
+        this.id = workTypeId;
     }
 
     @Basic
@@ -68,7 +69,7 @@ public class WorkType extends BaseEntity {
 
         WorkType workType = (WorkType) o;
 
-        if (workTypeId != workType.workTypeId) return false;
+        if (id != workType.id) return false;
         if (name != null ? !name.equals(workType.name) : workType.name != null) return false;
 
         return true;
@@ -76,7 +77,7 @@ public class WorkType extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = workTypeId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

@@ -1,6 +1,5 @@
 package controller;
 
-import model.AutoMarka;
 import model.AutoModel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -64,7 +63,7 @@ public class AutoModelController {
         }
         logger.info("Create AutoModel with name " + autoModel.getName() + " SUCCESSFULLY");
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoModel.getAutoModelId()).toUri());
+        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoModel.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 

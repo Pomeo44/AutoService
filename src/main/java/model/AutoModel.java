@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "AUTO_MODEL", schema = "", catalog = "kontur44_AutoService")
 public class AutoModel extends BaseEntity {
     @JsonProperty("id")
-    private int autoModelId;
+    private Integer id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -30,12 +30,12 @@ public class AutoModel extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "AUTO_MODEL_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getAutoModelId() {
-        return autoModelId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAutoModelId(int autoModelId) {
-        this.autoModelId = autoModelId;
+    public void setId(Integer autoModelId) {
+        this.id = autoModelId;
     }
 
     @Basic
@@ -94,7 +94,7 @@ public class AutoModel extends BaseEntity {
 
         AutoModel autoModel = (AutoModel) o;
 
-        if (autoModelId != autoModel.autoModelId) return false;
+        if (id != autoModel.id) return false;
         if (name != null ? !name.equals(autoModel.name) : autoModel.name != null) return false;
 
         return true;
@@ -102,7 +102,7 @@ public class AutoModel extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = autoModelId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

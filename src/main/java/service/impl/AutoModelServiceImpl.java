@@ -1,12 +1,10 @@
 package service.impl;
 
 import dao.api.AutoModelDao;
-import model.AutoMarka;
 import model.AutoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import service.api.AutoMarkaService;
 import service.api.AutoModelService;
 import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
@@ -40,7 +38,7 @@ public class AutoModelServiceImpl implements AutoModelService {
 
     @Override
     public void update(AutoModel entity) throws NonExistObject {
-        if (findById(entity.getAutoModelId()) == null) throw new NonExistObject(String.format("Модели машины с id = %s не существует!", entity.getAutoModelId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Модели машины с id = %s не существует!", entity.getId()));
         autoModelDao.merge(entity);
     }
 
@@ -55,7 +53,7 @@ public class AutoModelServiceImpl implements AutoModelService {
 
     @Override
     public void delete(AutoModel entity) throws NonExistObject {
-        if (findById(entity.getAutoModelId()) == null) throw new NonExistObject(String.format("Модель машины с id = %s не существует!", entity.getAutoModelId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Модель машины с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }

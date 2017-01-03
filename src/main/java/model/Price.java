@@ -11,12 +11,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PRICE", schema = "", catalog = "kontur44_AutoService")
 public class Price extends BaseEntity {
-    @JsonProperty("id")
-    private int priceId;
     @JsonProperty
-    private int time;
+    private Integer id;
     @JsonProperty
-    private int money;
+    private Integer time;
+    @JsonProperty
+    private Integer money;
     @JsonProperty
     private Boolean isDelete;
 
@@ -28,31 +28,32 @@ public class Price extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "PRICE_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getPriceId() {
-        return priceId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setPriceId(int priceId) {
-        this.priceId = priceId;
+    public void setId(Integer priceId) {
+        this.id = priceId;
     }
 
     @Basic
     @Column(name = "TIME", nullable = false, insertable = true, updatable = true)
-    public int getTime() {
+    public Integer getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 
     @Basic
     @Column(name = "MONEY", nullable = false, insertable = true, updatable = true)
-    public int getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
 
@@ -88,13 +89,18 @@ public class Price extends BaseEntity {
     }
 
     @Override
+    public String getName() {
+        return autoType.getName() + workType.getName();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Price price = (Price) o;
 
-        if (priceId != price.priceId) return false;
+        if (id != price.id) return false;
         if (time != price.time) return false;
         if (money != price.money) return false;
 
@@ -103,7 +109,7 @@ public class Price extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = priceId;
+        int result = id;
         result = 31 * result + time;
         result = 31 * result + money;
         return result;

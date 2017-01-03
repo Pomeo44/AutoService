@@ -1,7 +1,6 @@
 package service.impl;
 
 import dao.api.SpecializationDao;
-import model.AutoType;
 import model.Specialization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 
     @Override
     public void update(Specialization entity) throws NonExistObject {
-        if (findById(entity.getSpecializationId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getSpecializationId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getId()));
         specializationDao.merge(entity);
     }
 
@@ -54,7 +53,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 
     @Override
     public void delete(Specialization entity) throws NonExistObject {
-        if (findById(entity.getSpecializationId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getSpecializationId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }

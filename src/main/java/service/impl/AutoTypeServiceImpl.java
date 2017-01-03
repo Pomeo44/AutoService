@@ -38,7 +38,7 @@ public class AutoTypeServiceImpl implements AutoTypeService {
 
     @Override
     public void update(AutoType entity) throws NonExistObject {
-        if (findById(entity.getAutoTypeId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getAutoTypeId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getId()));
         autoTypeDao.merge(entity);
     }
 
@@ -53,7 +53,7 @@ public class AutoTypeServiceImpl implements AutoTypeService {
 
     @Override
     public void delete(AutoType entity) throws NonExistObject {
-        if (findById(entity.getAutoTypeId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getAutoTypeId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }

@@ -2,6 +2,7 @@ package dao;
 
 import model.Master;
 import org.hibernate.*;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -45,6 +46,13 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
     public T findById(Integer id) {
         T t = (T) getSession().get(getPersistentClass(), id);
         return t;
+    }
+
+    @Override
+    public T findByName(String name) {
+        Criteria criteria = getSession().createCriteria(getPersistentClass());
+        criteria.add(Restrictions.eq("name", name));
+        return (T) criteria.uniqueResult();
     }
 
     @Override

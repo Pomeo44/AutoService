@@ -13,8 +13,8 @@ import java.util.Set;
 @Entity
 @Table(name = "AUTO_MARKA", schema = "", catalog = "kontur44_AutoService")
 public class AutoMarka extends BaseEntity {
-    @JsonProperty("id")
-    private int autoMarkaId;
+    @JsonProperty
+    private Integer id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -26,12 +26,13 @@ public class AutoMarka extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "AUTO_MARKA_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getAutoMarkaId() {
-        return autoMarkaId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setAutoMarkaId(int autoMarkaId) {
-        this.autoMarkaId = autoMarkaId;
+    public void setId(Integer autoMarkaId) {
+        this.id = autoMarkaId;
     }
 
     @Basic
@@ -70,7 +71,7 @@ public class AutoMarka extends BaseEntity {
 
         AutoMarka autoMarka = (AutoMarka) o;
 
-        if (autoMarkaId != autoMarka.autoMarkaId) return false;
+        if (id != autoMarka.id) return false;
         if (name != null ? !name.equals(autoMarka.name) : autoMarka.name != null) return false;
 
         return true;
@@ -78,7 +79,7 @@ public class AutoMarka extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = autoMarkaId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

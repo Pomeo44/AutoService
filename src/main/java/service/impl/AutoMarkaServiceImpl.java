@@ -5,6 +5,7 @@ import model.AutoMarka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import service.AbstractService;
 import service.api.AutoMarkaService;
 import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
@@ -16,14 +17,14 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class AutoMarkaServiceImpl implements AutoMarkaService {
+public class AutoMarkaServiceImpl extends AbstractService<AutoMarka, AutoMarkaDao> implements AutoMarkaService {
 
     @Autowired
     private AutoMarkaDao autoMarkaDao;
 
     @Override
     public AutoMarka findById(Integer id) {
-        return autoMarkaDao.findById(id);
+        return dao.findById(id);
     }
 
     @Override
@@ -38,7 +39,7 @@ public class AutoMarkaServiceImpl implements AutoMarkaService {
 
     @Override
     public void update(AutoMarka entity) throws NonExistObject {
-        if (findById(entity.getAutoMarkaId()) == null) throw new NonExistObject(String.format("Марки машины с id = %s не существует!", entity.getAutoMarkaId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Марки машины с id = %s не существует!", entity.getId()));
         autoMarkaDao.merge(entity);
     }
 
@@ -53,7 +54,7 @@ public class AutoMarkaServiceImpl implements AutoMarkaService {
 
     @Override
     public void delete(AutoMarka entity) throws NonExistObject {
-        if (findById(entity.getAutoMarkaId()) == null) throw new NonExistObject(String.format("Марки машины с id = %s не существует!", entity.getAutoMarkaId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Марки машины с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }

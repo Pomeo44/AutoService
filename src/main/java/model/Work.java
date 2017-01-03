@@ -12,16 +12,16 @@ import java.util.Date;
 @Entity
 @Table(name = "WORK", schema = "", catalog = "kontur44_AutoService")
 public class Work extends BaseEntity {
-    @JsonProperty("id")
-    private int workId;
+    @JsonProperty
+    private Integer id;
     @JsonProperty
     private Date startWorkDate;
     @JsonProperty
     private Date endWorkDate;
     @JsonProperty
-    private int ownerAutoId;
+    private Integer ownerAutoId;
     @JsonProperty
-    private int workTypeId;
+    private Integer workTypeId;
     @JsonProperty
     private Integer liftId;
     @JsonProperty
@@ -29,19 +29,20 @@ public class Work extends BaseEntity {
     @JsonProperty
     private Boolean done;
     @JsonProperty
-    private int actualTime;
+    private Integer actualTime;
     @JsonProperty
-    private int actualMoney;
+    private Integer actualMoney;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "WORK_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getWorkId() {
-        return workId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setWorkId(int workId) {
-        this.workId = workId;
+    public void setId(Integer workId) {
+        this.id = workId;
     }
 
     @Basic
@@ -66,21 +67,21 @@ public class Work extends BaseEntity {
 
     @Basic
     @Column(name = "ORDERS_ID", nullable = false, insertable = true, updatable = true)
-    public int getOwnerAutoId() {
+    public Integer getOwnerAutoId() {
         return ownerAutoId;
     }
 
-    public void setOwnerAutoId(int ordersId) {
+    public void setOwnerAutoId(Integer ordersId) {
         this.ownerAutoId = ordersId;
     }
 
     @Basic
     @Column(name = "WORK_TYPE_ID", nullable = false, insertable = true, updatable = true)
-    public int getWorkTypeId() {
+    public Integer getWorkTypeId() {
         return workTypeId;
     }
 
-    public void setWorkTypeId(int workTypeId) {
+    public void setWorkTypeId(Integer workTypeId) {
         this.workTypeId = workTypeId;
     }
 
@@ -116,22 +117,31 @@ public class Work extends BaseEntity {
 
     @Basic
     @Column(name = "ACTUAL_TIME", nullable = false, insertable = true, updatable = true)
-    public int getActualTime() {
+    public Integer getActualTime() {
         return actualTime;
     }
 
-    public void setActualTime(int actualTime) {
+    public void setActualTime(Integer actualTime) {
         this.actualTime = actualTime;
     }
 
     @Basic
     @Column(name = "ACTUAL_MONEY", nullable = false, insertable = true, updatable = true)
-    public int getActualMoney() {
+    public Integer getActualMoney() {
         return actualMoney;
     }
 
-    public void setActualMoney(int actualMoney) {
+    public void setActualMoney(Integer actualMoney) {
         this.actualMoney = actualMoney;
+    }
+
+    @Override
+    public String getName() {
+        return id.toString();
+    }
+
+    @Override
+    public void setIsDelete(Boolean aBoolean) {
     }
 
     @Override
@@ -141,7 +151,7 @@ public class Work extends BaseEntity {
 
         Work work = (Work) o;
 
-        if (workId != work.workId) return false;
+        if (id != work.id) return false;
         if (ownerAutoId != work.ownerAutoId) return false;
         if (workTypeId != work.workTypeId) return false;
         if (actualTime != work.actualTime) return false;
@@ -156,7 +166,7 @@ public class Work extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = workId;
+        int result = id;
         result = 31 * result + (startWorkDate != null ? startWorkDate.hashCode() : 0);
         result = 31 * result + ownerAutoId;
         result = 31 * result + workTypeId;

@@ -20,15 +20,15 @@ public class Test {
         MasterServiceImpl masterService = context.getBean(MasterServiceImpl.class);
 
 
-        Master master = masterService.findMasterById(3);
-        AutoModel autoModel = masterService.findAutoModelById(1);
-        AutoMarka autoMarka = masterService.findAutoMarkaById(3);
-        Specialization specialization = masterService.findSpecializationById(1);
-
-        System.out.println(master.getName());
-        System.out.println(autoModel);
-        System.out.println(autoMarka);
-        System.out.println(specialization);
+//        Master master = masterService.findMasterById(3);
+//        AutoModel autoModel = masterService.findAutoModelById(1);
+//        AutoMarka autoMarka = masterService.findAutoMarkaById(3);
+//        Specialization specialization = masterService.findSpecializationById(1);
+//
+//        System.out.println(master.getName());
+//        System.out.println(autoModel);
+//        System.out.println(autoMarka);
+//        System.out.println(specialization);
 
 
     }

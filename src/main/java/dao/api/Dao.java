@@ -10,6 +10,7 @@ import java.util.List;
 public interface Dao<T extends BaseEntity> {
 
     T findById(Integer id);
+    T findByName(String name);
     List<T> getAll();
     void saveOrUpdate(T entity);
     T merge(T entity);

@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "OWNER_AUTO", schema = "", catalog = "kontur44_AutoService")
 public class OwnerAuto extends BaseEntity {
-    @JsonProperty("id")
-    private int ownerAutoId;
+    @JsonProperty
+    private Integer id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -28,12 +28,13 @@ public class OwnerAuto extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "OWNER_AUTO_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getOwnerAutoId() {
-        return ownerAutoId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setOwnerAutoId(int ownerAutoId) {
-        this.ownerAutoId = ownerAutoId;
+    public void setId(Integer ownerAutoId) {
+        this.id = ownerAutoId;
     }
 
     @Basic
@@ -93,7 +94,7 @@ public class OwnerAuto extends BaseEntity {
 
         OwnerAuto ownerAuto = (OwnerAuto) o;
 
-        if (ownerAutoId != ownerAuto.ownerAutoId) return false;
+        if (id != ownerAuto.id) return false;
         if (name != null ? !name.equals(ownerAuto.name) : ownerAuto.name != null) return false;
         if (year != null ? !year.equals(ownerAuto.year) : ownerAuto.year != null) return false;
         if (gosNumber != null ? !gosNumber.equals(ownerAuto.gosNumber) : ownerAuto.gosNumber != null) return false;
@@ -103,7 +104,7 @@ public class OwnerAuto extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = ownerAutoId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (year != null ? year.hashCode() : 0);
         result = 31 * result + (gosNumber != null ? gosNumber.hashCode() : 0);

@@ -63,7 +63,7 @@ public class AutoMarkaController {
         }
         logger.info("Create AutoMarka with name " + autoMarka.getName() + " SUCCESSFULLY");
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoMarka.getAutoMarkaId()).toUri());
+        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoMarka.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 

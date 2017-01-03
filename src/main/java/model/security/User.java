@@ -12,7 +12,7 @@ public class User extends BaseEntity {
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	@Column(name="SSO_ID", unique=true, nullable=false)
 	private String ssoId;
@@ -38,11 +38,21 @@ public class User extends BaseEntity {
              inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
 	private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	@Override
+	public String getName() {
+		return firstName + lastName;
+	}
+
+	@Override
+	public void setIsDelete(Boolean aBoolean) {
+		state = State.DELETED.getState();
+	}
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

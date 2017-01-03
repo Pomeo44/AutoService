@@ -1,7 +1,6 @@
 package service.impl;
 
 import dao.api.PriceDao;
-import model.AutoType;
 import model.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public void update(Price entity) throws NonExistObject {
-        if (findById(entity.getPriceId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getPriceId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getId()));
         priceDao.merge(entity);
     }
 
@@ -54,7 +53,7 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public void delete(Price entity) throws NonExistObject {
-        if (findById(entity.getPriceId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getPriceId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }

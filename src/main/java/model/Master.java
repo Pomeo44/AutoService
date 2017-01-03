@@ -13,8 +13,8 @@ import java.util.Set;
 @Entity
 @Table(name = "MASTER")
 public class Master extends BaseEntity {
-    @JsonProperty("id")
-    private int masterId;
+    @JsonProperty
+    private Integer id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -26,12 +26,13 @@ public class Master extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "MASTER_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getMasterId() {
-        return masterId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setMasterId(int masterId) {
-        this.masterId = masterId;
+    public void setId(Integer masterId) {
+        this.id = masterId;
     }
 
     @Basic
@@ -74,7 +75,7 @@ public class Master extends BaseEntity {
 
         Master master = (Master) o;
 
-        if (masterId != master.masterId) return false;
+        if (id != master.id) return false;
         if (name != null ? !name.equals(master.name) : master.name != null) return false;
 
         return true;
@@ -82,7 +83,7 @@ public class Master extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = masterId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

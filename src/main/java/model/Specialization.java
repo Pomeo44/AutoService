@@ -13,8 +13,8 @@ import java.util.Set;
 @Entity
 @Table(name = "SPECIALIZATION", schema = "", catalog = "kontur44_AutoService")
 public class Specialization extends BaseEntity {
-    @JsonProperty("id")
-    private int specializationId;
+    @JsonProperty
+    private Integer id;
     @JsonProperty
     private String name;
     @JsonProperty
@@ -26,12 +26,13 @@ public class Specialization extends BaseEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "SPECIALIZATION_ID", unique = true, nullable = false, insertable = true, updatable = true)
-    public int getSpecializationId() {
-        return specializationId;
+    @Override
+    public Integer getId() {
+        return id;
     }
 
-    public void setSpecializationId(int specializationId) {
-        this.specializationId = specializationId;
+    public void setId(Integer specializationId) {
+        this.id = specializationId;
     }
 
     @Basic
@@ -70,7 +71,7 @@ public class Specialization extends BaseEntity {
 
         Specialization that = (Specialization) o;
 
-        if (specializationId != that.specializationId) return false;
+        if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
@@ -78,7 +79,7 @@ public class Specialization extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = specializationId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

@@ -14,4 +14,8 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class WorkDaoImpl extends AbstractHibernateDao<Work> implements WorkDao {
+    @Override
+    public Work findByName(String name) {
+        return findById(Integer.parseInt(name));
+    }
 }

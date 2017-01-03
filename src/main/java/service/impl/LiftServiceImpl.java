@@ -1,7 +1,6 @@
 package service.impl;
 
 import dao.api.LiftDao;
-import model.AutoType;
 import model.Lift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,7 +38,7 @@ public class LiftServiceImpl implements LiftService {
 
     @Override
     public void update(Lift entity) throws NonExistObject {
-        if (findById(entity.getLiftId()) == null) throw new NonExistObject(String.format("Подъемника с id = %s не существует!", entity.getLiftId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Подъемника с id = %s не существует!", entity.getId()));
         liftDao.merge(entity);
     }
 
@@ -54,7 +53,7 @@ public class LiftServiceImpl implements LiftService {
 
     @Override
     public void delete(Lift entity) throws NonExistObject {
-        if (findById(entity.getLiftId()) == null) throw new NonExistObject(String.format("Подъемник с id = %s не существует!", entity.getLiftId()));
+        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Подъемник с id = %s не существует!", entity.getId()));
         entity.setIsDelete(true);
         save(entity);
     }
@@ -62,7 +61,7 @@ public class LiftServiceImpl implements LiftService {
     @Override
     public void deleteById(Integer id) throws NonExistObject {
         Lift entity = findById(id);
-        if (entity == null) throw new NonExistObject(String.format("Типа машины с id = %s не существует!", id));
+        if (entity == null) throw new NonExistObject(String.format("Подъемник с id = %s не существует!", id));
         entity.setIsDelete(true);
         save(entity);
     }

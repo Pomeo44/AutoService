@@ -12,4 +12,10 @@ public abstract class BaseEntity implements Serializable {
         return ENTITY_TYPE;
     }
 
+    public abstract Integer getId();
+
+    public abstract String getName();
+
+    public abstract void setIsDelete(Boolean aBoolean);
+
 }

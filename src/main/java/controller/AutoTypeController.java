@@ -63,7 +63,7 @@ public class AutoTypeController {
         }
         logger.info("Create AutoType with name " + autoType.getName() + " SUCCESSFULLY");
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoType.getAutoTypeId()).toUri());
+        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(autoType.getId()).toUri());
         return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
     }
 
