@@ -1,10 +1,12 @@
 package service.impl;
 
+import dao.api.Dao;
 import dao.api.OwnerAutoDao;
 import model.OwnerAuto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import service.AbstractService;
 import service.api.OwnerAutoService;
 import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
@@ -16,53 +18,13 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class OwnerAutoServiceImpl implements OwnerAutoService {
+public class OwnerAutoServiceImpl extends AbstractService<OwnerAuto, OwnerAutoDao> implements OwnerAutoService {
 
     @Autowired
     private OwnerAutoDao ownerAutoDao;
 
     @Override
-    public OwnerAuto findById(Integer id) {
-        return ownerAutoDao.findById(id);
-    }
-
-    @Override
-    public List<OwnerAuto> getAll() {
-        return ownerAutoDao.getAll();
-    }
-
-    @Override
-    public void save(OwnerAuto entity) {
-        ownerAutoDao.saveOrUpdate(entity);
-    }
-
-    @Override
-    public void update(OwnerAuto entity) throws NonExistObject {
-        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Владелец машины с id = %s не существует!", entity.getId()));
-        ownerAutoDao.merge(entity);
-    }
-
-    @Override
-    public Integer add(OwnerAuto entity) throws NonUniqueObject {
-        if (ownerAutoDao.findByName(entity.getName()) != null) {
-            throw  new NonUniqueObject("Такой Владелец машины уже есть");
-        }
-        entity.setIsDelete(false);
-        return ownerAutoDao.add(entity);
-    }
-
-    @Override
-    public void delete(OwnerAuto entity) throws NonExistObject {
-        if (findById(entity.getId()) == null) throw new NonExistObject(String.format("Владелеца машины с id = %s не существует!", entity.getId()));
-        entity.setIsDelete(true);
-        save(entity);
-    }
-
-    @Override
-    public void deleteById(Integer id) throws NonExistObject {
-        OwnerAuto entity = findById(id);
-        if (entity == null) throw new NonExistObject(String.format("Владелеца машины с id = %s не существует!", id));
-        entity.setIsDelete(true);
-        save(entity);
+    protected Dao getDao() {
+        return ownerAutoDao;
     }
 }

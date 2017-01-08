@@ -92,11 +92,11 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <dependency>
-            <groupId>javassist</groupId>
-            <artifactId>javassist</artifactId>
-            <version>3.22.0-CR1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>javassist</groupId>-->
+            <!--<artifactId>javassist</artifactId>-->
+            <!--<version>3.22.0-CR1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
