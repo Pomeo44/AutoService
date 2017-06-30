@@ -4,8 +4,8 @@ App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
 
 	return {
 		
-			fetchAllAutoTypes: function() {
-					return $http.get('http://localhost:8080/service/autotype/')
+			getAllElements: function(tableName) {
+					return $http.get('http://localhost:8080/service/' + tableName + '/')
 							.then(
 									function(response){
 										return response.data;
@@ -17,7 +17,7 @@ App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
 							);
 			},
 		    
-		    createAutoType: function(autoType){
+		    createElement: function(autoType){
 					return $http.post('http://localhost:8080/service/autotype/', autoType)
 							.then(
 									function(response){

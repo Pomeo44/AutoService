@@ -2,14 +2,15 @@
 
 App.controller('AutoTypeController', ['$scope', 'AutoTypeService', function($scope, AutoTypeService) {
           var self = this;
-          self.autoType={id:null,name:'',isDelete:false};
-          self.autoTypes=[];
+          self.element={id:null,name:'',isDelete:false};
+          self.elements=[];
+          self.tableName = 'autotype';
               
-          self.fetchAllAutoTypes = function(){
-              AutoTypeService.fetchAllAutoTypes()
+          self.getAllElements = function(){
+              AutoTypeService.getAllElements(tableName)
                   .then(
       					       function(d) {
-      						        self.autoTypes = d;
+      						        self.elements = d;
       					       },
             					function(errResponse){
             						console.error('Error while fetching Currencies');
@@ -17,20 +18,20 @@ App.controller('AutoTypeController', ['$scope', 'AutoTypeService', function($sco
       			       );
           };
            
-          self.createAutoType = function(autoType){
-              AutoTypeService.createAutoType(autoType)
+          self.createElement = function(element){
+              AutoTypeService.createElement(element)
 		              .then(
-                      self.fetchAllAutoTypes,
+                      self.getAllElements,
 				              function(errResponse){
 					               console.error('Error while creating AutoType.');
 				              }	
                   );
           };
 
-         self.updateAutoType = function(autoType, id){
-             AutoTypeService.updateAutoType(autoType, id)
+         self.updateAutoType = function(element, id){
+             AutoTypeService.updateAutoType(element, id)
 		              .then(
-				              self.fetchAllAutoTypes,
+				              self.getAllElements,
 				              function(errResponse){
 					               console.error('Error while updating AutoType.');
 				              }	
@@ -40,31 +41,31 @@ App.controller('AutoTypeController', ['$scope', 'AutoTypeService', function($sco
          self.deleteAutoType = function(id){
              AutoTypeService.deleteAutoType(id)
 		              .then(
-				              self.fetchAllAutoTypes,
+				              self.getAllElements,
 				              function(errResponse){
 					               console.error('Error while deleting AutoType.');
 				              }	
                   );
           };
 
-          self.fetchAllAutoTypes();
+          self.getAllElements();
 
           self.submit = function() {
-              if(self.autoType.id==null){
-                  console.log('Saving New AutoType', self.autoType);
-                  self.createAutoType(self.autoType);
+              if(self.element.id==null){
+                  console.log('Saving New AutoType', self.element);
+                  self.createElement(self.element);
               }else{
-                  self.updateAutoType(self.autoType, self.autoType.id);
-                  console.log('AutoType updated with id ', self.autoType.id);
+                  self.updateAutoType(self.element, self.element.id);
+                  console.log('AutoType updated with id ', self.element.id);
               }
               self.reset();
           };
               
           self.edit = function(id){
               console.log('id to be edited', id);
-              for(var i = 0; i < self.autoTypes.length; i++){
-                  if(self.autoTypes[i].id == id) {
-                     self.autoType = angular.copy(self.autoTypes[i]);
+              for(var i = 0; i < self.element.length; i++){
+                  if(self.elements[i].id == id) {
+                     self.element = angular.copy(self.elements[i]);
                      break;
                   }
               }
@@ -72,7 +73,7 @@ App.controller('AutoTypeController', ['$scope', 'AutoTypeService', function($sco
               
           self.remove = function(id){
               console.log('id to be deleted', id);
-              if(self.autoType.id === id) {//clean form if the AutoType to be deleted is shown there.
+              if(self.element.id === id) {//clean form if the AutoType to be deleted is shown there.
                  self.reset();
               }
               self.deleteAutoType(id);
@@ -80,7 +81,7 @@ App.controller('AutoTypeController', ['$scope', 'AutoTypeService', function($sco
 
           
           self.reset = function(){
-              self.autoType={id:null,name:'',isDelete:false};
+              self.element={id:null,name:'',isDelete:false};
               $scope.myForm.$setPristine(); //reset Form
           };
 
