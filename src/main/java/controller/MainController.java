@@ -23,10 +23,10 @@ public class MainController {
 		return "welcome";
 	}
 
-	@GetMapping(value = {"/autotype"})
+	@GetMapping(value = {"/main"})
 	public String autoType(ModelMap model) {
 		model.addAttribute("greeting", "Hi, Welcome to mysite");
-		return "autoType";
+		return "main";
 	}
 
 	@GetMapping(value = "/admin")

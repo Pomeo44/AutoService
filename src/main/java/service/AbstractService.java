@@ -33,6 +33,7 @@ public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> im
     @Override
     public void update(T entity) throws NonExistObject {
         checkUniqueEntity(entity);
+
         getDao().merge(entity);
     }
 

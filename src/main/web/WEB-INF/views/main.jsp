@@ -2,15 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>  
-    <title>AngularJS $http Example</title>  
+    <title>Main page Auto Service</title>
     <style>
-      .autoTypename.ng-valid {
+      .elementName.ng-valid {
           background-color: lightgreen;
       }
-      .autoTypename.ng-dirty.ng-invalid-required {
+      .elementName.ng-dirty.ng-invalid-required {
           background-color: red;
       }
-      .autoTypename.ng-dirty.ng-invalid-minlength {
+      .elementName.ng-dirty.ng-invalid-minlength {
           background-color: yellow;
       }
 
@@ -29,17 +29,28 @@
      <link href="<c:url value='/static/css/app.css' />" rel="stylesheet">
   </head>
   <body ng-app="myApp" class="ng-cloak">
-      <div class="generic-container" ng-controller="AutoTypeController as ctrl">
+      <div class="generic-container" ng-controller="MainController as ctrl">
           <div class="panel panel-default">
-              <div class="panel-heading"><span class="lead">AutoType registration form </span></div>
+              <div class="panel-heading"><span class="lead">ctrl.tableName registration form </span></div>
               <div class="formcontainer">
+                  <form action="select1.php" method="post">
+                      <p><select size="3" multiple name="tableNames[]">
+                          <option disabled>???????? ?????</option>
+                          <option value="autotype">?????????</option>
+                          <option selected value="automodel">???????? ????</option>
+                          <option value="automarka">????????</option>
+                      </select></p>
+                      <button type="button" ng-click="ctrl.changeTable('autotype')" >change table</button>
+                      <button type="button" ng-click="ctrl.changeTable('automodel')" >change table</button>
+                      <button type="button" ng-click="ctrl.changeTable('automarka')" >change table</button>
+                  </form>
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
-                      <input type="hidden" ng-model="ctrl.autoType.id" />
+                      <input type="hidden" ng-model="ctrl.element.id" />
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="file">Name</label>
+                              <label class="col-md-2 control-lable">Name</label>
                               <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.autoType.name" name="uname" class="autoTypename form-control input-sm" placeholder="Enter name" required ng-minlength="3"/>
+                                  <input type="text" ng-model="ctrl.element.name" name="uname" class="elementName form-control input-sm" placeholder="Enter name" required ng-minlength="3"/>
                                   <div class="has-error" ng-show="myForm.$dirty">
                                       <span ng-show="myForm.uname.$error.required">This is a required field</span>
                                       <span ng-show="myForm.uname.$error.minlength">Minimum length required is 3</span>
@@ -51,16 +62,16 @@
 
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="file">Is delete</label>
+                              <label class="col-md-2 control-lable">Is delete</label>
                               <div class="col-md-7">
-                                  <input type="checkbox" ng-model="ctrl.autoType.isDelete" class="form-control input-sm"/>
+                                  <input type="checkbox" ng-model="ctrl.element.isDelete" class="form-control input-sm"/>
                               </div>
                           </div>
                       </div>
 
                       <div class="row">
                           <div class="form-actions floatRight">
-                              <input type="submit"  value="{{!ctrl.autoType.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="{{!ctrl.element.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
@@ -81,7 +92,7 @@
                           </tr>
                       </thead>
                       <tbody>
-                          <tr ng-repeat="u in ctrl.autoTypes">
+                          <tr ng-repeat="u in ctrl.elements">
                               <td><span ng-bind="u.id"></span></td>
                               <td><span ng-bind="u.name"></span></td>
                               <td><span ng-bind="u.isDelete"></span></td>

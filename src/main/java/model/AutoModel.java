@@ -109,6 +109,6 @@ public class AutoModel extends BaseEntity {
 
     @Override
     public String toString() {
-        return name + " " + autoMarka.getName() + " " + autoType.getName();
+        return name + " " + autoMarka != null ? autoMarka.getName() : "" + " " + autoType != null ? autoType.getName() : "";
     }
 }

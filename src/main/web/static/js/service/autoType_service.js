@@ -1,6 +1,6 @@
 'use strict';
 
-App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
+App.factory('MainService', ['$http', '$q', function($http, $q){
 
 	return {
 		
@@ -17,8 +17,8 @@ App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
 							);
 			},
 		    
-		    createElement: function(autoType){
-					return $http.post('http://localhost:8080/service/autotype/', autoType)
+		    createElement: function(tableName, autoType){
+					return $http.post('http://localhost:8080/service/' + tableName + '/', autoType)
 							.then(
 									function(response){
 										return response.data;
@@ -30,8 +30,8 @@ App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
 							);
 		    },
 		    
-		    updateAutoType: function(autoType, id){
-					return $http.put('http://localhost:8080/service/autotype/'+id, autoType)
+		    updateElement: function(tableName, autoType, id){
+					return $http.put('http://localhost:8080/service/' + tableName + '/'+id, autoType)
 							.then(
 									function(response){
 										return response.data;
@@ -43,8 +43,8 @@ App.factory('AutoTypeService', ['$http', '$q', function($http, $q){
 							);
 			},
 		    
-			deleteAutoType: function(id){
-					return $http.delete('http://localhost:8080/service/autotype/'+id)
+			deleteElement: function(tableName, id){
+					return $http.delete('http://localhost:8080/service/' + tableName + '/'+ id)
 							.then(
 									function(response){
 										return response.data;
