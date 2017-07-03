@@ -23,7 +23,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
 		.then(
             self.getAllElements,
 			function(errResponse){
-                console.error('Error while creating AutoType.');
+                console.error('Error while creating ' + tableName + '.');
 			}
         );
     };
@@ -33,7 +33,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         .then(
             self.getAllElements,
             function(errResponse){
-                console.error('Error while updating AutoType.');
+                console.error('Error while updating ' + tableName + '.');
             }
         );
     };
@@ -43,18 +43,18 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         .then(
             self.getAllElements,
 			function(errResponse) {
-			    console.error('Error while deleting AutoType.');
+			    console.error('Error while deleting ' + tableName + '.');
 			}
         );
     };
 
     self.submit = function() {
         if(self.element.id==null) {
-            console.log('Saving New AutoType', self.element);
+            console.log('Saving New ' + tableName, self.element);
             self.createElement(self.element);
         } else {
             self.updateElement(self.element, self.element.id);
-            console.log('AutoType updated with id ', self.element.id);
+            console.log(tableName + ' updated with id ', self.element.id);
         }
         self.reset();
     };
@@ -71,7 +71,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
               
     self.remove = function(id){
         console.log('id to be deleted', id);
-        if (self.element.id === id) {//clean form if the AutoType to be deleted is shown there.
+        if (self.element.id === id) {//clean form if the element to be deleted is shown there.
             self.reset();
         }
         self.deleteElement(id);
