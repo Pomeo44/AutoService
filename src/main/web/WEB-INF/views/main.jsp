@@ -85,13 +85,16 @@
                   <table class="table table-hover">
                       <thead>
                           <tr>
+                              <th ng-repeat="header in ctrl.tableStructure.headers">{{header}}</th>
                               <th>ID.</th>
                               <th>Name</th>
                               <th>IsDelete</th>
                               <th width="20%"></th>
                           </tr>
                       </thead>
-                      <tbody>
+                      <tbody><tr ng-repeat="element in ctrl.elements"></tr>
+                            <tr ng-repeat="fieldName in ctrl.tableStructure.fields">
+                                <td><span ng-bind="element[fieldName]"></span></td>
                           <tr ng-repeat="u in ctrl.elements">
                               <td><span ng-bind="u.id"></span></td>
                               <td><span ng-bind="u.name"></span></td>

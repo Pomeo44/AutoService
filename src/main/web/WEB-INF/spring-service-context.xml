@@ -42,6 +42,6 @@
               <property name="password" value="Pomeo_Kostroma44"/>
        </bean>
 
-        <!--<context:component-scan base-package="configuration"/>-->
+        <context:component-scan base-package="configuration"/>
 
 </beans>

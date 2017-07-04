@@ -6,6 +6,14 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     self.elements=[];
     self.tableName = 'autotype';
 
+    self.tableStructure;
+    if(self.tableName == "" )
+    {
+        self.tableStructure = {};
+        self.tableStructure.headers = ["Name", "Description", "Others"];
+        self.tableStructure.fields = ["name", "desc", "others"];
+    }
+
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
         .then(
