@@ -7,12 +7,6 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     self.tableName = 'autotype';
 
     self.tableStructure;
-    if(self.tableName == "" )
-    {
-        self.tableStructure = {};
-        self.tableStructure.headers = ["Name", "Description", "Others"];
-        self.tableStructure.fields = ["name", "desc", "others"];
-    }
 
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
@@ -93,10 +87,75 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
 
     self.changeTable = function(tableName){
         self.tableName = tableName;
+        if (self.tableName == "autotype") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "automarka") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "automodel") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
+            self.tableStructure.fields = ["id", "name", "isDelete", "automarka", "autotype"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        }
         $scope.myForm.$setPristine(); //reset Form
         self.getAllElements();
     };
 
-    self.getAllElements();
+    self.changeTable(self.tableName);
 
 }]);
