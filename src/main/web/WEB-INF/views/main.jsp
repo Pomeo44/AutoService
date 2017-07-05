@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>  
@@ -35,10 +35,10 @@
               <div class="formcontainer">
                   <form action="select1.php" method="post">
                       <p><select size="3" multiple name="tableNames[]">
-                          <option disabled>???????? ?????</option>
-                          <option value="autotype">?????????</option>
-                          <option selected value="automodel">???????? ????</option>
-                          <option value="automarka">????????</option>
+                          <option disabled>привет</option>
+                          <option value="autotype">привет 1</option>
+                          <option selected value="automodel">привет 2</option>
+                          <option value="automarka">привет 3</option>
                       </select></p>
                       <button type="button" ng-click="ctrl.changeTable('autotype')" >change table</button>
                       <button type="button" ng-click="ctrl.changeTable('automodel')" >change table</button>
@@ -86,23 +86,28 @@
                       <thead>
                           <tr>
                               <th ng-repeat="header in ctrl.tableStructure.headers">{{header}}</th>
-                              <th>ID.</th>
-                              <th>Name</th>
-                              <th>IsDelete</th>
-                              <th width="20%"></th>
+                              <%--<th>ID.</th>--%>
+                              <%--<th>Name</th>--%>
+                              <%--<th>IsDelete</th>--%>
+                              <%--<th width="20%"></th>--%>
                           </tr>
                       </thead>
-                      <tbody><tr ng-repeat="element in ctrl.elements"></tr>
-                            <tr ng-repeat="fieldName in ctrl.tableStructure.fields">
-                                <td><span ng-bind="element[fieldName]"></span></td>
-                          <tr ng-repeat="u in ctrl.elements">
-                              <td><span ng-bind="u.id"></span></td>
-                              <td><span ng-bind="u.name"></span></td>
-                              <td><span ng-bind="u.isDelete"></span></td>
-                              <td>
-                              <button type="button" ng-click="ctrl.edit(u.id)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
-                              </td>
-                          </tr>
+                      <tbody>
+                            <tr ng-repeat="dataElement in ctrl.elements">
+
+                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields"><span ng-bind=dataElement[fieldName]></span>
+                                        <%--<span  ng-repeat="fieldName in ctrl.tableStructure.fields">{{dataElement[fieldName]}}</span>--%>
+                                    </td>
+                                        <%--<tr ng-repeat="u in ctrl.elements">--%>
+                                            <%--<td><span ng-bind="u.id"></span></td>--%>
+                                            <%--<td><span ng-bind="u.name"></span></td>--%>
+                                            <%--<td><span ng-bind="u.isDelete"></span></td>--%>
+                                    <td>
+                                        <button type="button" ng-click="ctrl.edit(dataElement.id)" class="btn btn-success custom-width">Edit</button>
+                                        <button type="button" ng-click="ctrl.remove(dataElement.id)" class="btn btn-danger custom-width">Remove</button>
+                                    </td>
+
+                            </tr>
                       </tbody>
                   </table>
               </div>

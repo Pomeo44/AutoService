@@ -2,7 +2,7 @@
 
 App.controller('MainController', ['$scope', 'MainService', function($scope, MainService) {
     var self = this;
-    self.element={id:null,name:'',isDelete:false};
+    self.element;
     self.elements=[];
     self.tableName = 'autotype';
 
@@ -153,9 +153,9 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
             self.tableStructure.fields = ["id", "name", "isDelete"];
         }
         $scope.myForm.$setPristine(); //reset Form
-        self.getAllElements();
+        self.getAllElements(self.tableName);
     };
 
-    self.changeTable(self.tableName);
+    self.getAllElements(self.tableName);
 
 }]);
