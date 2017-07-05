@@ -7,6 +7,11 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     self.tableName = 'autotype';
 
     self.tableStructure;
+    if (self.tableName == "autotype") {
+        self.tableStructure = {};
+        self.tableStructure.headers = ["ID", "Name", "Delete"];
+        self.tableStructure.fields = ["id", "name", "isDelete"];
+    }
 
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
@@ -25,7 +30,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
 		.then(
             self.getAllElements,
 			function(errResponse){
-                console.error('Error while creating ' + tableName + '.');
+                console.error('Error while creating ' + self.tableName + '.');
 			}
         );
     };
@@ -35,7 +40,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         .then(
             self.getAllElements,
             function(errResponse){
-                console.error('Error while updating ' + tableName + '.');
+                console.error('Error while updating ' + self.tableName + '.');
             }
         );
     };
@@ -45,18 +50,18 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         .then(
             self.getAllElements,
 			function(errResponse) {
-			    console.error('Error while deleting ' + tableName + '.');
+			    console.error('Error while deleting ' + self.tableName + '.');
 			}
         );
     };
 
     self.submit = function() {
         if(self.element.id==null) {
-            console.log('Saving New ' + tableName, self.element);
+            console.log('Saving New ' + self.tableName, self.element);
             self.createElement(self.element);
         } else {
             self.updateElement(self.element, self.element.id);
-            console.log(tableName + ' updated with id ', self.element.id);
+            console.log(self.tableName + ' updated with id ', self.element.id);
         }
         self.reset();
     };

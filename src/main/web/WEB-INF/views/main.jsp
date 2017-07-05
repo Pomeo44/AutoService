@@ -31,7 +31,7 @@
   <body ng-app="myApp" class="ng-cloak">
       <div class="generic-container" ng-controller="MainController as ctrl">
           <div class="panel panel-default">
-              <div class="panel-heading"><span class="lead">ctrl.tableName registration form </span></div>
+              <div class="panel-heading"><span class="lead">{{ctrl.tableName}} registration form </span></div>
               <div class="formcontainer">
                   <form action="select1.php" method="post">
                       <p><select size="3" multiple name="tableNames[]">
@@ -40,9 +40,9 @@
                           <option selected value="automodel">привет 2</option>
                           <option value="automarka">привет 3</option>
                       </select></p>
-                      <button type="button" ng-click="ctrl.changeTable('autotype')" >change table</button>
-                      <button type="button" ng-click="ctrl.changeTable('automodel')" >change table</button>
-                      <button type="button" ng-click="ctrl.changeTable('automarka')" >change table</button>
+                      <button type="button" ng-click="ctrl.changeTable('autotype')" >autotype</button>
+                      <button type="button" ng-click="ctrl.changeTable('automodel')" >automodel</button>
+                      <button type="button" ng-click="ctrl.changeTable('automarka')" >automarka</button>
                   </form>
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.element.id" />
@@ -80,33 +80,21 @@
           </div>
           <div class="panel panel-default">
                 <!-- Default panel contents -->
-              <div class="panel-heading"><span class="lead">List of AutoType </span></div>
+              <div class="panel-heading"><span class="lead">List of {{ctrl.tableName}}</span></div>
               <div class="tablecontainer">
                   <table class="table table-hover">
                       <thead>
                           <tr>
                               <th ng-repeat="header in ctrl.tableStructure.headers">{{header}}</th>
-                              <%--<th>ID.</th>--%>
-                              <%--<th>Name</th>--%>
-                              <%--<th>IsDelete</th>--%>
-                              <%--<th width="20%"></th>--%>
                           </tr>
                       </thead>
                       <tbody>
                             <tr ng-repeat="dataElement in ctrl.elements">
-
-                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields"><span ng-bind=dataElement[fieldName]></span>
-                                        <%--<span  ng-repeat="fieldName in ctrl.tableStructure.fields">{{dataElement[fieldName]}}</span>--%>
-                                    </td>
-                                        <%--<tr ng-repeat="u in ctrl.elements">--%>
-                                            <%--<td><span ng-bind="u.id"></span></td>--%>
-                                            <%--<td><span ng-bind="u.name"></span></td>--%>
-                                            <%--<td><span ng-bind="u.isDelete"></span></td>--%>
+                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields"><span ng-bind=dataElement[fieldName]></span></td>
                                     <td>
                                         <button type="button" ng-click="ctrl.edit(dataElement.id)" class="btn btn-success custom-width">Edit</button>
                                         <button type="button" ng-click="ctrl.remove(dataElement.id)" class="btn btn-danger custom-width">Remove</button>
                                     </td>
-
                             </tr>
                       </tbody>
                   </table>
