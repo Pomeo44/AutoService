@@ -2,6 +2,7 @@ package service.impl;
 
 import dao.api.AutoModelDao;
 import dao.api.Dao;
+import model.AutoMarka;
 import model.AutoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,17 @@ public class AutoModelServiceImpl extends AbstractService<AutoModel, AutoModelDa
     @Override
     protected Dao getDao() {
         return autoModelDao;
+    }
+
+    @Override
+    public void update(AutoModel entity) throws NonExistObject {
+        if (entity.getAutoMarkaId() == null && entity.getAutoMarka() != null) {
+            entity.setAutoMarkaId(entity.getAutoMarka().getId());
+        } else if (entity.getAutoMarka() == null && entity.getAutoMarkaId() != null) {
+            AutoMarka autoMarka = new AutoMarka();
+            autoMarka.setId(entity.getAutoMarkaId());
+            entity.setAutoMarka(autoMarka);
+        }
+        super.update(entity);
     }
 }

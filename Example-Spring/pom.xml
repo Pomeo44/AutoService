@@ -2,12 +2,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.websystique.springsecurity</groupId>
-    <artifactId>AutoService</artifactId>
+    <groupId>example</groupId>
+    <artifactId>Example-Spring</artifactId>
     <version>1.0.0</version>
     <packaging>war</packaging>
 
-    <name>AutoService</name>
+    <name>Example-Spring</name>
 
     <properties>
         <springframework.version>4.3.0.RELEASE</springframework.version>
@@ -123,7 +123,7 @@
                     <version>2.4</version>
                     <configuration>
                         <warSourceDirectory>src/main/web</warSourceDirectory>
-                        <warName>AutoService</warName>
+                        <warName>Example-Spring</warName>
                         <failOnMissingWebXml>true</failOnMissingWebXml>
                     </configuration>
                 </plugin>
@@ -139,6 +139,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>AutoService</finalName>
+        <finalName>Example-Spring</finalName>
     </build>
 </project>

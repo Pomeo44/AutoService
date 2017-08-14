@@ -34,12 +34,12 @@
               <div class="panel-heading"><span class="lead">{{ctrl.tableName}} registration form </span></div>
               <div class="formcontainer">
                   <form action="select1.php" method="post">
-                      <p><select size="3" multiple name="tableNames[]">
-                          <option disabled>привет</option>
-                          <option value="autotype">привет 1</option>
-                          <option selected value="automodel">привет 2</option>
-                          <option value="automarka">привет 3</option>
-                      </select></p>
+                      <%--<p><select size="3" multiple name="tableNames[]">--%>
+                          <%--<option disabled>привет</option>--%>
+                          <%--<option value="autotype">привет 1</option>--%>
+                          <%--<option selected value="automodel">привет 2</option>--%>
+                          <%--<option value="automarka">привет 3</option>--%>
+                      <%--</select></p>--%>
                       <button type="button" ng-click="ctrl.changeTable('autotype')" >autotype</button>
                       <button type="button" ng-click="ctrl.changeTable('automodel')" >automodel</button>
                       <button type="button" ng-click="ctrl.changeTable('automarka')" >automarka</button>

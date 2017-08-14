@@ -22,8 +22,12 @@ public class AutoModel extends BaseEntity {
 
     @JsonIgnore
     private AutoMarka autoMarka;
+    @JsonProperty
+    private Integer autoMarkaId;
     @JsonIgnore
     private AutoType autoType;
+    @JsonProperty
+    private Integer autoTypeId;
     @JsonIgnore
     private Set<OwnerAuto> ownerAutos = new HashSet<OwnerAuto>();
 
@@ -49,7 +53,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = true, insertable = false, updatable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -68,6 +72,16 @@ public class AutoModel extends BaseEntity {
         this.autoMarka = autoMarka;
     }
 
+    @Basic
+    @Column(name = "AUTO_MARKA_ID", nullable = false, insertable = false, updatable = false)
+    public Integer getAutoMarkaId() {
+        return autoMarkaId;
+    }
+
+    public void setAutoMarkaId(Integer autoMarkaId) {
+        this.autoMarkaId = autoMarkaId;
+    }
+
     @ManyToOne
     @JoinColumn(name = "AUTO_TYPE_ID")
     public AutoType getAutoType() {
@@ -76,6 +90,16 @@ public class AutoModel extends BaseEntity {
 
     public void setAutoType(AutoType autoType) {
         this.autoType = autoType;
+    }
+
+    @Basic
+    @Column(name = "AUTO_TYPE_ID", nullable = false, insertable = false, updatable = false)
+    public Integer getAutoTypeId() {
+        return autoTypeId;
+    }
+
+    public void setAutoTypeId(Integer autoTypeId) {
+        this.autoTypeId = autoTypeId;
     }
 
     @OneToMany(mappedBy = "autoModel")

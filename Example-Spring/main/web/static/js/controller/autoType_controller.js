@@ -6,12 +6,13 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     self.elements=[];
     self.tableName = 'autotype';
 
-    self.tableStructure;
-    if (self.tableName == "autotype") {
-        self.tableStructure = {};
-        self.tableStructure.headers = ["ID", "Name", "Delete"];
-        self.tableStructure.fields = ["id", "name", "isDelete"];
-    }
+    self.tables = [];
+    var tableStructure = {};
+    tableStructure.tableName = 'autotype';
+    tableStructure.headers = ["ID", "Name", "Delete"];
+    tableStructure.fields = ["id", "name", "isDelete"];
+    self.tables.push(tableStructure);
+
 
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
@@ -103,7 +104,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         } else if (self.tableName == "automodel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
-            self.tableStructure.fields = ["id", "name", "isDelete", "automarka", "autotype"];
+            self.tableStructure.fields = ["id", "name", "isDelete", "automarka", "automodel"];
         } else if (self.tableName == "") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
