@@ -13,6 +13,9 @@ import service.api.ServiceApi;
 import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 /**

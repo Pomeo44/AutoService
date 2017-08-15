@@ -1,14 +1,18 @@
 package dao;
 
-import model.Master;
-import org.hibernate.*;
+import dao.api.Dao;
+import model.BaseEntity;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import dao.api.Dao;
-import model.BaseEntity;
 
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
@@ -19,8 +23,8 @@ import java.util.List;
  */
 public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<T> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext(unitName = "MainDB")
+    private EntityManager em;
     private Class<T> persistentClass;
 
     public AbstractHibernateDao() {
