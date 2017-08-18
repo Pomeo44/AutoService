@@ -74,7 +74,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         console.log('id to be edited', id);
         for(var i = 0; i < self.elements.length; i++) {
             if(self.elements[i].id == id) {
-                self.element = angular.copy(self.elements[i]);
+                self.updateElement(self.elements[i], self.elements[i].id);
                 break;
             }
         }
@@ -117,7 +117,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         } else if (self.tableName == "automodel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
-            self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka.name", "autoType.name"];
+            self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
         } else if (self.tableName == "") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];

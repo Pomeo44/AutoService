@@ -71,7 +71,7 @@
 
                       <div class="row">
                           <div class="form-actions floatRight">
-                              <input type="submit"  value="{{!ctrl.element.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="Add" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
                               <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
                           </div>
                       </div>
@@ -90,7 +90,15 @@
                       </thead>
                       <tbody >
                             <tr ng-repeat="dataElement in ctrl.elements">
-                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields"><span ng-bind="ctrl.getElementData(fieldName, dataElement)"></span></td>
+                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields">
+                                        <%--<span ng-bind="ctrl.getElementData(fieldName, dataElement)"></span>--%>
+                                        <%--<input type="text" ng-model="ctrl.getElementData(fieldName, dataElement)" name="uname" class="elementName form-control input-sm"/>--%>
+                                        <input ng-if="fieldName == 'isDelete'" type="checkbox" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
+                                        <input ng-if="fieldName != 'isDelete' && dataElement[fieldName]" type="text" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
+                                        <select ng-if="fieldName != 'isDelete' && !dataElement[fieldName]" type="text" ng-bind="ctrl.getElementData(fieldName, dataElement)" class="elementName form-control input-sm"/>
+
+                                        <%--<input ng-if="dataElement[fieldName]" type="text" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>--%>
+                                    </td>
                                     <td>
                                         <button type="button" ng-click="ctrl.edit(dataElement.id)" class="btn btn-success custom-width">Edit</button>
                                         <button type="button" ng-click="ctrl.remove(dataElement.id)" class="btn btn-danger custom-width">Remove</button>
