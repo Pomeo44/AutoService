@@ -4,18 +4,17 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     var self = this;
     self.element;
     self.elements=[];
-    self.tableName = 'autotype';
+    self.tableName = 'automodel';
 
-    self.tables = [];
-    var tableStructure = {};
-    tableStructure.tableName = 'autotype';
-    tableStructure.headers = ["ID", "Name", "Delete"];
-    tableStructure.fields = ["id", "name", "isDelete"];
-    self.tables.push(tableStructure);
+    self.tableStructure = {};
+    self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
+    self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
 
-    self.getCurrentTable = function () {
-
-    };
+    self.cars = [
+        {model : "Ford Mustang", color : "red"},
+        {model : "Fiat 500", color : "white"},
+        {model : "Volvo XC90", color : "black"}
+    ];
 
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
