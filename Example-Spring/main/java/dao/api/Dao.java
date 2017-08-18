@@ -17,5 +17,7 @@ public interface Dao<T extends BaseEntity> {
     Integer add(T entity);
     void delete(T entity);
     void deleteById(Integer id);
+    void flush();
     void evict(T entity);
+    void clear();
 }

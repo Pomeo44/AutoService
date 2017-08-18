@@ -13,6 +13,9 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     tableStructure.fields = ["id", "name", "isDelete"];
     self.tables.push(tableStructure);
 
+    self.getCurrentTable = function () {
+
+    };
 
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
@@ -79,7 +82,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
               
     self.remove = function(id){
         console.log('id to be deleted', id);
-        if (self.element.id === id) {//clean form if the element to be deleted is shown there.
+        if (self.element != null && self.element.id === id) {//clean form if the element to be deleted is shown there.
             self.reset();
         }
         self.deleteElement(id);
@@ -89,6 +92,16 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     self.reset = function(){
         self.element = {id:null,name:'',isDelete:false};
         $scope.myForm.$setPristine(); //reset Form
+    };
+
+    self.getElementData = function(name, data)
+    {
+        var result;
+      var pathArr = name.split('.');
+      angular.forEach(pathArr, function (path) {
+          result = result? result[path] : data[path];
+      });
+      return result;
     };
 
     self.changeTable = function(tableName){
@@ -104,7 +117,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         } else if (self.tableName == "automodel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
-            self.tableStructure.fields = ["id", "name", "isDelete", "automarka", "automodel"];
+            self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka.name", "autoType.name"];
         } else if (self.tableName == "") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
@@ -163,5 +176,9 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     };
 
     self.getAllElements(self.tableName);
+
+    self.getDataFromElement = function(field){
+
+    }
 
 }]);

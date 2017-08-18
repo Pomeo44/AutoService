@@ -88,15 +88,25 @@
                               <th ng-repeat="header in ctrl.tableStructure.headers">{{header}}</th>
                           </tr>
                       </thead>
-                      <tbody>
+                      <tbody >
                             <tr ng-repeat="dataElement in ctrl.elements">
-                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields"><span ng-bind=dataElement[fieldName]></span></td>
+                                    <td ng-repeat="fieldName in ctrl.tableStructure.fields"><span ng-bind="ctrl.getElementData(fieldName, dataElement)"></span></td>
                                     <td>
                                         <button type="button" ng-click="ctrl.edit(dataElement.id)" class="btn btn-success custom-width">Edit</button>
                                         <button type="button" ng-click="ctrl.remove(dataElement.id)" class="btn btn-danger custom-width">Remove</button>
                                     </td>
                             </tr>
                       </tbody>
+                      <span ng-if="data.field.length">
+                          <span ng-repeat="item in data.field">
+                              <span ng-bind="item.value"></span>
+                          </span>
+                      </span>
+                      <span ng-if="!data.field.length">
+                          <span ng-bind="data.field">
+
+                          </span>
+                      </span>
                   </table>
               </div>
           </div>

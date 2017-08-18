@@ -20,14 +20,14 @@ public class AutoModel extends BaseEntity {
     @JsonProperty
     private Boolean isDelete;
 
-    @JsonIgnore
+    @JsonProperty
     private AutoMarka autoMarka;
+//    @JsonProperty
+//    private Integer autoMarkaId;
     @JsonProperty
-    private Integer autoMarkaId;
-    @JsonIgnore
     private AutoType autoType;
-    @JsonProperty
-    private Integer autoTypeId;
+//    @JsonProperty
+//    private Integer autoTypeId;
     @JsonIgnore
     private Set<OwnerAuto> ownerAutos = new HashSet<OwnerAuto>();
 
@@ -63,7 +63,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_MARKA_ID")
+    @JoinColumn(name = "AUTO_MARKA_ID", insertable = false, updatable = false)
     public AutoMarka getAutoMarka() {
         return autoMarka;
     }
@@ -72,18 +72,18 @@ public class AutoModel extends BaseEntity {
         this.autoMarka = autoMarka;
     }
 
-    @Basic
-    @Column(name = "AUTO_MARKA_ID", nullable = false, insertable = false, updatable = false)
-    public Integer getAutoMarkaId() {
-        return autoMarkaId;
-    }
-
-    public void setAutoMarkaId(Integer autoMarkaId) {
-        this.autoMarkaId = autoMarkaId;
-    }
+//    @Basic
+//    @Column(name = "AUTO_MARKA_ID", nullable = false, insertable = false, updatable = false)
+//    public Integer getAutoMarkaId() {
+//        return autoMarkaId;
+//    }
+//
+//    public void setAutoMarkaId(Integer autoMarkaId) {
+//        this.autoMarkaId = autoMarkaId;
+//    }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_TYPE_ID")
+    @JoinColumn(name = "AUTO_TYPE_ID", insertable = false, updatable = false)
     public AutoType getAutoType() {
         return autoType;
     }
@@ -92,15 +92,15 @@ public class AutoModel extends BaseEntity {
         this.autoType = autoType;
     }
 
-    @Basic
-    @Column(name = "AUTO_TYPE_ID", nullable = false, insertable = false, updatable = false)
-    public Integer getAutoTypeId() {
-        return autoTypeId;
-    }
-
-    public void setAutoTypeId(Integer autoTypeId) {
-        this.autoTypeId = autoTypeId;
-    }
+//    @Basic
+//    @Column(name = "AUTO_TYPE_ID", nullable = false, insertable = false, updatable = false)
+//    public Integer getAutoTypeId() {
+//        return autoTypeId;
+//    }
+//
+//    public void setAutoTypeId(Integer autoTypeId) {
+//        this.autoTypeId = autoTypeId;
+//    }
 
     @OneToMany(mappedBy = "autoModel")
     public Set<OwnerAuto> getOwnerAutos() {

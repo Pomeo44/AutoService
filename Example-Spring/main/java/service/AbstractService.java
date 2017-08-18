@@ -15,56 +15,70 @@ import java.util.List;
 @Transactional
 public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> implements ServiceApi<T> {
 
+    @Transactional(readOnly = true)
     @Override
     public T findById(Integer id) {
         return (T) getDao().findById(id);
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<T> getAll() {
         return getDao().getAll();
     }
 
+    @Transactional
     @Override
     public void save(T entity) {
         getDao().saveOrUpdate(entity);
     }
 
+    @Transactional
     @Override
     public void update(T entity) throws NonExistObject {
-        checkUniqueEntity(entity);
-
+        checkExistEntity(entity);
         getDao().merge(entity);
     }
 
+    @Transactional
     @Override
     public Integer add(T entity) throws NonUniqueObject {
-        if (getDao().findByName(entity.getName()) != null) {
-            throw  new NonUniqueObject("Такая " + T.ENTITY_TYPE + " уже есть");
-        }
+
         entity.setIsDelete(false);
         return getDao().add(entity);
     }
 
+    @Transactional
     @Override
     public void delete(T entity) throws NonExistObject {
-        checkUniqueEntity(entity);
+        entity = checkExistEntity(entity);
         entity.setIsDelete(true);
-        save(entity);
+        getDao().merge(entity);
     }
 
+    @Transactional
     @Override
     public void deleteById(Integer id) throws NonExistObject {
-        T entity = checkUniqueEntity(id);
+        T entity = checkExistEntity(id);
         entity.setIsDelete(true);
-        save(entity);
+        getDao().merge(entity);
     }
 
-    private T checkUniqueEntity(T entity) throws NonExistObject {
-        return checkUniqueEntity(entity.getId());
+//    private T checkUniqueEntityByName(T entity) throws NonExistObject {
+//        return checkUniqueEntityByName(entity.getName());
+//    }
+//
+//    private T checkUniqueEntityByName(Integer id) throws NonExistObject {
+////        if (getDao().findByName(entity.getName()) != null) {
+////            throw  new NonUniqueObject("Такая " + T.ENTITY_TYPE + " уже есть");
+////        }
+//    }
+
+    private T checkExistEntity(T entity) throws NonExistObject {
+        return checkExistEntity(entity.getId());
     }
 
-    private T checkUniqueEntity(Integer id) throws NonExistObject {
+    private T checkExistEntity(Integer id) throws NonExistObject {
         T entity = findById(id);
         if (entity == null) throw new NonExistObject(String.format(T.ENTITY_TYPE + " с id = %s не существует!", id));
         return entity;

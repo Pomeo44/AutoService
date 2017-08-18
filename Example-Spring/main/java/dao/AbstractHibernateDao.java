@@ -88,8 +88,18 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
     }
 
     @Override
+    public void flush() {
+        getSession().flush();
+    }
+
+    @Override
     public void evict(T entity) {
         getSession().evict(entity);
+    }
+
+    @Override
+    public void clear() {
+        getSession().clear();
     }
 
     public Session getSession() {

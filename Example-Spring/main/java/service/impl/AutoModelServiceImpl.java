@@ -31,13 +31,13 @@ public class AutoModelServiceImpl extends AbstractService<AutoModel, AutoModelDa
 
     @Override
     public void update(AutoModel entity) throws NonExistObject {
-        if (entity.getAutoMarkaId() == null && entity.getAutoMarka() != null) {
-            entity.setAutoMarkaId(entity.getAutoMarka().getId());
-        } else if (entity.getAutoMarka() == null && entity.getAutoMarkaId() != null) {
-            AutoMarka autoMarka = new AutoMarka();
-            autoMarka.setId(entity.getAutoMarkaId());
-            entity.setAutoMarka(autoMarka);
-        }
+//        if (entity.getAutoMarkaId() == null && entity.getAutoMarka() != null) {
+//            entity.setAutoMarkaId(entity.getAutoMarka().getId());
+//        } else if (entity.getAutoMarka() == null && entity.getAutoMarkaId() != null) {
+//            AutoMarka autoMarka = new AutoMarka();
+//            autoMarka.setId(entity.getAutoMarkaId());
+//            entity.setAutoMarka(autoMarka);
+//        }
         super.update(entity);
     }
 }
