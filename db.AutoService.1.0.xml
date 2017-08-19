@@ -394,6 +394,37 @@
         </addColumn>
     </changeSet>
 
+    <!--<changeSet id="20161122-01" author ="aantipin">-->
+        <!--<createTable tableName="USERS">-->
+            <!--<column name="USER_ID" type="int" autoIncrement="true" remarks="ID юзера">-->
+                <!--<constraints primaryKey="true" nullable="false" />-->
+            <!--</column>-->
+            <!--<column name="USER_NAME" type="varchar(50)">-->
+                <!--<constraints nullable="false"/>-->
+            <!--</column>-->
+            <!--<column name="PASSWORD" type="varchar(50)">-->
+                <!--<constraints nullable="false"/>-->
+            <!--</column>-->
+            <!--<column name="AUTHORITY_ID" type="int">-->
+                <!--<constraints nullable="false" />-->
+            <!--</column>-->
+        <!--</createTable>-->
+    <!--</changeSet>-->
+
+    <!--<changeSet id="20161122-02" author ="aantipin">-->
+        <!--<createTable tableName="AUTHORITIES">-->
+            <!--<column name="AUTHORITY_ID" type="int" autoIncrement="true">-->
+                <!--<constraints primaryKey="true" nullable="false" />-->
+            <!--</column>-->
+            <!--<column name="AUTHORITY" type="varchar(50)">-->
+                <!--<constraints nullable="false" />-->
+            <!--</column>-->
+        <!--</createTable>-->
+    <!--</changeSet>-->
+
+    <!--<changeSet id="20161122-03" author ="aantipin">-->
+        <!--<addForeignKeyConstraint baseTableName="USERS" baseColumnNames="AUTHORITY_ID" constraintName="FK_USER_AUTHORITY" referencedColumnNames="AUTHORITY_ID" referencedTableName="AUTHORITIES"/>-->
+    <!--</changeSet>-->
 
 	
 	
