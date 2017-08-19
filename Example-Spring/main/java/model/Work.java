@@ -11,57 +11,57 @@ import java.util.Date;
  */
 @Entity
 @Access(AccessType.FIELD)
-@Table(name = "WORK", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "WORK")
 public class Work extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "WORK_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "WORK_ID", unique = true, nullable = false)
     @JsonProperty
     private Integer id;
 
     @Basic
-    @Column(name = "START_WORK_DATE", nullable = false, insertable = true, updatable = true)
+    @Column(name = "START_WORK_DATE", nullable = false)
     @JsonProperty
     private Date startWorkDate;
 
     @Basic
-    @Column(name = "END_WORK_DATE", nullable = false, insertable = true, updatable = true)
+    @Column(name = "END_WORK_DATE", nullable = false)
     @JsonProperty
     private Date endWorkDate;
 
     @Basic
-    @Column(name = "ORDERS_ID", nullable = false, insertable = true, updatable = true)
+    @Column(name = "ORDERS_ID", nullable = false)
     @JsonProperty
     private Integer ownerAutoId;
 
     @Basic
-    @Column(name = "WORK_TYPE_ID", nullable = false, insertable = true, updatable = true)
+    @Column(name = "WORK_TYPE_ID", nullable = false)
     @JsonProperty
     private Integer workTypeId;
 
     @Basic
-    @Column(name = "LIFT_ID", nullable = true, insertable = true, updatable = true)
+    @Column(name = "LIFT_ID", nullable = false)
     @JsonProperty
     private Integer liftId;
 
     @Basic
-    @Column(name = "MASTER_ID", nullable = true, insertable = true, updatable = true)
+    @Column(name = "MASTER_ID", nullable = false)
     @JsonProperty
     private Integer masterId;
 
     @Basic
-    @Column(name = "DONE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "DONE", nullable = false)
     @JsonProperty
     private Boolean done;
 
     @Basic
-    @Column(name = "ACTUAL_TIME", nullable = false, insertable = true, updatable = true)
+    @Column(name = "ACTUAL_TIME", nullable = false)
     @JsonProperty
     private Integer actualTime;
 
     @Basic
-    @Column(name = "ACTUAL_MONEY", nullable = false, insertable = true, updatable = true)
+    @Column(name = "ACTUAL_MONEY", nullable = false)
     @JsonProperty
     private Integer actualMoney;
 

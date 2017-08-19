@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "SPECIALIZATION", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "SPECIALIZATION")
 public class Specialization extends BaseEntity {
     @JsonProperty
     private Integer id;
@@ -25,7 +25,7 @@ public class Specialization extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "SPECIALIZATION_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "SPECIALIZATION_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;
@@ -36,7 +36,7 @@ public class Specialization extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -46,7 +46,7 @@ public class Specialization extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -55,7 +55,7 @@ public class Specialization extends BaseEntity {
         this.isDelete = isDelete;
     }
 
-    @ManyToMany(mappedBy = "specializations")
+    @ManyToMany(mappedBy = "specializations", fetch = FetchType.LAZY)
     public Set<Master> getMasters() {
         return masters;
     }

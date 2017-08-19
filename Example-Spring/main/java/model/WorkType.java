@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "WORK_TYPE", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "WORK_TYPE")
 public class WorkType extends BaseEntity {
     @JsonProperty
     private Integer id;
@@ -19,11 +20,12 @@ public class WorkType extends BaseEntity {
     @JsonProperty
     private Boolean isDelete;
 
+    @JsonIgnore
     private Set<Price> prices = new HashSet<Price>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "WORK_TYPE_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "WORK_TYPE_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;
@@ -34,7 +36,7 @@ public class WorkType extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -44,7 +46,7 @@ public class WorkType extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -53,7 +55,7 @@ public class WorkType extends BaseEntity {
         this.isDelete = isDelete;
     }
 
-    @OneToMany(mappedBy = "workType")
+    @OneToMany(mappedBy = "workType", fetch = FetchType.LAZY)
     public Set<Price> getPrices() {
         return prices;
     }

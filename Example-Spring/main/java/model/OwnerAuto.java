@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "OWNER_AUTO", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "OWNER_AUTO")
 public class OwnerAuto extends BaseEntity {
     @JsonProperty
     private Integer id;
@@ -22,7 +22,7 @@ public class OwnerAuto extends BaseEntity {
     @JsonProperty
     private Boolean isDelete;
 
-    @JsonIgnore
+    @JsonProperty
     private AutoModel autoModel;
 
     @Id
@@ -38,7 +38,7 @@ public class OwnerAuto extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -48,7 +48,7 @@ public class OwnerAuto extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -58,7 +58,7 @@ public class OwnerAuto extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_MODEL_ID")
+    @JoinColumn(name = "AUTO_MODEL_ID", nullable = false)
     public AutoModel getAutoModel() {
         return autoModel;
     }
@@ -68,7 +68,7 @@ public class OwnerAuto extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "YEAR", nullable = false, insertable = true, updatable = true, length = 4)
+    @Column(name = "YEAR", length = 4)
     public String getYear() {
         return year;
     }
@@ -78,7 +78,7 @@ public class OwnerAuto extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "GOS_NUMBER", nullable = false, insertable = true, updatable = true, length = 9)
+    @Column(name = "GOS_NUMBER", nullable = false, length = 9)
     public String getGosNumber() {
         return gosNumber;
     }

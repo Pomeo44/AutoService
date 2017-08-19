@@ -9,7 +9,7 @@ import javax.persistence.*;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "PRICE", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "PRICE")
 public class Price extends BaseEntity {
     @JsonProperty
     private Integer id;
@@ -20,14 +20,14 @@ public class Price extends BaseEntity {
     @JsonProperty
     private Boolean isDelete;
 
-    @JsonIgnore
+    @JsonProperty
     private AutoType autoType;
-    @JsonIgnore
+    @JsonProperty
     private WorkType workType;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "PRICE_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "PRICE_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;
@@ -38,7 +38,7 @@ public class Price extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "TIME", nullable = false, insertable = true, updatable = true)
+    @Column(name = "TIME", nullable = false)
     public Integer getTime() {
         return time;
     }
@@ -48,7 +48,7 @@ public class Price extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "MONEY", nullable = false, insertable = true, updatable = true)
+    @Column(name = "MONEY", nullable = false)
     public Integer getMoney() {
         return money;
     }
@@ -58,7 +58,7 @@ public class Price extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -69,7 +69,7 @@ public class Price extends BaseEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_TYPE_ID")
+    @JoinColumn(name = "AUTO_TYPE_ID", nullable = false)
     public AutoType getAutoType() {
         return autoType;
     }
@@ -79,7 +79,7 @@ public class Price extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "WORK_TYPE_ID")
+    @JoinColumn(name = "WORK_TYPE_ID", nullable = false)
     public WorkType getWorkType() {
         return workType;
     }

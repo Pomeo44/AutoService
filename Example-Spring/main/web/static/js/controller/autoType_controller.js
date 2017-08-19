@@ -108,15 +108,15 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         if (tableName) {
             self.tableName = tableName;
         }
-        if (self.tableName == "autotype") {
+        if (self.tableName == "autoType") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "automodel") {
+        } else if (self.tableName == "autoModel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "automodel") {
+        } else if (self.tableName == "autoodel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
             self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];

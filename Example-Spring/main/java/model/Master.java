@@ -36,7 +36,7 @@ public class Master extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -46,7 +46,7 @@ public class Master extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -55,7 +55,7 @@ public class Master extends BaseEntity {
         this.isDelete = isDelete;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "MASTER_SPECIALIZATION",
             joinColumns = @JoinColumn(name = "MASTER_ID", referencedColumnName = "MASTER_ID"),
             inverseJoinColumns = @JoinColumn(name = "SPECIALIZATION_ID", referencedColumnName = "SPECIALIZATION_ID")

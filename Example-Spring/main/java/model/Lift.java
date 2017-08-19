@@ -9,7 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Access(AccessType.FIELD)
-@Table(name = "LIFT", catalog = "kontur44_AutoService")
+@Table(name = "LIFT")
 public class Lift extends BaseEntity {
 
     @Id
@@ -24,7 +24,7 @@ public class Lift extends BaseEntity {
     private Integer number;
 
     @Basic
-    @Column(name = "IS_DELETE")
+    @Column(name = "IS_DELETE", nullable = false)
     @JsonProperty
     private Boolean isDelete;
 

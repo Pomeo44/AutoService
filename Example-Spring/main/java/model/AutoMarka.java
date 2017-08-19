@@ -55,7 +55,7 @@ public class AutoMarka extends BaseEntity {
         this.isDelete = isDelete;
     }
 
-    @OneToMany(mappedBy = "autoMarka")
+    @OneToMany(mappedBy = "autoMarka", fetch = FetchType.LAZY)
     public Set<AutoModel> getAutoModels() {
         return autoModels;
     }

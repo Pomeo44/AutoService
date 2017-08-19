@@ -83,7 +83,7 @@ public class AutoModel extends BaseEntity {
 //    }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_TYPE_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "AUTO_TYPE_ID", nullable = false)
     public AutoType getAutoType() {
         return autoType;
     }
@@ -102,7 +102,7 @@ public class AutoModel extends BaseEntity {
 //        this.autoTypeId = autoTypeId;
 //    }
 
-    @OneToMany(mappedBy = "autoModel")
+    @OneToMany(mappedBy = "autoModel", fetch = FetchType.LAZY)
     public Set<OwnerAuto> getOwnerAutos() {
         return ownerAutos;
     }
