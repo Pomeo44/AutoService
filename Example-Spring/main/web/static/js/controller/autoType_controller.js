@@ -4,6 +4,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     var self = this;
     self.element;
     self.elements=[];
+    self.tableNames = ["autotype", "automodel", "automodel"];
     self.tableName = 'automodel';
 
     self.tableStructure = {};
@@ -104,12 +105,14 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     };
 
     self.changeTable = function(tableName){
-        self.tableName = tableName;
+        if (tableName) {
+            self.tableName = tableName;
+        }
         if (self.tableName == "autotype") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "automarka") {
+        } else if (self.tableName == "automodel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];

@@ -33,7 +33,7 @@ public class AutoModel extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "AUTO_MODEL_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "AUTO_MODEL_ID", unique = true, nullable = false)
     public Integer getId() {
         return id;
     }
@@ -43,7 +43,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -53,7 +53,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = false, updatable = false)
+    @Column(name = "IS_DELETE", insertable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }

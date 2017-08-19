@@ -33,18 +33,11 @@
           <div class="panel panel-default">
               <div class="panel-heading"><span class="lead">{{ctrl.tableName}} registration form </span></div>
               <div class="formcontainer">
-                  <form action="select1.php" method="post">
-                      <%--<p><select size="3" multiple name="tableNames[]">--%>
-                          <%--<option disabled>привет</option>--%>
-                          <%--<option value="autotype">привет 1</option>--%>
-                          <%--<option selected value="automodel">привет 2</option>--%>
-                          <%--<option value="automarka">привет 3</option>--%>
-                      <%--</select></p>--%>
+                  <form ng-submit="ctrl.changeTable()">
+                      <select ng-model = "ctrl.tableName" multiple ng-options = "ctrl.tableNames"></select>
                       <button type="button" ng-click="ctrl.changeTable('autotype')" >autotype</button>
                       <button type="button" ng-click="ctrl.changeTable('automodel')" >automodel</button>
                       <button type="button" ng-click="ctrl.changeTable('automarka')" >automarka</button>
-                      <select ng-options="x in ctrl.cars"></select>
-
                   </form>
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.element.id" />
@@ -99,7 +92,8 @@
                                         <%--<input type="text" ng-model="ctrl.getElementData(fieldName, dataElement)" name="uname" class="elementName form-control input-sm"/>--%>
                                         <input ng-if="fieldName == 'isDelete'" type="checkbox" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
                                         <input ng-if="fieldName != 'isDelete' && !dataElement[fieldName]['name']" type="text" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
-                                        <select ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-options="x in ctrl.tableStructure.headers" class="elementName form-control input-sm"></select>
+                                        <span ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-bind="dataElement[fieldName]['name']"></span>
+                                        <%--<select ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-options="x in ctrl.tableStructure.headers" class="elementName form-control input-sm"></select>--%>
                                     </td>
                                     <td>
                                         <button type="button" ng-click="ctrl.edit(dataElement.id)" class="btn btn-success custom-width">Edit</button>
