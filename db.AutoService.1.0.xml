@@ -425,6 +425,17 @@
     <!--<changeSet id="20161122-03" author ="aantipin">-->
         <!--<addForeignKeyConstraint baseTableName="USERS" baseColumnNames="AUTHORITY_ID" constraintName="FK_USER_AUTHORITY" referencedColumnNames="AUTHORITY_ID" referencedTableName="AUTHORITIES"/>-->
     <!--</changeSet>-->
+    <changeSet id="20170819-01" author ="aantipin">
+        <addColumn catalogName="kontur44_AutoService"
+                   tableName="WORK">
+            <column name="OWNER_AUTO_ID" type="int"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20170819-02" author ="aantipin">
+        <addForeignKeyConstraint baseTableName="WORK" baseColumnNames="OWNER_AUTO_ID" constraintName="FK_OWNER_AUTO_ID" referencedColumnNames="OWNER_AUTO_ID" referencedTableName="OWNER_AUTO"/>
+    </changeSet>
+
 
 	
 	

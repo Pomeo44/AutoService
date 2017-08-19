@@ -3,7 +3,6 @@ package model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -30,25 +29,25 @@ public class Work extends BaseEntity {
     @JsonProperty
     private Date endWorkDate;
 
-    @Basic
-    @Column(name = "ORDERS_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "OWNER_AUTO_ID", nullable = false)
     @JsonProperty
-    private Integer ownerAutoId;
+    private OwnerAuto ownerAuto;
 
-    @Basic
-    @Column(name = "WORK_TYPE_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "WORK_TYPE_ID", nullable = false)
     @JsonProperty
-    private Integer workTypeId;
+    private WorkType workType;
 
-    @Basic
-    @Column(name = "LIFT_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "LIFT_ID")
     @JsonProperty
-    private Integer liftId;
+    private Lift lift;
 
-    @Basic
-    @Column(name = "MASTER_ID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "MASTER_ID", nullable = false)
     @JsonProperty
-    private Integer masterId;
+    private Master master;
 
     @Basic
     @Column(name = "DONE", nullable = false)
@@ -87,32 +86,32 @@ public class Work extends BaseEntity {
         this.endWorkDate = endWorkDate;
     }
 
-    public Integer getOwnerAutoId() {
-        return ownerAutoId;
+    public OwnerAuto getOwnerAuto() {
+        return ownerAuto;
     }
-    public void setOwnerAutoId(Integer ordersId) {
-        this.ownerAutoId = ordersId;
-    }
-
-    public Integer getWorkTypeId() {
-        return workTypeId;
-    }
-    public void setWorkTypeId(Integer workTypeId) {
-        this.workTypeId = workTypeId;
+    public void setOwnerAuto(OwnerAuto ownerAuto) {
+        this.ownerAuto = ownerAuto;
     }
 
-    public Integer getLiftId() {
-        return liftId;
+    public WorkType getWorkType() {
+        return workType;
     }
-    public void setLiftId(Integer liftId) {
-        this.liftId = liftId;
+    public void setWorkType(WorkType workType) {
+        this.workType = workType;
     }
 
-    public Integer getMasterId() {
-        return masterId;
+    public Lift getLift() {
+        return lift;
     }
-    public void setMasterId(Integer masterId) {
-        this.masterId = masterId;
+    public void setLift(Lift lift) {
+        this.lift = lift;
+    }
+
+    public Master getMaster() {
+        return master;
+    }
+    public void setMaster(Master master) {
+        this.master = master;
     }
 
     public Boolean getDone() {
@@ -154,12 +153,12 @@ public class Work extends BaseEntity {
 
         if (id != work.id) return false;
         if (ownerAutoId != work.ownerAutoId) return false;
-        if (workTypeId != work.workTypeId) return false;
+        if (workType != work.workType) return false;
         if (actualTime != work.actualTime) return false;
         if (actualMoney != work.actualMoney) return false;
         if (startWorkDate != null ? !startWorkDate.equals(work.startWorkDate) : work.startWorkDate != null) return false;
-        if (liftId != null ? !liftId.equals(work.liftId) : work.liftId != null) return false;
-        if (masterId != null ? !masterId.equals(work.masterId) : work.masterId != null) return false;
+        if (lift != null ? !lift.equals(work.lift) : work.lift != null) return false;
+        if (master != null ? !master.equals(work.master) : work.master != null) return false;
         if (done != null ? !done.equals(work.done) : work.done != null) return false;
 
         return true;
@@ -170,9 +169,9 @@ public class Work extends BaseEntity {
         int result = id;
         result = 31 * result + (startWorkDate != null ? startWorkDate.hashCode() : 0);
         result = 31 * result + ownerAutoId;
-        result = 31 * result + workTypeId;
-        result = 31 * result + (liftId != null ? liftId.hashCode() : 0);
-        result = 31 * result + (masterId != null ? masterId.hashCode() : 0);
+        result = 31 * result + workType;
+        result = 31 * result + (lift != null ? lift.hashCode() : 0);
+        result = 31 * result + (master != null ? master.hashCode() : 0);
         result = 31 * result + (done != null ? done.hashCode() : 0);
         result = 31 * result + actualTime;
         result = 31 * result + actualMoney;

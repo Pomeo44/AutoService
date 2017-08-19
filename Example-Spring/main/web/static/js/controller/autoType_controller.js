@@ -5,7 +5,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     self.element;
     self.elements=[];
     self.tableNames = ["autoType", "autoModel", "autoType", "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"];
-    self.tableName = 'automodel';
+    self.tableName = 'autoModel';
 
     self.tableStructure = {};
     self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
@@ -108,7 +108,11 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         if (tableName) {
             self.tableName = tableName;
         }
-        if (self.tableName == "autoMarka") {
+        if (self.tableName == "autoType") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "autoModel") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
@@ -116,26 +120,26 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
             self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
-        } else if (self.tableName == "autoType") {
+        } else if (self.tableName == "lift") {  "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "lift") {  "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Number", "Delete"];
-            self.tableStructure.fields = ["id", "number", "isDelete"];
         } else if (self.tableName == "master") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "ownerAuto") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
         } else if (self.tableName == "price") {
             self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
+            self.tableStructure.headers = ["ID", "Time", "Money", "Delete"];
+            self.tableStructure.fields = ["id", "time", "money", "isDelete"];
         } else if (self.tableName == "specialization") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
+            self.tableStructure.fields = ["id", "startWorkDate", "endWorkDate", "startWorkDate", "isDelete"];
         } else if (self.tableName == "work") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
