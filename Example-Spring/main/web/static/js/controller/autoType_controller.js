@@ -108,22 +108,22 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         if (tableName) {
             self.tableName = tableName;
         }
-        if (self.tableName == "autoType") {
+        if (self.tableName == "autoMarka") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
         } else if (self.tableName == "autoModel") {
             self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "autoodel") {
-            self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
             self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
-        } else if (self.tableName == "lift") {  "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"
+        } else if (self.tableName == "autoType") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "lift") {  "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Number", "Delete"];
+            self.tableStructure.fields = ["id", "number", "isDelete"];
         } else if (self.tableName == "master") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
