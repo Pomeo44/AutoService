@@ -34,7 +34,7 @@
               <div class="panel-heading"><span class="lead">{{ctrl.tableName}} registration form </span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.changeTable()">
-                      <select ng-model = "ctrl.tableName" multiple ng-options = "ctrl.tableNames"></select>
+                      <%--<select ng-model = "ctrl.tableName" multiple ng-options = "x in scopeTableNames"></select>--%>
                       <button type="button" ng-click="ctrl.changeTable('autotype')" >autotype</button>
                       <button type="button" ng-click="ctrl.changeTable('automodel')" >automodel</button>
                       <button type="button" ng-click="ctrl.changeTable('automarka')" >automarka</button>
@@ -62,9 +62,6 @@
                                   <input type="checkbox" ng-model="ctrl.element.isDelete" class="form-control input-sm"/>
                               </div>
                           </div>
-                      </div>
-                      <div class="row">
-                        <select ng-options="x in ctrl.cars"></select>
                       </div>
                       <div class="row">
                           <div class="form-actions floatRight">

@@ -4,7 +4,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     var self = this;
     self.element;
     self.elements=[];
-    self.tableNames = ["autotype", "automodel", "automodel"];
+    self.tableNames = ["autoType", "autoModel", "autoType", "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"];
     self.tableName = 'automodel';
 
     self.tableStructure = {};
@@ -120,55 +120,27 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
             self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
-        } else if (self.tableName == "") {
+        } else if (self.tableName == "lift") {  "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
+        } else if (self.tableName == "master") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
+        } else if (self.tableName == "price") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
+        } else if (self.tableName == "specialization") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
+        } else if (self.tableName == "work") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "") {
+        } else if (self.tableName == "workType") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];

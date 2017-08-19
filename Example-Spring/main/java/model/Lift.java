@@ -9,22 +9,22 @@ import javax.persistence.*;
  */
 @Entity
 @Access(AccessType.FIELD)
-@Table(name = "LIFT", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "LIFT", catalog = "kontur44_AutoService")
 public class Lift extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "LIFT_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "LIFT_ID", unique = true, nullable = false)
     @JsonProperty
     private Integer id;
 
     @Basic
-    @Column(name = "NUMBER", nullable = false, insertable = true, updatable = true)
+    @Column(name = "NUMBER", nullable = false)
     @JsonProperty
     private Integer number;
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE")
     @JsonProperty
     private Boolean isDelete;
 

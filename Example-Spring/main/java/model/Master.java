@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Pomeo on 18.10.2016.
  */
 @Entity
-@Table(name = "MASTER")
+@Table(name = "MASTER", catalog = "kontur44_AutoService")
 public class Master extends BaseEntity {
     @JsonProperty
     private Integer id;
@@ -25,7 +25,7 @@ public class Master extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "MASTER_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "MASTER_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;

@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "AUTO_TYPE", schema = "", catalog = "kontur44_AutoService")
+@Table(name = "AUTO_TYPE", catalog = "kontur44_AutoService")
 public class AutoType extends BaseEntity {
     @JsonProperty
     private Integer id;
@@ -27,7 +27,7 @@ public class AutoType extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "AUTO_TYPE_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "AUTO_TYPE_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;
@@ -38,7 +38,7 @@ public class AutoType extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -48,7 +48,7 @@ public class AutoType extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE")
     public Boolean getIsDelete() {
         return isDelete;
     }
