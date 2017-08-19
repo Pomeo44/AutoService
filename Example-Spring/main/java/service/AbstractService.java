@@ -43,7 +43,6 @@ public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> im
     @Transactional
     @Override
     public Integer add(T entity) throws NonUniqueObject {
-
         entity.setIsDelete(false);
         return getDao().add(entity);
     }

@@ -46,7 +46,7 @@ public class AutoMarka extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE")
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }

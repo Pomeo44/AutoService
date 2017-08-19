@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "AUTO_MODEL", catalog = "kontur44_AutoService")
+@Table(name = "AUTO_MODEL")
 public class AutoModel extends BaseEntity {
     @JsonProperty("id")
     private Integer id;
@@ -53,7 +53,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", insertable = false)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -63,7 +63,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_MARKA_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "AUTO_MARKA_ID", nullable = false)
     public AutoMarka getAutoMarka() {
         return autoMarka;
     }
