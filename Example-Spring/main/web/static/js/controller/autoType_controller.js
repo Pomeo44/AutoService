@@ -122,16 +122,16 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
             self.tableStructure.fields = ["id", "name", "isDelete"];
         } else if (self.tableName == "lift") {
             self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
+            self.tableStructure.headers = ["ID", "Number", "Delete"];
+            self.tableStructure.fields = ["id", "number", "isDelete"];
         } else if (self.tableName == "master") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
         } else if (self.tableName == "ownerAuto") {
             self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
+            self.tableStructure.headers = ["ID", "Name", "Year", "Gosnumber", "Delete", "Auto"];
+            self.tableStructure.fields = ["id", "name", "year", "gosNumber", "isDelete", "autoModel"];
         } else if (self.tableName == "price") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Time", "Money", "Delete"];
@@ -139,10 +139,10 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         } else if (self.tableName == "specialization") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "time", "money", "isDelete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
         } else if (self.tableName == "work") {
             self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.headers = ["ID", "Start date", "End date", "Owner", "Work type", "Lift", "Master", "Done", "Actual time", "Actual money", "Delete"];
             self.tableStructure.fields = ["id", "startWorkDate", "endWorkDate", "ownerAuto", "workType", "lift", "master", "done", "actualTime", "actualMoney", "isDelete"];
         } else if (self.tableName == "workType") {
             self.tableStructure = {};

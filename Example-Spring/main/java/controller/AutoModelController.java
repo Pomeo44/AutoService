@@ -21,7 +21,7 @@ import java.util.List;
  * Created by aantipin on 11/12/2016.
  */
 @RestController
-@RequestMapping(value = "/service/automodel")
+@RequestMapping(value = "/service/autoModel")
 public class AutoModelController extends AbstractRestController<AutoModel> {
 
     @Autowired

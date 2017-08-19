@@ -11,7 +11,7 @@ import service.api.ServiceApi;
  * Created by Pomeo on 08.01.2017.
  */
 @RestController
-@RequestMapping(value = "/service/ownerauto")
+@RequestMapping(value = "/service/ownerAuto")
 public class OwnerAutoController extends AbstractRestController<OwnerAuto>{
 
     @Autowired

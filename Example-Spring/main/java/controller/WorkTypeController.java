@@ -11,7 +11,7 @@ import service.api.WorkTypeService;
  * Created by Pomeo on 08.01.2017.
  */
 @RestController
-@RequestMapping(value = "/service/worktype")
+@RequestMapping(value = "/service/workType")
 public class WorkTypeController extends AbstractRestController<WorkType>{
 
     @Autowired

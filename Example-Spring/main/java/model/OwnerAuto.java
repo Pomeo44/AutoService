@@ -27,7 +27,7 @@ public class OwnerAuto extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "OWNER_AUTO_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "OWNER_AUTO_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;

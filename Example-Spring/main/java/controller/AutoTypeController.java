@@ -11,7 +11,7 @@ import service.api.ServiceApi;
  * Created by aantipin on 15/11/2016.
  */
 @RestController
-@RequestMapping(value = "/service/autotype")
+@RequestMapping(value = "/service/autoType")
 public class AutoTypeController extends AbstractRestController<AutoType>{
 
     @Autowired

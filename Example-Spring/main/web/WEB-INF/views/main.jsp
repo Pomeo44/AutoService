@@ -94,8 +94,8 @@
                                     <td ng-repeat="fieldName in ctrl.tableStructure.fields">
                                         <%--<span ng-bind="ctrl.getElementData(fieldName, dataElement)"></span>--%>
                                         <%--<input type="text" ng-model="ctrl.getElementData(fieldName, dataElement)" name="uname" class="elementName form-control input-sm"/>--%>
-                                        <input ng-if="fieldName == 'isDelete'" type="checkbox" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
-                                        <input ng-if="fieldName != 'isDelete' && !dataElement[fieldName]['name']" type="text" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
+                                        <input ng-if="(fieldName == 'isDelete' || fieldName == 'done')" type="checkbox" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
+                                        <input ng-if="(fieldName != 'isDelete' && fieldName != 'done') && !dataElement[fieldName]['name']" type="text" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>
                                         <span ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-bind="dataElement[fieldName]['name']"></span>
                                         <%--<select ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-options="x in ctrl.tableStructure.headers" class="elementName form-control input-sm"></select>--%>
                                     </td>
