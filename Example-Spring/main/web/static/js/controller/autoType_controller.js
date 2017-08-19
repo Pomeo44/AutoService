@@ -4,7 +4,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     var self = this;
     self.element;
     self.elements=[];
-    self.tableNames = ["autoType", "autoModel", "autoType", "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"];
+    self.tableNames = ["autoMarka", "autoModel", "autoType", "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"];
     self.tableName = 'autoModel';
 
     self.tableStructure = {};
@@ -108,11 +108,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         if (tableName) {
             self.tableName = tableName;
         }
-        if (self.tableName == "autoType") {
-            self.tableStructure = {};
-            self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
-        } else if (self.tableName == "autoModel") {
+        if (self.tableName == "autoMarka") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
@@ -120,7 +116,11 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
             self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
-        } else if (self.tableName == "lift") {  "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"
+        } else if (self.tableName == "autoType") {
+            self.tableStructure = {};
+            self.tableStructure.headers = ["ID", "Name", "Delete"];
+            self.tableStructure.fields = ["id", "name", "isDelete"];
+        } else if (self.tableName == "lift") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
@@ -139,11 +139,11 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         } else if (self.tableName == "specialization") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "startWorkDate", "endWorkDate", "startWorkDate", "isDelete"];
+            self.tableStructure.fields = ["id", "time", "money", "isDelete"];
         } else if (self.tableName == "work") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];
-            self.tableStructure.fields = ["id", "name", "isDelete"];
+            self.tableStructure.fields = ["id", "startWorkDate", "endWorkDate", "ownerAuto", "workType", "lift", "master", "done", "actualTime", "actualMoney", "isDelete"];
         } else if (self.tableName == "workType") {
             self.tableStructure = {};
             self.tableStructure.headers = ["ID", "Name", "Delete"];

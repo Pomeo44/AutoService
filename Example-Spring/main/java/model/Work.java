@@ -152,11 +152,10 @@ public class Work extends BaseEntity {
         Work work = (Work) o;
 
         if (id != work.id) return false;
-        if (ownerAutoId != work.ownerAutoId) return false;
-        if (workType != work.workType) return false;
         if (actualTime != work.actualTime) return false;
         if (actualMoney != work.actualMoney) return false;
         if (startWorkDate != null ? !startWorkDate.equals(work.startWorkDate) : work.startWorkDate != null) return false;
+        if (workType != null ? !workType.equals(work.workType) : work.workType != null) return false;
         if (lift != null ? !lift.equals(work.lift) : work.lift != null) return false;
         if (master != null ? !master.equals(work.master) : work.master != null) return false;
         if (done != null ? !done.equals(work.done) : work.done != null) return false;
@@ -168,8 +167,7 @@ public class Work extends BaseEntity {
     public int hashCode() {
         int result = id;
         result = 31 * result + (startWorkDate != null ? startWorkDate.hashCode() : 0);
-        result = 31 * result + ownerAutoId;
-        result = 31 * result + workType;
+        result = 31 * result + (workType != null ? workType.hashCode() : 0);
         result = 31 * result + (lift != null ? lift.hashCode() : 0);
         result = 31 * result + (master != null ? master.hashCode() : 0);
         result = 31 * result + (done != null ? done.hashCode() : 0);

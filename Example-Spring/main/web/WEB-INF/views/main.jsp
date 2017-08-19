@@ -35,9 +35,16 @@
               <div class="formcontainer">
                   <form ng-submit="ctrl.changeTable()">
                       <%--<select ng-model = "ctrl.tableName" multiple ng-options = "x in scopeTableNames"></select>--%>
-                      <button type="button" ng-click="ctrl.changeTable('autoType')" >autoType</button>
-                      <button type="button" ng-click="ctrl.changeTable('autoModel')" >autoModel</button>
                       <button type="button" ng-click="ctrl.changeTable('autoMarka')" >autoMarka</button>
+                      <button type="button" ng-click="ctrl.changeTable('autoModel')" >autoModel</button>
+                      <button type="button" ng-click="ctrl.changeTable('autoType')" >autoType</button>
+                      <button type="button" ng-click="ctrl.changeTable('lift')" >lift</button>
+                      <button type="button" ng-click="ctrl.changeTable('master')" >master</button>
+                      <button type="button" ng-click="ctrl.changeTable('ownerAuto')" >ownerAuto</button>
+                      <button type="button" ng-click="ctrl.changeTable('price')" >price</button>
+                      <button type="button" ng-click="ctrl.changeTable('specialization')" >specialization</button>
+                      <button type="button" ng-click="ctrl.changeTable('work')" >work</button>
+                      <button type="button" ng-click="ctrl.changeTable('workType')" >workType</button>
                   </form>
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.element.id" />
