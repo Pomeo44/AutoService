@@ -1,8 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +8,8 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "AUTO_MODEL", catalog = "kontur44_AutoService")
+@Table(name = "AUTO_MODEL")
+@NamedQuery(name = "AutoModel.getAll", query = "SELECT a from AutoModel a")
 public class AutoModel extends BaseEntity {
 
     private Integer id;
@@ -23,15 +21,17 @@ public class AutoModel extends BaseEntity {
 
     private AutoMarka autoMarka;
 
-    private Integer autoMarkaId;
+//    private Integer autoMarkaId;
 
     private AutoType autoType;
 
-    private Integer autoTypeId;
+//    private Integer autoTypeId;
+
+    private Set<OwnerAuto> ownerAutos = new HashSet<OwnerAuto>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "AUTO_MODEL_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "AUTO_MODEL_ID", unique = true, nullable = false)
     public Integer getId() {
         return id;
     }
@@ -41,7 +41,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -51,7 +51,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = false, updatable = false)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -61,7 +61,7 @@ public class AutoModel extends BaseEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_MARKA_ID")
+    @JoinColumn(name = "AUTO_MARKA_ID", nullable = false)
     public AutoMarka getAutoMarka() {
         return autoMarka;
     }
@@ -70,18 +70,18 @@ public class AutoModel extends BaseEntity {
         this.autoMarka = autoMarka;
     }
 
-    @Basic
-    @Column(name = "AUTO_MARKA_ID", nullable = false, insertable = false, updatable = false)
-    public Integer getAutoMarkaId() {
-        return autoMarkaId;
-    }
-
-    public void setAutoMarkaId(Integer autoMarkaId) {
-        this.autoMarkaId = autoMarkaId;
-    }
+//    @Basic
+//    @Column(name = "AUTO_MARKA_ID", nullable = false, insertable = false, updatable = false)
+//    public Integer getAutoMarkaId() {
+//        return autoMarkaId;
+//    }
+//
+//    public void setAutoMarkaId(Integer autoMarkaId) {
+//        this.autoMarkaId = autoMarkaId;
+//    }
 
     @ManyToOne
-    @JoinColumn(name = "AUTO_TYPE_ID")
+    @JoinColumn(name = "AUTO_TYPE_ID", nullable = false)
     public AutoType getAutoType() {
         return autoType;
     }
@@ -90,14 +90,23 @@ public class AutoModel extends BaseEntity {
         this.autoType = autoType;
     }
 
-    @Basic
-    @Column(name = "AUTO_TYPE_ID", nullable = false, insertable = false, updatable = false)
-    public Integer getAutoTypeId() {
-        return autoTypeId;
+//    @Basic
+//    @Column(name = "AUTO_TYPE_ID", nullable = false, insertable = false, updatable = false)
+//    public Integer getAutoTypeId() {
+//        return autoTypeId;
+//    }
+//
+//    public void setAutoTypeId(Integer autoTypeId) {
+//        this.autoTypeId = autoTypeId;
+//    }
+
+    @OneToMany(mappedBy = "autoModel", fetch = FetchType.LAZY)
+    public Set<OwnerAuto> getOwnerAutos() {
+        return ownerAutos;
     }
 
-    public void setAutoTypeId(Integer autoTypeId) {
-        this.autoTypeId = autoTypeId;
+    public void setOwnerAutos(Set<OwnerAuto> ownerAutos) {
+        this.ownerAutos = ownerAutos;
     }
 
     @Override
@@ -115,7 +124,7 @@ public class AutoModel extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

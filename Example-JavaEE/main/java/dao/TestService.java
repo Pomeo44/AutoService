@@ -1,11 +1,11 @@
 package dao;
 
 import model.AutoMarka;
+import model.AutoModel;
+import model.AutoType;
 
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -14,37 +14,56 @@ import java.util.List;
 @Stateless
 public class TestService {
 
-    // Будет инициализирован контейнером Glassfish
-    // unitName = "DEVMODE" - это имя persistence-unit
-    // EntityManager дает возможность выполнять CRUD запросы в БД
-    @PersistenceContext(unitName = "MainDB")
-    private EntityManager em;
+    private EntityManagerFactory factory;
+//    @PersistenceUnit (unitName = "MainDB")
+//    private EntityManager em;
 
-    // Добавляем User-а В базу данных
-    public AutoMarka add(AutoMarka user){
-        return em.merge(user);
+    public AutoMarka add(AutoMarka autoMarka){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        autoMarka= new AutoMarka();
+        //autoMarka.setId(7);
+        autoMarka.setName("sdfsdf");
+        autoMarka.setIsDelete(false);
+        autoMarka = em.merge(autoMarka);
+        em.getTransaction().commit();
+        em.close();
+        factory.close();
+        return autoMarka;
     }
 
-    // Получаем пользователя по id
-    public AutoMarka get(long id){
-        return em.find(AutoMarka.class, id);
+    public AutoMarka get(Integer id){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        AutoMarka autoMarka = em.find(AutoMarka.class, id);
+        em.close();
+        factory.close();
+        return autoMarka;
     }
 
-    // обновляем пользователя
-    // если User которого мыпытаемся обновить нет,
-    // то запишется он как новый
-    public void update(AutoMarka user){
-        add(user);
-    }
-
-    // удаляем User по id
-    public void delete(long id){
-        em.remove(get(id));
-    }
-
-    // Получаем все пользователей с БД
     public List<AutoMarka> getAll(){
-        TypedQuery<AutoMarka> namedQuery = em.createNamedQuery("User.getAll", AutoMarka.class);
-        return namedQuery.getResultList();
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+
+        TypedQuery<AutoMarka> autoMarkaTypedQuery = em.createNamedQuery("AutoMarka.getAll", AutoMarka.class);
+        List<AutoMarka> autoMarkas = autoMarkaTypedQuery.getResultList();
+
+        TypedQuery<AutoModel> autoModelTypedQuery = em.createNamedQuery("AutoModel.getAll", AutoModel.class);
+        List<AutoModel> autoModels = autoModelTypedQuery.getResultList();
+
+        TypedQuery<AutoType> autoTypeTypedQuery = em.createNamedQuery("AutoType.getAll", AutoType.class);
+        List<AutoType> autoTypes = autoTypeTypedQuery.getResultList();
+
+        System.out.println("" + autoMarkas + autoModels + autoTypes);
+
+        em.close();
+        factory.close();
+        return autoMarkas;
+    }
+
+    private EntityManager getEntityManager() {
+        factory = Persistence.createEntityManagerFactory("MainDB");
+        EntityManager em = factory.createEntityManager();
+        return em;
     }
 }

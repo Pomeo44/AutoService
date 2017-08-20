@@ -1,8 +1,5 @@
 package model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,14 +10,10 @@ import java.util.Set;
 @Entity
 @Table(name = "MASTER")
 public class Master extends BaseEntity {
-    @JsonProperty
     private Integer id;
-    @JsonProperty
     private String name;
-    @JsonProperty
     private Boolean isDelete;
 
-    @JsonIgnore
     private Set<Specialization> specializations = new HashSet<Specialization>();
 
     @Id
@@ -83,7 +76,7 @@ public class Master extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

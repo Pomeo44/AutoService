@@ -11,7 +11,7 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "AUTO_MARKA", catalog = "kontur44_AutoService")
+@Table(name = "AUTO_MARKA")
 public class AutoMarka extends BaseEntity {
     @JsonProperty
     private Integer id;

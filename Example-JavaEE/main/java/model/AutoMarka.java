@@ -8,7 +8,8 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "AUTO_MARKA", catalog = "kontur44_AutoService")
+@Table(name = "AUTO_MARKA")
+@NamedQuery(name = "AutoMarka.getAll", query = "SELECT a from AutoMarka a")
 public class AutoMarka extends BaseEntity {
 
     private Integer id;
@@ -22,7 +23,7 @@ public class AutoMarka extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "AUTO_MARKA_ID", unique = true, nullable = false, insertable = true, updatable = true)
+    @Column(name = "AUTO_MARKA_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;
@@ -33,7 +34,7 @@ public class AutoMarka extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, insertable = true, updatable = true, length = 100)
+    @Column(name = "NAME", nullable = false, length = 100)
     public String getName() {
         return name;
     }
@@ -43,7 +44,7 @@ public class AutoMarka extends BaseEntity {
     }
 
     @Basic
-    @Column(name = "IS_DELETE", nullable = true, insertable = true, updatable = true)
+    @Column(name = "IS_DELETE", nullable = false)
     public Boolean getIsDelete() {
         return isDelete;
     }
@@ -52,7 +53,7 @@ public class AutoMarka extends BaseEntity {
         this.isDelete = isDelete;
     }
 
-    @OneToMany(mappedBy = "autoMarka")
+    @OneToMany(mappedBy = "autoMarka", fetch = FetchType.LAZY)
     public Set<AutoModel> getAutoModels() {
         return autoModels;
     }
@@ -76,7 +77,7 @@ public class AutoMarka extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = id != null ? id : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

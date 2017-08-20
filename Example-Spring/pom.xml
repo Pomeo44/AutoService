@@ -122,7 +122,7 @@
                     <artifactId>maven-war-plugin</artifactId>
                     <version>2.4</version>
                     <configuration>
-                        <warSourceDirectory>src/main/web</warSourceDirectory>
+                        <warSourceDirectory>main/web</warSourceDirectory>
                         <warName>Example-Spring</warName>
                         <failOnMissingWebXml>true</failOnMissingWebXml>
                     </configuration>
