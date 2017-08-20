@@ -14,7 +14,6 @@ import java.util.List;
  * Created by aantipin on 16/08/2017.
  */
 //@ApplicationScoped
-//@Path("/testEE")
 @Path("/hello")
 public class TestController {
 
