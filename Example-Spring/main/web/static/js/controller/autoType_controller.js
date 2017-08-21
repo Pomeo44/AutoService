@@ -4,22 +4,9 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     var self = this;
     self.element;
     self.elements=[];
-    self.dict = {};
-    self.dict.autoMarkas=[];
-    self.autoTypes=[];
-    self.elements=[];
+    self.directories=[];
     self.tableNames = ["autoMarka", "autoModel", "autoType", "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"];
     self.tableName = 'autoModel';
-
-    self.tableStructure = {};
-    self.tableStructure.headers = ["ID", "Name", "Delete", "Automarka", "Autotype"];
-    self.tableStructure.fields = ["id", "name", "isDelete", "autoMarka", "autoType"];
-
-    self.cars = [
-        {model : "Ford Mustang", color : "red"},
-        {model : "Fiat 500", color : "white"},
-        {model : "Volvo XC90", color : "black"}
-    ];
 
     self.getAllElements = function(){
         MainService.getAllElements(self.tableName)
@@ -33,10 +20,21 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         );
     };
 
+    self.getDirectory = function(tableName)
+    {
+        var result;
+        angular.forEach(self.directories, function (directory) {
+            if (tableName == directory.tableName)
+                result = directory.data;
+                return;
+        });
+        return result;
+    };
+
     self.fills = function(){
         MainService.getAllElements("autoMarka").then(
             function(d) {
-                self.dict.autoMarkas = d;
+                self.directories.push({tableName : "autoMarka", data : d});
             },
             function(errResponse){
                 console.error('Error while fetching Currencies');
@@ -45,7 +43,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
 
         MainService.getAllElements("autoType").then(
             function(d) {
-                self.autoTypes = d;
+                self.directories.push({tableName : "autoType", data : d});
             },
             function(errResponse){
                 console.error('Error while fetching Currencies');
@@ -112,20 +110,9 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         self.deleteElement(id);
     };
 
-          
     self.reset = function(){
         self.element = {id:null,name:'',isDelete:false};
         $scope.myForm.$setPristine(); //reset Form
-    };
-
-    self.getElementData = function(name, data)
-    {
-        var result;
-      var pathArr = name.split('.');
-      angular.forEach(pathArr, function (path) {
-          result = result? result[path] : data[path];
-      });
-      return result;
     };
 
     self.changeTable = function(tableName){
@@ -173,15 +160,12 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
             self.tableStructure.headers = ["ID", "Name", "Delete"];
             self.tableStructure.fields = ["id", "name", "isDelete"];
         }
-        $scope.myForm.$setPristine(); //reset Form
+        //$scope.myForm.$setPristine(); //reset Form
         self.getAllElements(self.tableName);
     };
 
-    self.getAllElements(self.tableName);
     self.fills();
-
-    self.getDataFromElement = function(field){
-
-    }
+    self.changeTable();
+    // self.getAllElements(self.tableName);
 
 }]);
