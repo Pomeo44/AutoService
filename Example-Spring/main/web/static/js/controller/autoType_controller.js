@@ -4,6 +4,10 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     var self = this;
     self.element;
     self.elements=[];
+    self.dict = {};
+    self.dict.autoMarkas=[];
+    self.autoTypes=[];
+    self.elements=[];
     self.tableNames = ["autoMarka", "autoModel", "autoType", "lift", "master", "ownerAuto", "price", "specialization", "work", "workType"];
     self.tableName = 'autoModel';
 
@@ -22,6 +26,26 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
         .then(
             function(d) {
                 self.elements = d;
+            },
+            function(errResponse){
+                console.error('Error while fetching Currencies');
+            }
+        );
+    };
+
+    self.fills = function(){
+        MainService.getAllElements("autoMarka").then(
+            function(d) {
+                self.dict.autoMarkas = d;
+            },
+            function(errResponse){
+                console.error('Error while fetching Currencies');
+            }
+        );
+
+        MainService.getAllElements("autoType").then(
+            function(d) {
+                self.autoTypes = d;
             },
             function(errResponse){
                 console.error('Error while fetching Currencies');
@@ -154,6 +178,7 @@ App.controller('MainController', ['$scope', 'MainService', function($scope, Main
     };
 
     self.getAllElements(self.tableName);
+    self.fills();
 
     self.getDataFromElement = function(field){
 
