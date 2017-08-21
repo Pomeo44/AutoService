@@ -3,6 +3,8 @@ package dao;
 import model.AutoMarka;
 import model.AutoModel;
 import model.AutoType;
+import service.ServiceApi;
+import service.exception.NonExistObject;
 
 import javax.ejb.Stateless;
 import javax.persistence.*;
@@ -12,13 +14,13 @@ import java.util.List;
  * Created by aantipin on 16/08/2017.
  */
 @Stateless
-public class TestService {
+public class TestService implements ServiceApi<AutoMarka> {
 
     private EntityManagerFactory factory;
 //    @PersistenceUnit (unitName = "MainDB")
 //    private EntityManager em;
 
-    public AutoMarka add(AutoMarka autoMarka){
+    public Integer add(AutoMarka autoMarka){
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         autoMarka= new AutoMarka();
@@ -29,10 +31,30 @@ public class TestService {
         em.getTransaction().commit();
         em.close();
         factory.close();
-        return autoMarka;
+        return autoMarka.getId();
+    }
+
+    @Override
+    public void deleteById(Integer id) throws NonExistObject {
+
+    }
+
+    @Override
+    public void delete(AutoMarka entity) throws NonExistObject {
+
     }
 
     public AutoMarka get(Integer id){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        AutoMarka autoMarka = em.find(AutoMarka.class, id);
+        em.close();
+        factory.close();
+        return autoMarka;
+    }
+
+    @Override
+    public AutoMarka findById(Integer id) {
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
         AutoMarka autoMarka = em.find(AutoMarka.class, id);
@@ -59,6 +81,16 @@ public class TestService {
         em.close();
         factory.close();
         return autoMarkas;
+    }
+
+    @Override
+    public void update(AutoMarka entity) throws NonExistObject {
+
+    }
+
+    @Override
+    public void save(AutoMarka entity) {
+
     }
 
     private EntityManager getEntityManager() {

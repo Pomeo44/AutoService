@@ -2,6 +2,8 @@ package controller;
 
 import dao.TestService;
 import model.AutoMarka;
+import service.ServiceApi;
+import service.exception.NonUniqueObject;
 
 import javax.ejb.EJB;
 import javax.ws.rs.GET;
@@ -18,7 +20,7 @@ import java.util.List;
 public class TestController {
 
     @EJB
-    private TestService testService;
+    private ServiceApi<AutoMarka> testService;
 
     // This method is called if TEXT_PLAIN is request
     @GET
@@ -41,9 +43,14 @@ public class TestController {
     @Produces(MediaType.TEXT_HTML)
     public String sayHtmlHello() {
         List<AutoMarka> autoMarkas = testService.getAll();
-        AutoMarka autoMarka = testService.get(1);
-        AutoMarka autoMarka2 = testService.add(null);
+        AutoMarka autoMarka = testService.findById(1);
+        Integer autoMarka2 = null;
+        try {
+            autoMarka2 = testService.add(null);
+        } catch (NonUniqueObject nonUniqueObject) {
+            nonUniqueObject.printStackTrace();
+        }
         return "<html> " + "<title>" + "Hello Jersey" + "</title>"
-                + "<body><h1>" + "Hello Jersey size = " + autoMarkas.size() + "; " + autoMarka.getName() + ";" + autoMarka2.getName() + "</body></h1>" + "</html> ";
+                + "<body><h1>" + "Hello Jersey size = " + autoMarkas.size() + "; " + autoMarka.getName() + ";" + autoMarka2 + "</body></h1>" + "</html> ";
     }
 }

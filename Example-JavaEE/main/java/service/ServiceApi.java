@@ -4,11 +4,13 @@ import model.BaseEntity;
 import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
 
+import javax.ejb.Local;
 import java.util.List;
 
 /**
  * Created by Pomeo on 04.12.2016.
  */
+@Local
 public interface ServiceApi<T extends BaseEntity> {
 
     T findById(Integer id);

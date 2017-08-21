@@ -38,7 +38,7 @@ abstract public class AbstractRestController<T extends BaseEntity> {
     @GET
     @Path(value= "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getById(@FormParam("id") Integer id) {
+    public Response getById(@PathParam("id") Integer id) {
         logger.info("Find " + T.ENTITY_TYPE + " with id" + id);
         T entity = (T) getService().findById(id);
         if (entity == null) {
@@ -46,53 +46,56 @@ abstract public class AbstractRestController<T extends BaseEntity> {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
         logger.info("Find " + T.ENTITY_TYPE + " with id" + id + " SUCCESSFULLY");
-        return new ResponseEntity<T>(entity, Response.Status.OK);
+        return Response.ok().entity(entity).build();
     }
 
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public ResponseEntity<Void> add(@RequestBody T entity, UriBuilder ucBuilder) {
+    //@Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response add(T entity, UriBuilder ucBuilder) {
         logger.info("Create " + T.ENTITY_TYPE);
         try {
             getService().add(entity);
         } catch (NonUniqueObject nonUniqueObject) {
             logger.error(T.ENTITY_TYPE + " with name " + entity.getName() + " already exist", nonUniqueObject);
-            return new ResponseEntity<Void>(Response.Status.CONFLICT);
+            return Response.status(Response.Status.CONFLICT).build();
         }
         logger.info("Create " + T.ENTITY_TYPE + " with name " + entity.getName() + " SUCCESSFULLY");
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/{id}").buildAndExpand(entity.getId()).toUri());
-        return new ResponseEntity<Void>(headers, Response.Status.CREATED);
+        return Response.status(Response.Status.CREATED).build();
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setLocation(ucBuilder.path("/{id}").build(entity.getId()).toUri());
+//        return new ResponseEntity<Void>(headers, Response.Status.CREATED);
     }
 
     @PUT
     @Path(value= "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseEntity<T> update(@FormParam("id") Integer id, @RequestBody T entity) {
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response update(@PathParam("id") Integer id, T entity) {
         logger.info("Updating " + T.ENTITY_TYPE + " id = " + id);
         try {
             getService().update(entity);
         } catch (NonExistObject nonExistObject) {
             logger.error(T.ENTITY_TYPE + " with id " + id + " not found");
-            return new ResponseEntity<T>(Response.Status.NOT_FOUND);
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
         logger.info("Updating " + T.ENTITY_TYPE + " with id " + id + " SUCCESSFULLY");
-        return new ResponseEntity<T>(entity, Response.Status.OK);
+        return Response.ok().entity(entity).build();
     }
 
     @DELETE
     @Path(value= "/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public ResponseEntity<T> delete(@FormParam("id") Integer id) {
+    public Response delete(@PathParam("id") Integer id) {
         logger.info("Deleting " + T.ENTITY_TYPE + " with id " + id);
         try {
             getService().deleteById(id);
         } catch (NonExistObject nonExistObject) {
             logger.error("Unable to delete. " + T.ENTITY_TYPE + " with id " + id + " not found");
-            return new ResponseEntity<T>(Response.Status.NOT_FOUND);
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
         logger.info("Deleting " + T.ENTITY_TYPE + " with id " + id + " SUCCESSFULLY");
-        return new ResponseEntity<T>(Response.Status.NO_CONTENT);
+        return Response.status(Response.Status.GONE).build();
     }
 
     abstract protected ServiceApi getService();
