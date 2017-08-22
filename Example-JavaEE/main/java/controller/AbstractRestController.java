@@ -8,10 +8,8 @@ import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.HttpHeaders;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
+import javax.ws.rs.core.*;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -52,7 +50,7 @@ abstract public class AbstractRestController<T extends BaseEntity> {
     @POST
     //@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response add(T entity, UriBuilder ucBuilder) {
+    public Response add(T entity, @Context UriInfo uriInfo) {
         logger.info("Create " + T.ENTITY_TYPE);
         try {
             getService().add(entity);
@@ -61,10 +59,10 @@ abstract public class AbstractRestController<T extends BaseEntity> {
             return Response.status(Response.Status.CONFLICT).build();
         }
         logger.info("Create " + T.ENTITY_TYPE + " with name " + entity.getName() + " SUCCESSFULLY");
-        return Response.status(Response.Status.CREATED).build();
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setLocation(ucBuilder.path("/{id}").build(entity.getId()).toUri());
-//        return new ResponseEntity<Void>(headers, Response.Status.CREATED);
+        String rawPath = uriInfo.getAbsolutePath().getRawPath() + entity.getId();
+        UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder().replacePath(rawPath);
+        return Response.created(uriBuilder.build()).status(Response.Status.CREATED).build();
+
     }
 
     @PUT
