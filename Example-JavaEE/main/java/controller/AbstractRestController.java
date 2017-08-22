@@ -9,7 +9,6 @@ import service.exception.NonUniqueObject;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
-import java.net.URI;
 import java.util.List;
 
 /**
