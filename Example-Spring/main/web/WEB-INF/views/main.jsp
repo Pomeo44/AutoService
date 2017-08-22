@@ -34,7 +34,7 @@
               <div class="panel-heading"><span class="lead">{{ctrl.tableName}} registration form </span></div>
               <div class="formcontainer">
                   <form ng-submit="ctrl.changeTable()">
-                      <select ng-model = "ctrl.tableName" ng-options="tableNamex as tableNamex for tableNamex in ctrl.tableNames" ng-change></select>
+                      <select ng-model = "ctrl.tableName" ng-options="tableNamex as tableNamex for tableNamex in ctrl.tableNames" ng-change="ctrl.changeTable()"></select>
                   </form>
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <input type="hidden" ng-model="ctrl.element.id" />
