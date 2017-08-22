@@ -9,12 +9,11 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "WORK_TYPE")
+@NamedQuery(name = "Entity.getAll", query = "SELECT a from WorkType a")
 public class WorkType extends BaseEntity {
     private Integer id;
     private String name;
     private Boolean isDelete;
-
-    private Set<Price> prices = new HashSet<Price>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,15 +45,6 @@ public class WorkType extends BaseEntity {
 
     public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
-    }
-
-    @OneToMany(mappedBy = "workType", fetch = FetchType.LAZY)
-    public Set<Price> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(Set<Price> prices) {
-        this.prices = prices;
     }
 
     @Override

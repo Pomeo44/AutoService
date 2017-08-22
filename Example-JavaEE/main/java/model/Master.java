@@ -9,12 +9,11 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "MASTER")
+@NamedQuery(name = "Entity.getAll", query = "SELECT a from Master a")
 public class Master extends BaseEntity {
     private Integer id;
     private String name;
     private Boolean isDelete;
-
-    private Set<Specialization> specializations = new HashSet<Specialization>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,19 +45,6 @@ public class Master extends BaseEntity {
 
     public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
-    }
-
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "MASTER_SPECIALIZATION",
-            joinColumns = @JoinColumn(name = "MASTER_ID", referencedColumnName = "MASTER_ID"),
-            inverseJoinColumns = @JoinColumn(name = "SPECIALIZATION_ID", referencedColumnName = "SPECIALIZATION_ID")
-    )
-    public Set<Specialization> getSpecializations() {
-        return specializations;
-    }
-
-    public void setSpecializations(Set<Specialization> specializations) {
-        this.specializations = specializations;
     }
 
     @Override

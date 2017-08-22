@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "LIFT")
+@NamedQuery(name = "Entity.getAll", query = "SELECT a from Lift a")
 public class Lift extends BaseEntity {
 
     @Id
@@ -68,8 +69,7 @@ public class Lift extends BaseEntity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id : 0;
-        result = 31 * result + number;
+        int result = id != null ? id : 0;        result = 31 * result + number;
         return result;
     }
 }

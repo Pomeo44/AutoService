@@ -1,8 +1,6 @@
 package model;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Created by Pomeo on 20.10.2016.
@@ -13,21 +11,10 @@ import java.util.Set;
 public class AutoModel extends BaseEntity {
 
     private Integer id;
-
     private String name;
-
     private Boolean isDelete;
-
-
     private AutoMarka autoMarka;
-
-//    private Integer autoMarkaId;
-
     private AutoType autoType;
-
-//    private Integer autoTypeId;
-
-    private Set<OwnerAuto> ownerAutos = new HashSet<OwnerAuto>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -70,16 +57,6 @@ public class AutoModel extends BaseEntity {
         this.autoMarka = autoMarka;
     }
 
-//    @Basic
-//    @Column(name = "AUTO_MARKA_ID", nullable = false, insertable = false, updatable = false)
-//    public Integer getAutoMarkaId() {
-//        return autoMarkaId;
-//    }
-//
-//    public void setAutoMarkaId(Integer autoMarkaId) {
-//        this.autoMarkaId = autoMarkaId;
-//    }
-
     @ManyToOne
     @JoinColumn(name = "AUTO_TYPE_ID", nullable = false)
     public AutoType getAutoType() {
@@ -88,25 +65,6 @@ public class AutoModel extends BaseEntity {
 
     public void setAutoType(AutoType autoType) {
         this.autoType = autoType;
-    }
-
-//    @Basic
-//    @Column(name = "AUTO_TYPE_ID", nullable = false, insertable = false, updatable = false)
-//    public Integer getAutoTypeId() {
-//        return autoTypeId;
-//    }
-//
-//    public void setAutoTypeId(Integer autoTypeId) {
-//        this.autoTypeId = autoTypeId;
-//    }
-
-    @OneToMany(mappedBy = "autoModel", fetch = FetchType.LAZY)
-    public Set<OwnerAuto> getOwnerAutos() {
-        return ownerAutos;
-    }
-
-    public void setOwnerAutos(Set<OwnerAuto> ownerAutos) {
-        this.ownerAutos = ownerAutos;
     }
 
     @Override

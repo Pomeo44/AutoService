@@ -7,14 +7,12 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PRICE")
+@NamedQuery(name = "Entity.getAll", query = "SELECT a from Price a")
 public class Price extends BaseEntity {
     private Integer id;
     private Integer time;
     private Integer money;
     private Boolean isDelete;
-
-    private AutoType autoType;
-    private WorkType workType;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -57,32 +55,6 @@ public class Price extends BaseEntity {
     public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
     }
-
-
-    @ManyToOne
-    @JoinColumn(name = "AUTO_TYPE_ID", nullable = false)
-    public AutoType getAutoType() {
-        return autoType;
-    }
-
-    public void setAutoType(AutoType autoTypeId) {
-        this.autoType = autoTypeId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "WORK_TYPE_ID", nullable = false)
-    public WorkType getWorkType() {
-        return workType;
-    }
-
-    public void setWorkType(WorkType workTypeId) {
-        this.workType = workTypeId;
-    }
-
-//    @Override
-//    public String getName() {
-//        return autoType.getName() + workType.getName();
-//    }
 
     @Override
     public boolean equals(Object o) {

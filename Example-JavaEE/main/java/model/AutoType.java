@@ -13,15 +13,8 @@ import java.util.Set;
 public class AutoType extends BaseEntity {
 
     private Integer id;
-
     private String name;
-
     private Boolean isDelete;
-
-
-    private Set<AutoModel> autoModels = new HashSet<AutoModel>();
-
-    private Set<Price> prices = new HashSet<Price>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -53,24 +46,6 @@ public class AutoType extends BaseEntity {
 
     public void setIsDelete(Boolean isDelete) {
         this.isDelete = isDelete;
-    }
-
-    @OneToMany(mappedBy = "autoType", fetch = FetchType.LAZY)
-    public Set<AutoModel> getAutoModels() {
-        return autoModels;
-    }
-
-    public void setAutoModels(Set<AutoModel> autoModels) {
-        this.autoModels = autoModels;
-    }
-
-    @OneToMany(mappedBy = "autoType", fetch = FetchType.LAZY)
-    public Set<Price> getPrices() {
-        return prices;
-    }
-
-    public void setPrices(Set<Price> prices) {
-        this.prices = prices;
     }
 
     @Override
