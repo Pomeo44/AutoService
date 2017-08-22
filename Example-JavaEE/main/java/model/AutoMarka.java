@@ -1,5 +1,9 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -8,17 +12,18 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
+@JsonIgnoreProperties({"autoModels"})
 @Table(name = "AUTO_MARKA")
 @NamedQuery(name = "AutoMarka.getAll", query = "SELECT a from AutoMarka a")
 public class AutoMarka extends BaseEntity {
-
+    @JsonProperty
     private Integer id;
-
+    @JsonIgnore
     private String name;
-
+    @JsonProperty
     private Boolean isDelete;
 
-
+    @JsonIgnore
     private Set<AutoModel> autoModels = new HashSet<AutoModel>();
 
     @Id

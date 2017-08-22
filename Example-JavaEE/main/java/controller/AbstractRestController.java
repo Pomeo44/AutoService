@@ -51,14 +51,15 @@ abstract public class AbstractRestController<T extends BaseEntity> {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response add(T entity, @Context UriInfo uriInfo) {
         logger.info("Create " + T.ENTITY_TYPE);
+        Integer newEntityId;
         try {
-            getService().add(entity);
+            newEntityId = getService().add(entity);
         } catch (NonUniqueObject nonUniqueObject) {
             logger.error(T.ENTITY_TYPE + " with name " + entity.getName() + " already exist", nonUniqueObject);
             return Response.status(Response.Status.CONFLICT).build();
         }
-        logger.info("Create " + T.ENTITY_TYPE + " with name " + entity.getName() + " SUCCESSFULLY");
-        String rawPath = uriInfo.getAbsolutePath().getRawPath() + entity.getId();
+        logger.info("Create " + T.ENTITY_TYPE + " with name " + newEntityId + " SUCCESSFULLY");
+        String rawPath = uriInfo.getAbsolutePath().getRawPath() + newEntityId;
         UriBuilder uriBuilder = uriInfo.getAbsolutePathBuilder().replacePath(rawPath);
         return Response.created(uriBuilder.build()).status(Response.Status.CREATED).build();
 
