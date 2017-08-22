@@ -23,10 +23,7 @@ public class TestService implements ServiceApi<AutoMarka> {
     public Integer add(AutoMarka autoMarka){
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
-//        autoMarka= new AutoMarka();
-//        autoMarka.setId(7);
-//        autoMarka.setName("sdfsdf");
-//        autoMarka.setIsDelete(false);
+
         autoMarka = em.merge(autoMarka);
         em.getTransaction().commit();
         em.close();

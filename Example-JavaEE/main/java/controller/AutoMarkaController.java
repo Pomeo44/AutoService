@@ -17,9 +17,6 @@ public class AutoMarkaController extends AbstractRestController<AutoMarka> {
 
     @EJB
     private ServiceApi<AutoMarka> testService;
-//    @Autowired
-//    private AutoMarkaService autoMarkaService;
-
 
     @Override
     protected ServiceApi getService() {
