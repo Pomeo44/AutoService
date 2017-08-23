@@ -1,8 +1,7 @@
 package controller;
 
-import dao.TestService;
 import model.AutoMarka;
-import service.ServiceApi;
+import service.api.ServiceApi;
 import service.exception.NonUniqueObject;
 
 import javax.ejb.EJB;

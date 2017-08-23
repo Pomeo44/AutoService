@@ -3,7 +3,7 @@ package controller;
 import model.AutoMarka;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import service.ServiceApi;
+import service.api.ServiceApi;
 
 import javax.ejb.EJB;
 import javax.ws.rs.Path;
@@ -13,13 +13,13 @@ import javax.ws.rs.Path;
  */
 @Path(value = "/service/autoMarka")
 public class AutoMarkaController extends AbstractRestController<AutoMarka> {
-    private static final Logger logger = LogManager.getLogger(AbstractRestController.class);
+    private static final Logger logger = LogManager.getLogger(AutoMarkaController.class);
 
     @EJB
-    private ServiceApi<AutoMarka> testService;
+    private ServiceApi<AutoMarka> autoMarkaService;
 
     @Override
     protected ServiceApi getService() {
-        return testService;
+        return autoMarkaService;
     }
 }

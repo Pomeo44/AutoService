@@ -3,7 +3,7 @@ package controller;
 import model.BaseEntity;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import service.ServiceApi;
+import service.api.ServiceApi;
 import service.exception.NonExistObject;
 import service.exception.NonUniqueObject;
 
@@ -47,7 +47,6 @@ abstract public class AbstractRestController<T extends BaseEntity> {
     }
 
     @POST
-    //@Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public Response add(T entity, @Context UriInfo uriInfo) {
         logger.info("Create " + T.ENTITY_TYPE);

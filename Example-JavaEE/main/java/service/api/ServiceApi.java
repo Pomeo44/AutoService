@@ -1,4 +1,4 @@
-package service;
+package service.api;
 
 import model.BaseEntity;
 import service.exception.NonExistObject;

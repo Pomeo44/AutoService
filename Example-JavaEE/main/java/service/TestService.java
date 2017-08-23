@@ -1,9 +1,9 @@
-package dao;
+package service;
 
 import model.AutoMarka;
 import model.AutoModel;
 import model.AutoType;
-import service.ServiceApi;
+import service.api.ServiceApi;
 import service.exception.NonExistObject;
 
 import javax.ejb.Stateless;
