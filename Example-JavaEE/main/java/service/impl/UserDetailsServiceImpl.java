@@ -1,8 +1,5 @@
 package service.impl;
 
-import javax.ejb.Stateless;
-
-@Stateless
 public class UserDetailsServiceImpl { //implements UserDetailsService {
 
 //	@Autowired

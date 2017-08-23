@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "PRICE")
-@NamedQuery(name = "Entity.getAll", query = "SELECT a from Price a")
+@NamedQuery(name = "Price.getAll", query = "SELECT a from Price a")
 public class Price extends BaseEntity {
     private Integer id;
     private Integer time;

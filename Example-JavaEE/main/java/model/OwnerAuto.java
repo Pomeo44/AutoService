@@ -7,7 +7,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "OWNER_AUTO")
-@NamedQuery(name = "Entity.getAll", query = "SELECT a from OwnerAuto a")
+@NamedQuery(name = "OwnerAuto.getAll", query = "SELECT a from OwnerAuto a")
 public class OwnerAuto extends BaseEntity {
     private Integer id;
     private String name;

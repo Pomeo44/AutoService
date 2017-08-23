@@ -9,7 +9,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "MASTER")
-@NamedQuery(name = "Entity.getAll", query = "SELECT a from Master a")
+@NamedQuery(name = "Master.getAll", query = "SELECT a from Master a")
 public class Master extends BaseEntity {
     private Integer id;
     private String name;
