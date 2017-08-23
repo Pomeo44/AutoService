@@ -37,6 +37,39 @@
                       <select ng-model = "ctrl.tableName" ng-options="tableNamex as tableNamex for tableNamex in ctrl.tableNames" ng-change="ctrl.changeTable()"></select>
                   </form>
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+
+                      <div class="tablecontainer">
+                          <table class="table table-hover">
+                              <tr ng-repeat="fieldName in ctrl.tableStructure.fields">
+                                  <td>{{fieldName}}</td>
+                                  <td>
+                                      <input type="text"  class="elementName form-control input-sm"/>
+                                      <%--<input ng-if="(fieldName == 'isDelete' || fieldName == 'done')" type="checkbox" ng-model="dataElement[fieldName]" class="elementName form-control input-sm"/>--%>
+
+                                      <!--span ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-bind="dataElement[fieldName]['name']"></span-->
+                                      <%--<select ng-model="dataElement[fieldName].id" ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-options="marka.id as marka.name for marka in ctrl.autoMarkas track by marka.id" class="elementName form-control input-sm"></select>--%>
+                                      <%--<select ng-model="dataElement[fieldName].id" ng-if="fieldName != 'isDelete' && dataElement[fieldName]['name']" ng-options="element.id as element.name for element in ctrl.getDirectory(fieldName)" class="elementName form-control input-sm"></select>--%>
+                                  </td>
+                                  <%--<td>--%>
+                                      <%--<button type="button" ng-click="ctrl.edit(dataElement.id)" class="btn btn-success custom-width">Edit</button>--%>
+                                      <%--<button type="button" ng-click="ctrl.remove(dataElement.id)" class="btn btn-danger custom-width">Remove</button>--%>
+                                  <%--</td>--%>
+                              </tr>
+                              </tbody>
+                              <span ng-if="data.field.length">
+                                  <span ng-repeat="item in data.field">
+                                      <span ng-bind="item.value"></span>
+                                  </span>
+                              </span>
+                                      <span ng-if="!data.field.length">
+                                  <span ng-bind="data.field">
+
+                                  </span>
+                              </span>
+                          </table>
+                      </div>
+
+
                       <input type="hidden" ng-model="ctrl.element.id" />
                       <div class="row">
                           <div class="form-group col-md-12">
