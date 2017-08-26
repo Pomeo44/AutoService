@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 @Access(AccessType.FIELD)
 @Table(name = "WORK")
-@NamedQuery(name = "Entity.getAll", query = "SELECT a from Work a")
+@NamedQuery(name = "Work.getAll", query = "SELECT a from Work a")
 public class Work extends BaseEntity {
 
     @Id

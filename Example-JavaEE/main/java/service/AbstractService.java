@@ -60,7 +60,7 @@ public abstract class AbstractService<T extends BaseEntity> implements ServiceAp
         EntityManager em = getEntityManager();
         em.getTransaction().begin();
 
-        TypedQuery<T> autoMarkaTypedQuery = em.createNamedQuery("Entity.getAll", getPersistentClass());
+        TypedQuery<T> autoMarkaTypedQuery = em.createNamedQuery(getPersistentClass().getName().replace("model.", "") + ".getAll", getPersistentClass());
         List<T> entities = autoMarkaTypedQuery.getResultList();
 
         em.close();
@@ -143,7 +143,7 @@ public abstract class AbstractService<T extends BaseEntity> implements ServiceAp
     }
 
     private EntityManager getEntityManager() {
-        factory = Persistence.createEntityManagerFactory("MainDB");
+        factory = factory != null ? factory : Persistence.createEntityManagerFactory("MainDB");
         EntityManager em = factory.createEntityManager();
         return em;
     }

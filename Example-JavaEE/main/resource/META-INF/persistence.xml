@@ -5,6 +5,7 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>model.AutoMarka</class>
         <class>model.AutoModel</class>
+        <class>model.AutoType</class>
         <class>model.Lift</class>
         <class>model.Master</class>
         <class>model.OwnerAuto</class>

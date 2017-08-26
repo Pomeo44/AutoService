@@ -9,7 +9,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "WORK_TYPE")
-@NamedQuery(name = "Entity.getAll", query = "SELECT a from WorkType a")
+@NamedQuery(name = "WorkType.getAll", query = "SELECT a from WorkType a")
 public class WorkType extends BaseEntity {
     private Integer id;
     private String name;
