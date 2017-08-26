@@ -18,10 +18,10 @@ import javax.sql.DataSource;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UserDetailsService userDetailsService;
+	UserDetailsService userDetailsService;
 	
 	@Autowired
-	private DataSource dataSource;
+	DataSource dataSource;
 	
 	@Autowired
 	public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
