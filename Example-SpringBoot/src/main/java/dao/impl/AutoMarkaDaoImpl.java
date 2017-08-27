@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AutoMarkaDaoImpl extends AbstractHibernateDao<AutoMarka> implements AutoMarkaDao {
     public AutoMarka findByName(String name) {
-        Criteria criteria = getCriteria();
-        criteria.add(Restrictions.eq("name", name));
-        return (AutoMarka)criteria.uniqueResult();
+//        Criteria criteria = getCriteria();
+//        criteria.add(Restrictions.eq("name", name));
+//        return (AutoMarka)criteria.uniqueResult();
+        return null;
     }
 }

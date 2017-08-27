@@ -14,8 +14,9 @@ import org.springframework.stereotype.Repository;
 public class OwnerAutoDaoImpl extends AbstractHibernateDao<OwnerAuto> implements OwnerAutoDao {
 
     public OwnerAuto findByName(String name) {
-        Criteria criteria = getCriteria();
-        criteria.add(Restrictions.eq("name", name));
-        return (OwnerAuto)criteria.uniqueResult();
+//        Criteria criteria = getCriteria();
+//        criteria.add(Restrictions.eq("name", name));
+//        return (OwnerAuto)criteria.uniqueResult();
+        return null;
     }
 }

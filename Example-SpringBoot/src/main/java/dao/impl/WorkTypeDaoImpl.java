@@ -14,8 +14,9 @@ import org.springframework.stereotype.Repository;
 public class WorkTypeDaoImpl extends AbstractHibernateDao<WorkType> implements WorkTypeDao {
 
     public WorkType findByName(String name) {
-        Criteria criteria = getCriteria();
-        criteria.add(Restrictions.eq("name", name));
-        return (WorkType)criteria.uniqueResult();
+//        Criteria criteria = getCriteria();
+//        criteria.add(Restrictions.eq("name", name));
+//        return (WorkType)criteria.uniqueResult();
+        return null;
     }
 }

@@ -14,8 +14,9 @@ import org.springframework.stereotype.Repository;
 public class PriceDaoImpl extends AbstractHibernateDao<Price> implements PriceDao {
 
     public Price findByName(String name) {
-        Criteria criteria = getCriteria();
-        criteria.add(Restrictions.eq("name", name));
-        return (Price)criteria.uniqueResult();
+//        Criteria criteria = getCriteria();
+//        criteria.add(Restrictions.eq("name", name));
+//        return (Price)criteria.uniqueResult();
+        return null;
     }
 }

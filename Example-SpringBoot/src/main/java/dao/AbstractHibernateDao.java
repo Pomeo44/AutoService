@@ -9,6 +9,9 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
@@ -19,8 +22,8 @@ import java.util.List;
  */
 public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<T> {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
     private Class<T> persistentClass;
 
     public AbstractHibernateDao() {
@@ -43,87 +46,61 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
 
     @Override
     public T findById(Integer id) {
-        T t = (T) getSession().get(getPersistentClass(), id);
+        T t = entityManager.find(getPersistentClass(), id);
         return t;
     }
 
     @Override
     public T findByName(String name) {
-        Criteria criteria = getSession().createCriteria(getPersistentClass());
-        criteria.add(Restrictions.eq("name", name));
-        return (T) criteria.uniqueResult();
+//        Criteria criteria = getSession().createCriteria(getPersistentClass());
+//        criteria.add(Restrictions.eq("name", name));
+        return null;//(T) criteria.uniqueResult();
     }
 
     @Override
     public List<T> getAll() {
-        Criteria criteria = getSession().createCriteria(getPersistentClass());
-        return criteria.list();
+        TypedQuery<T> autoMarkaTypedQuery = entityManager.createNamedQuery(getPersistentClass().getName().replace("model.", "") + ".getAll", getPersistentClass());
+        return autoMarkaTypedQuery.getResultList();
     }
 
     public void saveOrUpdate(T entity) {
-        getSession().saveOrUpdate(entity);
+        entityManager.merge(entity);
     }
 
     @Override
     public Integer add(T entity) {
-        return (Integer) getSession().save(entity);
+        return entityManager.merge(entity).getId();
     }
 
     public final void delete(T entity) {
-        getSession().delete(entity);
+        entityManager.remove(entity);
     }
 
     @Override
     public final void deleteById(Integer id) {
-        Session session = getSession();
-        Object o = session.get(getPersistentClass(), id);
-        if (o != null) {
-            session.delete(o);
+        T entity = entityManager.find(getPersistentClass(), id);
+        if (entity != null) {
+            entityManager.remove(entity);
         }
     }
 
     @Override
     public T merge(T entity) {
-        return (T) getSession().merge(entity);
+        return entityManager.merge(entity);
     }
 
     @Override
     public void flush() {
-        getSession().flush();
+        entityManager.flush();
     }
 
     @Override
     public void evict(T entity) {
-        getSession().evict(entity);
     }
 
     @Override
     public void clear() {
-        getSession().clear();
-    }
-
-    public Session getSession() {
-        Session session = sessionFactory.getCurrentSession();
-        if (session instanceof SessionImplementor) {
-            ((SessionImplementor)session).setAutoClear(true);
-        }
-        return session;
-    }
-
-    public Session openSession() {
-        Session session = sessionFactory.openSession();
-        return session;
-    }
-
-    public void closeSession(Session session) {
-        session.close();
-    }
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+        entityManager.clear();
     }
 
     public Class<T> getPersistentClass() {
@@ -134,7 +111,4 @@ public abstract class AbstractHibernateDao<T extends BaseEntity> implements Dao<
         this.persistentClass = persistentClass;
     }
 
-    public Criteria getCriteria(){
-        return getSession().createCriteria(getPersistentClass());
-    }
 }

@@ -11,8 +11,9 @@ import org.springframework.stereotype.Repository;
 public class UserDaoImpl extends AbstractHibernateDao<User> implements UserDao {
 
 	public User findBySSO(String sso) {
-		Criteria criteria = getSession().createCriteria(getPersistentClass());
-		criteria.add(Restrictions.eq("ssoId", sso));
-		return (User) criteria.uniqueResult();
+//		Criteria criteria = getSession().createCriteria(getPersistentClass());
+//		criteria.add(Restrictions.eq("ssoId", sso));
+//		return (User) criteria.uniqueResult();
+		return null;
 	}
 }
