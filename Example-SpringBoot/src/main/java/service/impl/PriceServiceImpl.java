@@ -1,7 +1,6 @@
 package service.impl;
 
-import dao.api.Dao;
-import dao.api.PriceDao;
+import repository.api.PriceRepository;
 import model.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,13 @@ import service.api.PriceService;
  */
 @Service
 @Transactional
-public class PriceServiceImpl extends AbstractService<Price, PriceDao> implements PriceService {
+public class PriceServiceImpl extends AbstractService<Price, PriceRepository> implements PriceService {
 
     @Autowired
-    private PriceDao priceDao;
+    private PriceRepository priceRepository;
 
     @Override
-    protected Dao getDao() {
-        return priceDao;
+    protected PriceRepository getRepository() {
+        return priceRepository;
     }
 }

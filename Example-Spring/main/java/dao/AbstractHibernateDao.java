@@ -1,12 +1,10 @@
 package dao;
 
-import model.Master;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import dao.api.Dao;
+import repository.api.Dao;
 import model.BaseEntity;
 
 import java.lang.reflect.ParameterizedType;

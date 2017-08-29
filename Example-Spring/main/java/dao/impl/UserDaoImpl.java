@@ -5,7 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import dao.AbstractHibernateDao;
-import dao.api.UserDao;
+import repository.api.UserDao;
 
 @Repository
 public class UserDaoImpl extends AbstractHibernateDao<User> implements UserDao {

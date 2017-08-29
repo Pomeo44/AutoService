@@ -1,6 +1,6 @@
 package service;
 
-import dao.api.Dao;
+import repository.api.Dao;
 import model.BaseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import service.api.ServiceApi;

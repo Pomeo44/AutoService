@@ -1,6 +1,6 @@
 package service.impl;
 
-import dao.api.UserDao;
+import repository.api.UserRepository;
 import model.security.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +12,14 @@ import service.api.security.UserService;
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userRepository;
 
 	public User findById(int id) {
-		return userDao.findById(id);
+		return userRepository.findById(id).get();
 	}
 
 	public User findBySso(String sso) {
-		return userDao.findBySSO(sso);
+		return userRepository.findBySSO(sso);
 	}
 
 }

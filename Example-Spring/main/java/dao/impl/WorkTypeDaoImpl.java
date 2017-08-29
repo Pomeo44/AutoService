@@ -1,9 +1,7 @@
 package dao.impl;
 
 import dao.AbstractHibernateDao;
-import dao.api.LiftDao;
-import dao.api.WorkTypeDao;
-import model.Lift;
+import repository.api.WorkTypeDao;
 import model.WorkType;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;

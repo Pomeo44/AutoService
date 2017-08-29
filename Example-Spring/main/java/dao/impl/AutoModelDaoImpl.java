@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.AbstractHibernateDao;
-import dao.api.AutoModelDao;
+import repository.api.AutoModelDao;
 import model.AutoModel;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;

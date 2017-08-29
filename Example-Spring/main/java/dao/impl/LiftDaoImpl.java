@@ -1,12 +1,8 @@
 package dao.impl;
 
 import dao.AbstractHibernateDao;
-import dao.api.AutoTypeDao;
-import dao.api.LiftDao;
-import model.AutoType;
+import repository.api.LiftDao;
 import model.Lift;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 /**

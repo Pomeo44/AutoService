@@ -1,7 +1,7 @@
 package service.impl;
 
-import dao.api.Dao;
-import dao.api.WorkDao;
+import repository.api.Dao;
+import repository.api.WorkDao;
 import model.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

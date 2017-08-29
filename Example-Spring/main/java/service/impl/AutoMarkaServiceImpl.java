@@ -1,17 +1,13 @@
 package service.impl;
 
-import dao.api.AutoMarkaDao;
-import dao.api.Dao;
+import repository.api.AutoMarkaDao;
+import repository.api.Dao;
 import model.AutoMarka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.AbstractService;
 import service.api.AutoMarkaService;
-import service.exception.NonExistObject;
-import service.exception.NonUniqueObject;
-
-import java.util.List;
 
 /**
  * Created by Pomeo on 11.12.2016.

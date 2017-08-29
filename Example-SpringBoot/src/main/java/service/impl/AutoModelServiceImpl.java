@@ -1,7 +1,6 @@
 package service.impl;
 
-import dao.api.AutoModelDao;
-import dao.api.Dao;
+import repository.api.AutoModelRepository;
 import model.AutoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,14 +14,14 @@ import service.exception.NonExistObject;
  */
 @Service
 @Transactional
-public class AutoModelServiceImpl extends AbstractService<AutoModel, AutoModelDao> implements AutoModelService {
+public class AutoModelServiceImpl extends AbstractService<AutoModel, AutoModelRepository> implements AutoModelService {
 
     @Autowired
-    private AutoModelDao autoModelDao;
+    private AutoModelRepository autoModelRepository;
 
     @Override
-    protected Dao getDao() {
-        return autoModelDao;
+    protected AutoModelRepository getRepository() {
+        return autoModelRepository;
     }
 
     @Override

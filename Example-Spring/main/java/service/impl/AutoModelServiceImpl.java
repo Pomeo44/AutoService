@@ -1,8 +1,7 @@
 package service.impl;
 
-import dao.api.AutoModelDao;
-import dao.api.Dao;
-import model.AutoMarka;
+import repository.api.AutoModelDao;
+import repository.api.Dao;
 import model.AutoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import service.AbstractService;
 import service.api.AutoModelService;
 import service.exception.NonExistObject;
-import service.exception.NonUniqueObject;
-
-import java.util.List;
 
 /**
  * Created by Pomeo on 11.12.2016.

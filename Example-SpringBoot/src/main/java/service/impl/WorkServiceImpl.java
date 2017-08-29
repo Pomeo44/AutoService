@@ -1,7 +1,6 @@
 package service.impl;
 
-import dao.api.Dao;
-import dao.api.WorkDao;
+import repository.api.WorkRepository;
 import model.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +13,12 @@ import service.api.WorkService;
  */
 @Service
 @Transactional
-public class WorkServiceImpl extends AbstractService<Work, WorkDao> implements WorkService {
+public class WorkServiceImpl extends AbstractService<Work, WorkRepository> implements WorkService {
     @Autowired
-    private WorkDao workDao;
+    private WorkRepository workRepository;
 
     @Override
-    protected Dao getDao() {
-        return workDao;
+    protected WorkRepository getRepository() {
+        return workRepository;
     }
 }

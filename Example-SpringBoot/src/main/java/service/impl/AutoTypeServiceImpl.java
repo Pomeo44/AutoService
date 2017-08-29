@@ -1,7 +1,6 @@
 package service.impl;
 
-import dao.api.AutoTypeDao;
-import dao.api.Dao;
+import repository.api.AutoTypeRepository;
 import model.AutoType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,13 @@ import service.api.AutoTypeService;
  */
 @Service
 @Transactional
-public class AutoTypeServiceImpl extends AbstractService<AutoType, AutoTypeDao> implements AutoTypeService {
+public class AutoTypeServiceImpl extends AbstractService<AutoType, AutoTypeRepository> implements AutoTypeService {
 
     @Autowired
-    private AutoTypeDao autoTypeDao;
+    private AutoTypeRepository autoTypeRepository;
 
     @Override
-    protected Dao getDao() {
-        return autoTypeDao;
+    protected AutoTypeRepository getRepository() {
+        return autoTypeRepository;
     }
 }

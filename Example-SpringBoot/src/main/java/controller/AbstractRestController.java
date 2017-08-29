@@ -25,8 +25,8 @@ abstract public class AbstractRestController<T extends BaseEntity> {
     @GetMapping(value= "/")
     public ResponseEntity<List<T>> getAll() {
         logger.info("Find All " + T.ENTITY_TYPE);
-        List<T> entitys = getService().getAll();
-        if(entitys.isEmpty()){
+        Iterable<T> entitys = getService().getAll();
+        if(entitys.()){
             logger.info(T.ENTITY_TYPE + " empty");
             return new ResponseEntity<List<T>>(HttpStatus.NO_CONTENT);
         }

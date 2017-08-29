@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.AbstractHibernateDao;
-import dao.api.OwnerAutoDao;
+import repository.api.OwnerAutoDao;
 import model.OwnerAuto;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;

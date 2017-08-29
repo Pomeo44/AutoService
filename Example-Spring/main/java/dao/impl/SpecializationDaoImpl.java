@@ -2,7 +2,7 @@ package dao.impl;
 
 import org.springframework.stereotype.Repository;
 import dao.AbstractHibernateDao;
-import dao.api.SpecializationDao;
+import repository.api.SpecializationDao;
 import model.Specialization;
 
 /**

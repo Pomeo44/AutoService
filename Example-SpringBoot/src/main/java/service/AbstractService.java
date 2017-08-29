@@ -1,7 +1,7 @@
 package service;
 
-import dao.api.Dao;
 import model.BaseEntity;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 import service.api.ServiceApi;
 import service.exception.NonExistObject;
@@ -13,38 +13,32 @@ import java.util.List;
  * Created by Pomeo on 24.12.2016.
  */
 @Transactional
-public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> implements ServiceApi<T> {
+public abstract class AbstractService<T extends BaseEntity, K extends CrudRepository<T, Integer>> implements ServiceApi<T> {
 
     @Transactional(readOnly = true)
     @Override
     public T findById(Integer id) {
-        return (T) getDao().findById(id);
+        return getRepository().findById(id).get();
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<T> getAll() {
-        return getDao().getAll();
-    }
-
-    @Transactional
-    @Override
-    public void save(T entity) {
-        getDao().saveOrUpdate(entity);
+    public Iterable<T> getAll() {
+        return getRepository().findAll();
     }
 
     @Transactional
     @Override
     public void update(T entity) throws NonExistObject {
         checkExistEntity(entity);
-        getDao().merge(entity);
+        getRepository().save(entity);
     }
 
     @Transactional
     @Override
     public Integer add(T entity) throws NonUniqueObject {
         entity.setIsDelete(false);
-        return getDao().add(entity);
+        return ((T)getRepository().save(entity)).getId();
     }
 
     @Transactional
@@ -52,7 +46,7 @@ public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> im
     public void delete(T entity) throws NonExistObject {
         entity = checkExistEntity(entity);
         entity.setIsDelete(true);
-        getDao().merge(entity);
+        getRepository().save(entity);
     }
 
     @Transactional
@@ -60,7 +54,7 @@ public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> im
     public void deleteById(Integer id) throws NonExistObject {
         T entity = checkExistEntity(id);
         entity.setIsDelete(true);
-        getDao().merge(entity);
+        getRepository().save(entity);
     }
 
 //    private T checkUniqueEntityByName(T entity) throws NonExistObject {
@@ -83,5 +77,5 @@ public abstract class AbstractService<T extends BaseEntity, K extends Dao<T>> im
         return entity;
     }
 
-    abstract protected Dao getDao();
+    abstract protected K getRepository();
 }

@@ -1,17 +1,13 @@
 package service.impl;
 
-import dao.api.Dao;
-import dao.api.OwnerAutoDao;
+import repository.api.Dao;
+import repository.api.OwnerAutoDao;
 import model.OwnerAuto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.AbstractService;
 import service.api.OwnerAutoService;
-import service.exception.NonExistObject;
-import service.exception.NonUniqueObject;
-
-import java.util.List;
 
 /**
  * Created by Pomeo on 11.12.2016.

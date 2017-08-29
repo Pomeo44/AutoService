@@ -1,7 +1,6 @@
 package service.impl;
 
-import dao.api.Dao;
-import dao.api.LiftDao;
+import repository.api.LiftRepository;
 import model.Lift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,13 @@ import service.api.LiftService;
  */
 @Service
 @Transactional
-public class LiftServiceImpl extends AbstractService<Lift, LiftDao> implements LiftService {
+public class LiftServiceImpl extends AbstractService<Lift, LiftRepository> implements LiftService {
 
     @Autowired
-    private LiftDao liftDao;
+    private LiftRepository liftRepository;
 
     @Override
-    protected Dao getDao() {
-        return liftDao;
+    protected LiftRepository getRepository() {
+        return liftRepository;
     }
 }

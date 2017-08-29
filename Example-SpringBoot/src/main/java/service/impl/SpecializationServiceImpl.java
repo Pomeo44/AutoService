@@ -1,12 +1,12 @@
 package service.impl;
 
-import dao.api.Dao;
-import dao.api.SpecializationDao;
+import repository.api.SpecializationRepository;
 import model.Specialization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.AbstractService;
+import service.api.ServiceApi;
 import service.api.SpecializationService;
 
 /**
@@ -14,13 +14,13 @@ import service.api.SpecializationService;
  */
 @Service
 @Transactional
-public class SpecializationServiceImpl extends AbstractService<Specialization, SpecializationDao> implements SpecializationService {
+public class SpecializationServiceImpl extends AbstractService<Specialization, SpecializationRepository> implements SpecializationService{
 
     @Autowired
-    private SpecializationDao specializationDao;
+    private SpecializationRepository specializationRepository;
 
     @Override
-    protected Dao getDao() {
-        return specializationDao;
+    protected SpecializationRepository getRepository() {
+        return specializationRepository;
     }
 }

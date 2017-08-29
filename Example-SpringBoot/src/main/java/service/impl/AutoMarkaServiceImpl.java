@@ -1,7 +1,6 @@
 package service.impl;
 
-import dao.api.AutoMarkaDao;
-import dao.api.Dao;
+import repository.api.AutoMarkaRepository;
 import model.AutoMarka;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,13 +13,13 @@ import service.api.AutoMarkaService;
  */
 @Service
 @Transactional
-public class AutoMarkaServiceImpl extends AbstractService<AutoMarka, AutoMarkaDao> implements AutoMarkaService {
+public class AutoMarkaServiceImpl extends AbstractService<AutoMarka, AutoMarkaRepository> implements AutoMarkaService {
 
     @Autowired
-    private AutoMarkaDao autoMarkaDao;
+    private AutoMarkaRepository autoMarkaRepository;
 
     @Override
-    protected Dao getDao() {
-        return autoMarkaDao;
+    protected AutoMarkaRepository getRepository() {
+        return autoMarkaRepository;
     }
 }

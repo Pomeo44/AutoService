@@ -1,7 +1,7 @@
 package dao.impl;
 
 import dao.AbstractHibernateDao;
-import dao.api.PriceDao;
+import repository.api.PriceDao;
 import model.Price;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;

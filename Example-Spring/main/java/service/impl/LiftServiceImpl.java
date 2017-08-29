@@ -1,20 +1,13 @@
 package service.impl;
 
-import dao.api.AutoTypeDao;
-import dao.api.Dao;
-import dao.api.LiftDao;
-import model.AutoType;
+import repository.api.Dao;
+import repository.api.LiftDao;
 import model.Lift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.AbstractService;
-import service.api.AutoTypeService;
 import service.api.LiftService;
-import service.exception.NonExistObject;
-import service.exception.NonUniqueObject;
-
-import java.util.List;
 
 /**
  * Created by Pomeo on 11.12.2016.
