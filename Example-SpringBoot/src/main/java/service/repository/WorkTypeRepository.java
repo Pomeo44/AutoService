@@ -1,4 +1,4 @@
-package repository.api;
+package service.repository;
 
 import model.WorkType;
 import org.springframework.data.repository.CrudRepository;

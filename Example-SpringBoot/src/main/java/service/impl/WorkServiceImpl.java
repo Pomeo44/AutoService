@@ -1,6 +1,6 @@
 package service.impl;
 
-import repository.api.WorkRepository;
+import service.repository.WorkRepository;
 import model.Work;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

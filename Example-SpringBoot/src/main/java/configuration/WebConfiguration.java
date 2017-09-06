@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @Configuration
-@EnableWebMvc
 public class WebConfiguration extends WebMvcConfigurationSupport {
 
     @Override

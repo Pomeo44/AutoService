@@ -1,6 +1,6 @@
 package service.impl;
 
-import repository.api.MasterRepository;
+import service.repository.MasterRepository;
 import model.Master;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

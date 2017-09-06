@@ -1,12 +1,11 @@
 package service.impl;
 
-import repository.api.SpecializationRepository;
+import service.repository.SpecializationRepository;
 import model.Specialization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import service.AbstractService;
-import service.api.ServiceApi;
 import service.api.SpecializationService;
 
 /**

@@ -1,8 +1,8 @@
-package service.api;
+package org.pomeo44.service.api;
 
-import model.BaseEntity;
-import service.exception.NonExistObject;
-import service.exception.NonUniqueObject;
+import org.pomeo44.model.BaseEntity;
+import org.pomeo44.service.exception.NonExistObject;
+import org.pomeo44.service.exception.NonUniqueObject;
 
 import java.util.List;
 

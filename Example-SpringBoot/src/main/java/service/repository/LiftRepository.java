@@ -1,4 +1,4 @@
-package repository.api;
+package service.repository;
 
 import model.Lift;
 import org.springframework.data.repository.CrudRepository;

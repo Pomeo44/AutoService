@@ -8,6 +8,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "configuration")
+@ComponentScan(basePackages = "controller")
+@ComponentScan(basePackages = "model")
+@ComponentScan(basePackages = "service")
 public class SpringBootWebApplication  {
 
 //	@Override

@@ -1,4 +1,4 @@
-package repository.api;
+package service.repository;
 
 import model.Specialization;
 import org.springframework.data.repository.CrudRepository;

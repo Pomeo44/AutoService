@@ -1,6 +1,6 @@
 package service.impl;
 
-import repository.api.AutoTypeRepository;
+import service.repository.AutoTypeRepository;
 import model.AutoType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

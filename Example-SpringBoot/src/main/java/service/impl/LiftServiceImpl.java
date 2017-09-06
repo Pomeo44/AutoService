@@ -1,6 +1,6 @@
 package service.impl;
 
-import repository.api.LiftRepository;
+import service.repository.LiftRepository;
 import model.Lift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

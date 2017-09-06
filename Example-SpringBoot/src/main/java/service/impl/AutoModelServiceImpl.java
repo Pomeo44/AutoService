@@ -1,6 +1,6 @@
 package service.impl;
 
-import repository.api.AutoModelRepository;
+import service.repository.AutoModelRepository;
 import model.AutoModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

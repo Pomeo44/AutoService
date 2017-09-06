@@ -1,12 +1,12 @@
-package service;
+package org.pomeo44.service;
 
 import jersey.repackaged.com.google.common.collect.Lists;
-import model.BaseEntity;
+import org.pomeo44.model.BaseEntity;
+import org.pomeo44.service.api.ServiceApi;
+import org.pomeo44.service.exception.NonExistObject;
+import org.pomeo44.service.exception.NonUniqueObject;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
-import service.api.ServiceApi;
-import service.exception.NonExistObject;
-import service.exception.NonUniqueObject;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public abstract class AbstractService<T extends BaseEntity, K extends CrudReposi
     @Transactional(readOnly = true)
     @Override
     public T findById(Integer id) {
-        return getRepository().findById(id).get();
+        return getRepository().findOne(id);
     }
 
     @Transactional(readOnly = true)

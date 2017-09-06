@@ -1,6 +1,6 @@
 package service.impl;
 
-import repository.api.PriceRepository;
+import service.repository.PriceRepository;
 import model.Price;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
