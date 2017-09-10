@@ -11,8 +11,8 @@ import java.util.Set;
  * Created by Pomeo on 20.10.2016.
  */
 @Entity
-@Table(name = "AUTO_MARKA")
-public class AutoMarka extends BaseEntity {
+@Table(name = "SPECIALIZATION")
+public class Specialization extends BaseEntity {
     @JsonProperty
     private Integer id;
     @JsonProperty
@@ -21,18 +21,18 @@ public class AutoMarka extends BaseEntity {
     private Boolean isDelete;
 
     @JsonIgnore
-    private Set<AutoModel> autoModels = new HashSet<AutoModel>();
+    private Set<Master> masters = new HashSet<Master>();
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name = "AUTO_MARKA_ID", unique = true, nullable = false)
+    @Column(name = "SPECIALIZATION_ID", unique = true, nullable = false)
     @Override
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer autoMarkaId) {
-        this.id = autoMarkaId;
+    public void setId(Integer specializationId) {
+        this.id = specializationId;
     }
 
     @Basic
@@ -55,13 +55,13 @@ public class AutoMarka extends BaseEntity {
         this.isDelete = isDelete;
     }
 
-    @OneToMany(mappedBy = "autoMarka", fetch = FetchType.LAZY)
-    public Set<AutoModel> getAutoModels() {
-        return autoModels;
+    @ManyToMany(mappedBy = "specializations", fetch = FetchType.LAZY)
+    public Set<Master> getMasters() {
+        return masters;
     }
 
-    public void setAutoModels(Set<AutoModel> autoModels) {
-        this.autoModels = autoModels;
+    public void setMasters(Set<Master> masters) {
+        this.masters = masters;
     }
 
     @Override
@@ -69,10 +69,10 @@ public class AutoMarka extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AutoMarka autoMarka = (AutoMarka) o;
+        Specialization that = (Specialization) o;
 
-        if (id != autoMarka.id) return false;
-        if (name != null ? !name.equals(autoMarka.name) : autoMarka.name != null) return false;
+        if (id != that.id) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
     }
