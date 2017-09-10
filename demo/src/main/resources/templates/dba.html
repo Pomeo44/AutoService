@@ -1,0 +1,10 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>DBA page!</title>
+	</head>
+	<body>
+		<p th:text="'Dear ' + ${user} + ', Welcome to DBA Page'" />
+		<a href="<th:url value="/logout" />">Logout</a>
+	</body>
+</html>
